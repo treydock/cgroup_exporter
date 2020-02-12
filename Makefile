@@ -4,4 +4,4 @@ DOCKER_REPO	 ?= treydock
 
 include Makefile.common
 
-DOCKER_IMAGE_NAME ?= check_mount_exporter
+DOCKER_IMAGE_NAME ?= cgroup_exporter
