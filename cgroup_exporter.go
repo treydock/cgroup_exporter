@@ -18,7 +18,9 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"os/user"
 	"path/filepath"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -49,6 +51,8 @@ type CgroupMetric struct {
 	cpuTotal    float64
 	cpus        int
 	memoryUsed  float64
+	uid         string
+	username    string
 	memoryTotal float64
 }
 
@@ -60,6 +64,7 @@ type Exporter struct {
 	cpus        *prometheus.Desc
 	memoryUsed  *prometheus.Desc
 	memoryTotal *prometheus.Desc
+	userslice   *prometheus.Desc
 	success     *prometheus.Desc
 }
 
@@ -130,6 +135,8 @@ func NewExporter(paths []string) *Exporter {
 			"Memory used in bytes", []string{"cgroup"}, nil),
 		memoryTotal: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "total_bytes"),
 			"Memory total given to cgroup in bytes", []string{"cgroup"}, nil),
+		userslice: prometheus.NewDesc(prometheus.BuildFQName(namespace, "userslice", "info"),
+			"User slice information", []string{"cgroup", "username", "uid"}, nil),
 		success: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "success"),
 			"Exporter status, 1=successful 0=errors", nil, nil),
 	}
@@ -178,6 +185,18 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			} else {
 				metric.cpus = cpus
 			}
+			pathBase := filepath.Base(name)
+			userSlicePattern := regexp.MustCompile("^user-([0-9]+).slice$")
+			match := userSlicePattern.FindStringSubmatch(pathBase)
+			if len(match) == 1 {
+				metric.uid = match[0]
+				user, err := user.LookupId(match[0])
+				if err != nil {
+					log.Errorf("Error looking up user slice uid %s: %s", match[0], err.Error())
+				} else {
+					metric.username = user.Name
+				}
+			}
 			metrics = append(metrics, metric)
 		}
 	}
@@ -210,6 +229,9 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.cpus, prometheus.GaugeValue, float64(m.cpus), m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryUsed, prometheus.GaugeValue, m.memoryUsed, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryTotal, prometheus.GaugeValue, m.memoryTotal, m.name)
+		if m.username != "" {
+			ch <- prometheus.MustNewConstMetric(e.userslice, prometheus.GaugeValue, 1, m.name, m.username, m.uid)
+		}
 	}
 }
 
