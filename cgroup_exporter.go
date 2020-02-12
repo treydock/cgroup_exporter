@@ -38,7 +38,7 @@ const (
 
 var (
 	defCgroupRoot          = "/sys/fs/cgroup"
-	configPaths            = kingpin.Flag("config.paths", "Comma separated list of cgroup paths to check, eg /users.slice,/system.slice,/slurm").Required().String()
+	configPaths            = kingpin.Flag("config.paths", "Comma separated list of cgroup paths to check, eg /user.slice,/system.slice,/slurm").Required().String()
 	listenAddress          = kingpin.Flag("web.listen-address", "Address to listen on for web interface and telemetry.").Default(":9304").String()
 	disableExporterMetrics = kingpin.Flag("web.disable-exporter-metrics", "Exclude metrics about the exporter (promhttp_*, process_*, go_*)").Default("false").Bool()
 	cgroupRoot             = kingpin.Flag("path.cgroup.root", "Root path to cgroup fs").Default(defCgroupRoot).String()
@@ -212,13 +212,13 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			pathBase := filepath.Base(name)
 			userSlicePattern := regexp.MustCompile("^user-([0-9]+).slice$")
 			match := userSlicePattern.FindStringSubmatch(pathBase)
-			if len(match) == 1 {
-				metric.uid = match[0]
-				user, err := user.LookupId(match[0])
+			if len(match) == 2 {
+				metric.uid = match[1]
+				user, err := user.LookupId(metric.uid)
 				if err != nil {
-					log.Errorf("Error looking up user slice uid %s: %s", match[0], err.Error())
+					log.Errorf("Error looking up user slice uid %s: %s", metric.uid, err.Error())
 				} else {
-					metric.username = user.Name
+					metric.username = user.Username
 				}
 			}
 			metrics = append(metrics, metric)
