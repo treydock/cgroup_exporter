@@ -50,10 +50,12 @@ type CgroupMetric struct {
 	cpuSystem   float64
 	cpuTotal    float64
 	cpus        int
-	memoryUsed  float64
 	uid         string
 	username    string
+	memoryUsed  float64
 	memoryTotal float64
+	swapUsed    float64
+	swapTotal   float64
 }
 
 type Exporter struct {
@@ -64,6 +66,8 @@ type Exporter struct {
 	cpus        *prometheus.Desc
 	memoryUsed  *prometheus.Desc
 	memoryTotal *prometheus.Desc
+	swapUsed    *prometheus.Desc
+	swapTotal   *prometheus.Desc
 	userslice   *prometheus.Desc
 	success     *prometheus.Desc
 }
@@ -153,6 +157,10 @@ func NewExporter(paths []string) *Exporter {
 			"Memory used in bytes", []string{"cgroup"}, nil),
 		memoryTotal: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "total_bytes"),
 			"Memory total given to cgroup in bytes", []string{"cgroup"}, nil),
+		swapUsed: prometheus.NewDesc(prometheus.BuildFQName(namespace, "swap", "used_bytes"),
+			"Swap used in bytes", []string{"cgroup"}, nil),
+		swapTotal: prometheus.NewDesc(prometheus.BuildFQName(namespace, "swap", "total_bytes"),
+			"Swap total given to cgroup in bytes", []string{"cgroup"}, nil),
 		userslice: prometheus.NewDesc(prometheus.BuildFQName(namespace, "userslice", "info"),
 			"User slice information", []string{"cgroup", "username", "uid"}, nil),
 		success: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "success"),
@@ -196,6 +204,8 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			metric.cpuTotal = float64(stats.CPU.Usage.Total) / 1000000000.0
 			metric.memoryUsed = float64(stats.Memory.Usage.Usage)
 			metric.memoryTotal = float64(stats.Memory.Usage.Limit)
+			metric.swapUsed = float64(stats.Memory.Swap.Usage)
+			metric.swapTotal = float64(stats.Memory.Swap.Limit)
 			if cpus, err := getCPUs(name); err == nil {
 				metric.cpus = cpus
 			}
@@ -243,6 +253,8 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.cpus, prometheus.GaugeValue, float64(m.cpus), m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryUsed, prometheus.GaugeValue, m.memoryUsed, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryTotal, prometheus.GaugeValue, m.memoryTotal, m.name)
+		ch <- prometheus.MustNewConstMetric(e.swapUsed, prometheus.GaugeValue, m.swapUsed, m.name)
+		ch <- prometheus.MustNewConstMetric(e.swapTotal, prometheus.GaugeValue, m.swapTotal, m.name)
 		if m.username != "" {
 			ch <- prometheus.MustNewConstMetric(e.userslice, prometheus.GaugeValue, 1, m.name, m.username, m.uid)
 		}

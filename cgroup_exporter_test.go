@@ -75,4 +75,10 @@ func TestCollectUserSlice(t *testing.T) {
 	if val := metrics[0].memoryTotal; val != 68719476736 {
 		t.Errorf("Unexpected value for memoryTotal, got %v", val)
 	}
+	if val := metrics[0].swapUsed; val != 8081408 {
+		t.Errorf("Unexpected value for swapUsed, got %v", val)
+	}
+	if val := metrics[0].swapTotal; val != 9223372036854771712 {
+		t.Errorf("Unexpected value for swapTotal, got %v", val)
+	}
 }
