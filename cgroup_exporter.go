@@ -93,6 +93,24 @@ func subsystem() ([]cgroups.Subsystem, error) {
 	return s, nil
 }
 
+func getCPUs(name string) (int, error) {
+	cpusPath := fmt.Sprintf("%s/cpuset%s/cpuset.cpus", *cgroupRoot, name)
+	if !fileExists(cpusPath) {
+		return 0, nil
+	}
+	cpusData, err := ioutil.ReadFile(cpusPath)
+	if err != nil {
+		log.Errorf("Error reading %s: %s", cpusPath, err.Error())
+		return 0, err
+	}
+	cpus, err := parseCpuSet(string(cpusData))
+	if err != nil {
+		log.Errorf("Error parsing cpu set %s", err.Error())
+		return 0, err
+	}
+	return cpus, nil
+}
+
 func parseCpuSet(cpuset string) (int, error) {
 	var cpus int
 	if cpuset == "" {
@@ -178,11 +196,7 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			metric.cpuTotal = float64(stats.CPU.Usage.Total) / 1000000000.0
 			metric.memoryUsed = float64(stats.Memory.Usage.Usage)
 			metric.memoryTotal = float64(stats.Memory.Usage.Limit)
-			cpusData, _ := ioutil.ReadFile(fmt.Sprintf("/sys/fs/cgroup/cpuset%s/cpuset.cpus", name))
-			cpus, err := parseCpuSet(string(cpusData))
-			if err != nil {
-				log.Errorf("Error parsing cpu set %s", err.Error())
-			} else {
+			if cpus, err := getCPUs(name); err == nil {
 				metric.cpus = cpus
 			}
 			pathBase := filepath.Base(name)
