@@ -173,6 +173,13 @@ func getInfo(name string, metric *CgroupMetric) {
 		} else {
 			metric.username = user.Username
 		}
+		return
+	}
+	if strings.HasPrefix(name, "/torque") {
+		metric.job = true
+		pathBaseSplit := strings.Split(pathBase, ".")
+		metric.jobid = pathBaseSplit[0]
+		return
 	}
 }
 

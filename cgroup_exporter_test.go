@@ -138,3 +138,55 @@ func TestCollectSLURM(t *testing.T) {
 		t.Errorf("Unexpected value for jobid, got %v", val)
 	}
 }
+
+func TestCollectTorque(t *testing.T) {
+	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/torque"}); err != nil {
+		t.Fatal(err)
+	}
+	log.Base().SetLevel("debug")
+	_, filename, _, _ := runtime.Caller(0)
+	dir := filepath.Dir(filename)
+	fixture := filepath.Join(dir, "test")
+	cgroupRoot = &fixture
+
+	exporter := NewExporter([]string{"/torque"})
+	metrics, err := exporter.collect()
+	if err != nil {
+		t.Errorf("Unexpected error: %s", err.Error())
+		return
+	}
+	if val := len(metrics); val != 1 {
+		t.Errorf("Unexpected number of metrics, got %d expected 1", val)
+		return
+	}
+	if val := metrics[0].cpuUser; val != 153146.31 {
+		t.Errorf("Unexpected value for cpuUser, got %v", val)
+	}
+	if val := metrics[0].cpuSystem; val != 260.77 {
+		t.Errorf("Unexpected value for cpuSystem, got %v", val)
+	}
+	if val := metrics[0].cpuTotal; val != 152995.785583781 {
+		t.Errorf("Unexpected value for cpuTotal, got %v", val)
+	}
+	if val := metrics[0].cpus; val != 40 {
+		t.Errorf("Unexpected value for cpus, got %v", val)
+	}
+	if val := metrics[0].memoryUsed; val != 82553999360 {
+		t.Errorf("Unexpected value for memoryUsed, got %v", val)
+	}
+	if val := metrics[0].memoryTotal; val != 196755132416 {
+		t.Errorf("Unexpected value for memoryTotal, got %v", val)
+	}
+	if val := metrics[0].swapUsed; val != 82553999360 {
+		t.Errorf("Unexpected value for swapUsed, got %v", val)
+	}
+	if val := metrics[0].swapTotal; val != 196755132416 {
+		t.Errorf("Unexpected value for swapTotal, got %v", val)
+	}
+	if val := metrics[0].uid; val != "" {
+		t.Errorf("Unexpected value for uid, got %v", val)
+	}
+	if val := metrics[0].jobid; val != "1182724" {
+		t.Errorf("Unexpected value for jobid, got %v", val)
+	}
+}
