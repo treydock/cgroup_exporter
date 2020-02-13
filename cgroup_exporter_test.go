@@ -91,7 +91,7 @@ func TestCollectSLURM(t *testing.T) {
 	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/slurm"}); err != nil {
 		t.Fatal(err)
 	}
-	log.Base().SetLevel("debug")
+	_ = log.Base().SetLevel("debug")
 	_, filename, _, _ := runtime.Caller(0)
 	dir := filepath.Dir(filename)
 	fixture := filepath.Join(dir, "test")
@@ -143,7 +143,7 @@ func TestCollectTorque(t *testing.T) {
 	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/torque"}); err != nil {
 		t.Fatal(err)
 	}
-	log.Base().SetLevel("debug")
+	_ = log.Base().SetLevel("debug")
 	_, filename, _, _ := runtime.Caller(0)
 	dir := filepath.Dir(filename)
 	fixture := filepath.Join(dir, "test")
