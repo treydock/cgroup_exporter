@@ -14,6 +14,7 @@
 package main
 
 import (
+	"github.com/prometheus/common/log"
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
 	"path/filepath"
 	"runtime"
@@ -80,5 +81,60 @@ func TestCollectUserSlice(t *testing.T) {
 	}
 	if val := metrics[0].swapTotal; val != 9223372036854771712 {
 		t.Errorf("Unexpected value for swapTotal, got %v", val)
+	}
+	if val := metrics[0].uid; val != "20821" {
+		t.Errorf("Unexpected value for uid, got %v", val)
+	}
+}
+
+func TestCollectSLURM(t *testing.T) {
+	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/slurm"}); err != nil {
+		t.Fatal(err)
+	}
+	log.Base().SetLevel("debug")
+	_, filename, _, _ := runtime.Caller(0)
+	dir := filepath.Dir(filename)
+	fixture := filepath.Join(dir, "test")
+	cgroupRoot = &fixture
+
+	exporter := NewExporter([]string{"/slurm"})
+	metrics, err := exporter.collect()
+	if err != nil {
+		t.Errorf("Unexpected error: %s", err.Error())
+		return
+	}
+	if val := len(metrics); val != 1 {
+		t.Errorf("Unexpected number of metrics, got %d expected 1", val)
+		return
+	}
+	if val := metrics[0].cpuUser; val != 0 {
+		t.Errorf("Unexpected value for cpuUser, got %v", val)
+	}
+	if val := metrics[0].cpuSystem; val != 0 {
+		t.Errorf("Unexpected value for cpuSystem, got %v", val)
+	}
+	if val := metrics[0].cpuTotal; val != 0.007710215 {
+		t.Errorf("Unexpected value for cpuTotal, got %v", val)
+	}
+	if val := metrics[0].cpus; val != 2 {
+		t.Errorf("Unexpected value for cpus, got %v", val)
+	}
+	if val := metrics[0].memoryUsed; val != 356352 {
+		t.Errorf("Unexpected value for memoryUsed, got %v", val)
+	}
+	if val := metrics[0].memoryTotal; val != 2147483648 {
+		t.Errorf("Unexpected value for memoryTotal, got %v", val)
+	}
+	if val := metrics[0].swapUsed; val != 356352 {
+		t.Errorf("Unexpected value for swapUsed, got %v", val)
+	}
+	if val := metrics[0].swapTotal; val != 2147483648 {
+		t.Errorf("Unexpected value for swapTotal, got %v", val)
+	}
+	if val := metrics[0].uid; val != "20821" {
+		t.Errorf("Unexpected value for uid, got %v", val)
+	}
+	if val := metrics[0].jobid; val != "10" {
+		t.Errorf("Unexpected value for jobid, got %v", val)
 	}
 }

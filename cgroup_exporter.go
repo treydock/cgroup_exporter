@@ -50,12 +50,15 @@ type CgroupMetric struct {
 	cpuSystem   float64
 	cpuTotal    float64
 	cpus        int
-	uid         string
-	username    string
 	memoryUsed  float64
 	memoryTotal float64
 	swapUsed    float64
 	swapTotal   float64
+	userslice   bool
+	job         bool
+	uid         string
+	username    string
+	jobid       string
 }
 
 type Exporter struct {
@@ -69,6 +72,7 @@ type Exporter struct {
 	swapUsed    *prometheus.Desc
 	swapTotal   *prometheus.Desc
 	userslice   *prometheus.Desc
+	jobinfo     *prometheus.Desc
 	success     *prometheus.Desc
 }
 
@@ -107,7 +111,7 @@ func getCPUs(name string) (int, error) {
 		log.Errorf("Error reading %s: %s", cpusPath, err.Error())
 		return 0, err
 	}
-	cpus, err := parseCpuSet(string(cpusData))
+	cpus, err := parseCpuSet(strings.TrimSuffix(string(cpusData), "\n"))
 	if err != nil {
 		log.Errorf("Error parsing cpu set %s", err.Error())
 		return 0, err
@@ -142,6 +146,61 @@ func parseCpuSet(cpuset string) (int, error) {
 	return cpus, nil
 }
 
+func getInfo(name string, metric *CgroupMetric) {
+	pathBase := filepath.Base(name)
+	userSlicePattern := regexp.MustCompile("^user-([0-9]+).slice$")
+	userSliceMatch := userSlicePattern.FindStringSubmatch(pathBase)
+	if len(userSliceMatch) == 2 {
+		metric.userslice = true
+		metric.uid = userSliceMatch[1]
+		user, err := user.LookupId(metric.uid)
+		if err != nil {
+			log.Errorf("Error looking up user slice uid %s: %s", metric.uid, err.Error())
+		} else {
+			metric.username = user.Username
+		}
+		return
+	}
+	slurmPattern := regexp.MustCompile("^/slurm/uid_([0-9]+)/job_([0-9]+)$")
+	slurmMatch := slurmPattern.FindStringSubmatch(name)
+	if len(slurmMatch) == 3 {
+		metric.job = true
+		metric.uid = slurmMatch[1]
+		metric.jobid = slurmMatch[2]
+		user, err := user.LookupId(metric.uid)
+		if err != nil {
+			log.Errorf("Error looking up slurm uid %s: %s", metric.uid, err.Error())
+		} else {
+			metric.username = user.Username
+		}
+	}
+}
+
+func getName(p cgroups.Process, path string) (string, error) {
+	cpuacctPath := filepath.Join(*cgroupRoot, "cpuacct")
+	name := strings.TrimPrefix(p.Path, cpuacctPath)
+	name = strings.TrimSuffix(name, "/")
+	dirs := strings.Split(name, "/")
+	log.Debugf("cgroup name dirs %v", dirs)
+	// Handle user.slice, system.slice and torque
+	if len(dirs) == 3 {
+		return name, nil
+	}
+	// Handle deeper cgroup where we want higher level, mainly SLURM
+	var keepDirs []string
+	for i, d := range dirs {
+		if strings.HasPrefix(d, "job_") {
+			keepDirs = dirs[0 : i+1]
+			break
+		}
+	}
+	if keepDirs == nil {
+		return name, nil
+	}
+	name = strings.Join(keepDirs, "/")
+	return name, nil
+}
+
 func NewExporter(paths []string) *Exporter {
 	return &Exporter{
 		paths: paths,
@@ -163,6 +222,8 @@ func NewExporter(paths []string) *Exporter {
 			"Swap total given to cgroup in bytes", []string{"cgroup"}, nil),
 		userslice: prometheus.NewDesc(prometheus.BuildFQName(namespace, "userslice", "info"),
 			"User slice information", []string{"cgroup", "username", "uid"}, nil),
+		jobinfo: prometheus.NewDesc(prometheus.BuildFQName(namespace, "job", "info"),
+			"User slice information", []string{"cgroup", "username", "uid", "jobid"}, nil),
 		success: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "success"),
 			"Exporter status, 1=successful 0=errors", nil, nil),
 	}
@@ -172,6 +233,7 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 	var names []string
 	var metrics []CgroupMetric
 	for _, path := range e.paths {
+		log.Debugf("Loading cgroup path %v", path)
 		control, err := cgroups.Load(subsystem, cgroups.StaticPath(path))
 		if err != nil {
 			log.Errorf("Error loading cgroup subsystem path %s: %s", path, err.Error())
@@ -182,15 +244,19 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			log.Errorf("Error loading cgroup processes for path %s: %s", path, err.Error())
 			return nil, err
 		}
+		log.Debugf("Found %d processes", len(processes))
 		for _, p := range processes {
-			cpuacctPath := filepath.Join(*cgroupRoot, "cpuacct")
-			name := strings.TrimPrefix(p.Path, cpuacctPath)
-			name = strings.TrimSuffix(name, "/")
+			name, err := getName(p, path)
+			if err != nil {
+				log.Errorf("Error getting cgroup name for for process %s at path %s: %s", p.Path, path, err.Error())
+				continue
+			}
 			if sliceContains(names, name) {
 				continue
 			}
 			names = append(names, name)
 			metric := CgroupMetric{name: name}
+			log.Debugf("Loading cgroup path %s", name)
 			ctrl, err := cgroups.Load(subsystem, func(subsystem cgroups.Name) (string, error) {
 				return name, nil
 			})
@@ -209,18 +275,7 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			if cpus, err := getCPUs(name); err == nil {
 				metric.cpus = cpus
 			}
-			pathBase := filepath.Base(name)
-			userSlicePattern := regexp.MustCompile("^user-([0-9]+).slice$")
-			match := userSlicePattern.FindStringSubmatch(pathBase)
-			if len(match) == 2 {
-				metric.uid = match[1]
-				user, err := user.LookupId(metric.uid)
-				if err != nil {
-					log.Errorf("Error looking up user slice uid %s: %s", metric.uid, err.Error())
-				} else {
-					metric.username = user.Username
-				}
-			}
+			getInfo(name, &metric)
 			metrics = append(metrics, metric)
 		}
 	}
@@ -255,8 +310,11 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.memoryTotal, prometheus.GaugeValue, m.memoryTotal, m.name)
 		ch <- prometheus.MustNewConstMetric(e.swapUsed, prometheus.GaugeValue, m.swapUsed, m.name)
 		ch <- prometheus.MustNewConstMetric(e.swapTotal, prometheus.GaugeValue, m.swapTotal, m.name)
-		if m.username != "" {
+		if m.userslice {
 			ch <- prometheus.MustNewConstMetric(e.userslice, prometheus.GaugeValue, 1, m.name, m.username, m.uid)
+		}
+		if m.job {
+			ch <- prometheus.MustNewConstMetric(e.jobinfo, prometheus.GaugeValue, 1, m.name, m.username, m.uid, m.jobid)
 		}
 	}
 }
