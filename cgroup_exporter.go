@@ -45,35 +45,39 @@ var (
 )
 
 type CgroupMetric struct {
-	name        string
-	cpuUser     float64
-	cpuSystem   float64
-	cpuTotal    float64
-	cpus        int
-	memoryUsed  float64
-	memoryTotal float64
-	swapUsed    float64
-	swapTotal   float64
-	userslice   bool
-	job         bool
-	uid         string
-	username    string
-	jobid       string
+	name            string
+	cpuUser         float64
+	cpuSystem       float64
+	cpuTotal        float64
+	cpus            int
+	memoryUsed      float64
+	memoryTotal     float64
+	memoryFailCount float64
+	swapUsed        float64
+	swapTotal       float64
+	swapFailCount   float64
+	userslice       bool
+	job             bool
+	uid             string
+	username        string
+	jobid           string
 }
 
 type Exporter struct {
-	paths       []string
-	cpuUser     *prometheus.Desc
-	cpuSystem   *prometheus.Desc
-	cpuTotal    *prometheus.Desc
-	cpus        *prometheus.Desc
-	memoryUsed  *prometheus.Desc
-	memoryTotal *prometheus.Desc
-	swapUsed    *prometheus.Desc
-	swapTotal   *prometheus.Desc
-	userslice   *prometheus.Desc
-	jobinfo     *prometheus.Desc
-	success     *prometheus.Desc
+	paths           []string
+	cpuUser         *prometheus.Desc
+	cpuSystem       *prometheus.Desc
+	cpuTotal        *prometheus.Desc
+	cpus            *prometheus.Desc
+	memoryUsed      *prometheus.Desc
+	memoryTotal     *prometheus.Desc
+	memoryFailCount *prometheus.Desc
+	swapUsed        *prometheus.Desc
+	swapTotal       *prometheus.Desc
+	swapFailCount   *prometheus.Desc
+	userslice       *prometheus.Desc
+	jobinfo         *prometheus.Desc
+	success         *prometheus.Desc
 }
 
 func fileExists(filename string) bool {
@@ -223,10 +227,14 @@ func NewExporter(paths []string) *Exporter {
 			"Memory used in bytes", []string{"cgroup"}, nil),
 		memoryTotal: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "total_bytes"),
 			"Memory total given to cgroup in bytes", []string{"cgroup"}, nil),
+		memoryFailCount: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "fail_count"),
+			"Memory fail count", []string{"cgroup"}, nil),
 		swapUsed: prometheus.NewDesc(prometheus.BuildFQName(namespace, "swap", "used_bytes"),
 			"Swap used in bytes", []string{"cgroup"}, nil),
 		swapTotal: prometheus.NewDesc(prometheus.BuildFQName(namespace, "swap", "total_bytes"),
 			"Swap total given to cgroup in bytes", []string{"cgroup"}, nil),
+		swapFailCount: prometheus.NewDesc(prometheus.BuildFQName(namespace, "swap", "fail_count"),
+			"Swap fail count", []string{"cgroup"}, nil),
 		userslice: prometheus.NewDesc(prometheus.BuildFQName(namespace, "userslice", "info"),
 			"User slice information", []string{"cgroup", "username", "uid"}, nil),
 		jobinfo: prometheus.NewDesc(prometheus.BuildFQName(namespace, "job", "info"),
@@ -277,8 +285,10 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			metric.cpuTotal = float64(stats.CPU.Usage.Total) / 1000000000.0
 			metric.memoryUsed = float64(stats.Memory.Usage.Usage)
 			metric.memoryTotal = float64(stats.Memory.Usage.Limit)
+			metric.memoryFailCount = float64(stats.Memory.Usage.Failcnt)
 			metric.swapUsed = float64(stats.Memory.Swap.Usage) - metric.memoryUsed
 			metric.swapTotal = float64(stats.Memory.Swap.Limit) - metric.memoryTotal
+			metric.swapFailCount = float64(stats.Memory.Swap.Failcnt) - metric.memoryFailCount
 			if cpus, err := getCPUs(name); err == nil {
 				metric.cpus = cpus
 			}
@@ -297,6 +307,10 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.cpus
 	ch <- e.memoryUsed
 	ch <- e.memoryTotal
+	ch <- e.memoryFailCount
+	ch <- e.swapUsed
+	ch <- e.swapTotal
+	ch <- e.swapFailCount
 	ch <- e.success
 }
 
@@ -315,8 +329,10 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.cpus, prometheus.GaugeValue, float64(m.cpus), m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryUsed, prometheus.GaugeValue, m.memoryUsed, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryTotal, prometheus.GaugeValue, m.memoryTotal, m.name)
+		ch <- prometheus.MustNewConstMetric(e.memoryFailCount, prometheus.GaugeValue, m.memoryFailCount, m.name)
 		ch <- prometheus.MustNewConstMetric(e.swapUsed, prometheus.GaugeValue, m.swapUsed, m.name)
 		ch <- prometheus.MustNewConstMetric(e.swapTotal, prometheus.GaugeValue, m.swapTotal, m.name)
+		ch <- prometheus.MustNewConstMetric(e.swapFailCount, prometheus.GaugeValue, m.swapFailCount, m.name)
 		if m.userslice {
 			ch <- prometheus.MustNewConstMetric(e.userslice, prometheus.GaugeValue, 1, m.name, m.username, m.uid)
 		}
