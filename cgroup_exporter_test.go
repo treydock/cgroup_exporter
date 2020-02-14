@@ -76,10 +76,10 @@ func TestCollectUserSlice(t *testing.T) {
 	if val := metrics[0].memoryTotal; val != 68719476736 {
 		t.Errorf("Unexpected value for memoryTotal, got %v", val)
 	}
-	if val := metrics[0].swapUsed; val != 8081408 {
+	if val := metrics[0].swapUsed; val != 0 {
 		t.Errorf("Unexpected value for swapUsed, got %v", val)
 	}
-	if val := metrics[0].swapTotal; val != 9223372036854771712 {
+	if val := metrics[0].swapTotal; val != 9223371968135295000 {
 		t.Errorf("Unexpected value for swapTotal, got %v", val)
 	}
 	if val := metrics[0].uid; val != "20821" {
@@ -125,10 +125,10 @@ func TestCollectSLURM(t *testing.T) {
 	if val := metrics[0].memoryTotal; val != 2147483648 {
 		t.Errorf("Unexpected value for memoryTotal, got %v", val)
 	}
-	if val := metrics[0].swapUsed; val != 356352 {
+	if val := metrics[0].swapUsed; val != 0 {
 		t.Errorf("Unexpected value for swapUsed, got %v", val)
 	}
-	if val := metrics[0].swapTotal; val != 2147483648 {
+	if val := metrics[0].swapTotal; val != 0 {
 		t.Errorf("Unexpected value for swapTotal, got %v", val)
 	}
 	if val := metrics[0].uid; val != "20821" {
@@ -177,10 +177,10 @@ func TestCollectTorque(t *testing.T) {
 	if val := metrics[0].memoryTotal; val != 196755132416 {
 		t.Errorf("Unexpected value for memoryTotal, got %v", val)
 	}
-	if val := metrics[0].swapUsed; val != 82553999360 {
+	if val := metrics[0].swapUsed; val != 0 {
 		t.Errorf("Unexpected value for swapUsed, got %v", val)
 	}
-	if val := metrics[0].swapTotal; val != 196755132416 {
+	if val := metrics[0].swapTotal; val != 0 {
 		t.Errorf("Unexpected value for swapTotal, got %v", val)
 	}
 	if val := metrics[0].uid; val != "" {

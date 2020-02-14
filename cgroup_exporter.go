@@ -277,8 +277,8 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			metric.cpuTotal = float64(stats.CPU.Usage.Total) / 1000000000.0
 			metric.memoryUsed = float64(stats.Memory.Usage.Usage)
 			metric.memoryTotal = float64(stats.Memory.Usage.Limit)
-			metric.swapUsed = float64(stats.Memory.Swap.Usage)
-			metric.swapTotal = float64(stats.Memory.Swap.Limit)
+			metric.swapUsed = float64(stats.Memory.Swap.Usage) - metric.memoryUsed
+			metric.swapTotal = float64(stats.Memory.Swap.Limit) - metric.memoryTotal
 			if cpus, err := getCPUs(name); err == nil {
 				metric.cpus = cpus
 			}
