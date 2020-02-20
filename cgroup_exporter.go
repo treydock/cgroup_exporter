@@ -76,8 +76,7 @@ type Exporter struct {
 	swapUsed        *prometheus.Desc
 	swapTotal       *prometheus.Desc
 	swapFailCount   *prometheus.Desc
-	userslice       *prometheus.Desc
-	jobinfo         *prometheus.Desc
+	info            *prometheus.Desc
 }
 
 func fileExists(filename string) bool {
@@ -215,8 +214,6 @@ func getName(p cgroups.Process, path string) (string, error) {
 func NewExporter(paths []string) *Exporter {
 	return &Exporter{
 		paths: paths,
-		collectError: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "collect_error"),
-			"Indicates exporter error, 0=no error, 1=error", []string{"path", "error"}, nil),
 		cpuUser: prometheus.NewDesc(prometheus.BuildFQName(namespace, "cpu", "user_seconds"),
 			"Cumalitive CPU user seconds for cgroup", []string{"cgroup"}, nil),
 		cpuSystem: prometheus.NewDesc(prometheus.BuildFQName(namespace, "cpu", "kernel_seconds"),
@@ -237,10 +234,10 @@ func NewExporter(paths []string) *Exporter {
 			"Swap total given to cgroup in bytes", []string{"cgroup"}, nil),
 		swapFailCount: prometheus.NewDesc(prometheus.BuildFQName(namespace, "swap", "fail_count"),
 			"Swap fail count", []string{"cgroup"}, nil),
-		userslice: prometheus.NewDesc(prometheus.BuildFQName(namespace, "userslice", "info"),
-			"User slice information", []string{"cgroup", "username", "uid"}, nil),
-		jobinfo: prometheus.NewDesc(prometheus.BuildFQName(namespace, "job", "info"),
+		info: prometheus.NewDesc(prometheus.BuildFQName(namespace, "", "info"),
 			"User slice information", []string{"cgroup", "username", "uid", "jobid"}, nil),
+		collectError: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "collect_error"),
+			"Indicates collection error, 0=no error, 1=error", []string{"path", "error"}, nil),
 	}
 }
 
@@ -330,11 +327,8 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.swapUsed, prometheus.GaugeValue, m.swapUsed, m.name)
 		ch <- prometheus.MustNewConstMetric(e.swapTotal, prometheus.GaugeValue, m.swapTotal, m.name)
 		ch <- prometheus.MustNewConstMetric(e.swapFailCount, prometheus.GaugeValue, m.swapFailCount, m.name)
-		if m.userslice {
-			ch <- prometheus.MustNewConstMetric(e.userslice, prometheus.GaugeValue, 1, m.name, m.username, m.uid)
-		}
-		if m.job {
-			ch <- prometheus.MustNewConstMetric(e.jobinfo, prometheus.GaugeValue, 1, m.name, m.username, m.uid, m.jobid)
+		if m.userslice || m.job {
+			ch <- prometheus.MustNewConstMetric(e.info, prometheus.GaugeValue, 1, m.name, m.username, m.uid, m.jobid)
 		}
 	}
 }
