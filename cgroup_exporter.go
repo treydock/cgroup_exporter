@@ -237,7 +237,7 @@ func NewExporter(paths []string) *Exporter {
 		info: prometheus.NewDesc(prometheus.BuildFQName(namespace, "", "info"),
 			"User slice information", []string{"cgroup", "username", "uid", "jobid"}, nil),
 		collectError: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "collect_error"),
-			"Indicates collection error, 0=no error, 1=error", []string{"path", "error"}, nil),
+			"Indicates collection error, 0=no error, 1=error", []string{"path"}, nil),
 	}
 }
 
@@ -249,13 +249,13 @@ func (e *Exporter) collect(ch chan<- prometheus.Metric) ([]CgroupMetric, error) 
 		control, err := cgroups.Load(subsystem, cgroups.StaticPath(path))
 		if err != nil {
 			log.Errorf("Error loading cgroup subsystem path %s: %s", path, err.Error())
-			ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 1, path, "load-subsystem")
+			ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 1, path)
 			continue
 		}
 		processes, err := control.Processes(cgroups.Cpuacct, true)
 		if err != nil {
 			log.Errorf("Error loading cgroup processes for path %s: %s", path, err.Error())
-			ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 1, path, "load-processes")
+			ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 1, path)
 			continue
 		}
 		log.Debugf("Found %d processes", len(processes))
@@ -276,7 +276,7 @@ func (e *Exporter) collect(ch chan<- prometheus.Metric) ([]CgroupMetric, error) 
 			})
 			if err != nil {
 				log.Errorf("Failed to load cgroups for %s: %s", name, err.Error())
-				ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 1, name, "load-subsystem")
+				ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 1, name)
 				continue
 			}
 			stats, _ := ctrl.Stat(cgroups.IgnoreNotExist)
@@ -295,6 +295,7 @@ func (e *Exporter) collect(ch chan<- prometheus.Metric) ([]CgroupMetric, error) 
 			getInfo(name, &metric)
 			metrics = append(metrics, metric)
 		}
+		ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 0, path)
 	}
 
 	return metrics, nil
