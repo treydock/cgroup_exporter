@@ -65,6 +65,7 @@ type CgroupMetric struct {
 
 type Exporter struct {
 	paths           []string
+	collectError    *prometheus.Desc
 	cpuUser         *prometheus.Desc
 	cpuSystem       *prometheus.Desc
 	cpuTotal        *prometheus.Desc
@@ -77,7 +78,6 @@ type Exporter struct {
 	swapFailCount   *prometheus.Desc
 	userslice       *prometheus.Desc
 	jobinfo         *prometheus.Desc
-	success         *prometheus.Desc
 }
 
 func fileExists(filename string) bool {
@@ -215,6 +215,8 @@ func getName(p cgroups.Process, path string) (string, error) {
 func NewExporter(paths []string) *Exporter {
 	return &Exporter{
 		paths: paths,
+		collectError: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "collect_error"),
+			"Indicates exporter error, 0=no error, 1=error", []string{"path", "error"}, nil),
 		cpuUser: prometheus.NewDesc(prometheus.BuildFQName(namespace, "cpu", "user_seconds"),
 			"Cumalitive CPU user seconds for cgroup", []string{"cgroup"}, nil),
 		cpuSystem: prometheus.NewDesc(prometheus.BuildFQName(namespace, "cpu", "kernel_seconds"),
@@ -239,12 +241,10 @@ func NewExporter(paths []string) *Exporter {
 			"User slice information", []string{"cgroup", "username", "uid"}, nil),
 		jobinfo: prometheus.NewDesc(prometheus.BuildFQName(namespace, "job", "info"),
 			"User slice information", []string{"cgroup", "username", "uid", "jobid"}, nil),
-		success: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "success"),
-			"Exporter status, 1=successful 0=errors", nil, nil),
 	}
 }
 
-func (e *Exporter) collect() ([]CgroupMetric, error) {
+func (e *Exporter) collect(ch chan<- prometheus.Metric) ([]CgroupMetric, error) {
 	var names []string
 	var metrics []CgroupMetric
 	for _, path := range e.paths {
@@ -252,12 +252,14 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 		control, err := cgroups.Load(subsystem, cgroups.StaticPath(path))
 		if err != nil {
 			log.Errorf("Error loading cgroup subsystem path %s: %s", path, err.Error())
-			return nil, err
+			ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 1, path, "load-subsystem")
+			continue
 		}
 		processes, err := control.Processes(cgroups.Cpuacct, true)
 		if err != nil {
 			log.Errorf("Error loading cgroup processes for path %s: %s", path, err.Error())
-			return nil, err
+			ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 1, path, "load-processes")
+			continue
 		}
 		log.Debugf("Found %d processes", len(processes))
 		for _, p := range processes {
@@ -277,7 +279,8 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			})
 			if err != nil {
 				log.Errorf("Failed to load cgroups for %s: %s", name, err.Error())
-				return nil, err
+				ch <- prometheus.MustNewConstMetric(e.collectError, prometheus.GaugeValue, 1, name, "load-subsystem")
+				continue
 			}
 			stats, _ := ctrl.Stat(cgroups.IgnoreNotExist)
 			metric.cpuUser = float64(stats.CPU.Usage.User) / 1000000000.0
@@ -311,17 +314,11 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.swapUsed
 	ch <- e.swapTotal
 	ch <- e.swapFailCount
-	ch <- e.success
+	ch <- e.collectError
 }
 
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
-	metrics, err := e.collect()
-	if err != nil {
-		log.Errorf("Exporter error: %s", err.Error())
-		ch <- prometheus.MustNewConstMetric(e.success, prometheus.GaugeValue, 0)
-	} else {
-		ch <- prometheus.MustNewConstMetric(e.success, prometheus.GaugeValue, 1)
-	}
+	metrics, _ := e.collect(ch)
 	for _, m := range metrics {
 		ch <- prometheus.MustNewConstMetric(e.cpuUser, prometheus.GaugeValue, m.cpuUser, m.name)
 		ch <- prometheus.MustNewConstMetric(e.cpuSystem, prometheus.GaugeValue, m.cpuSystem, m.name)
