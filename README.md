@@ -70,6 +70,7 @@ cgroup_info{cgroup="/slurm/uid_20821/job_12",jobid="12",uid="20821",username="td
 cgroup_memory_fail_count{cgroup="/slurm/uid_20821/job_12"} 0
 cgroup_memory_total_bytes{cgroup="/slurm/uid_20821/job_12"} 2.147483648e+09
 cgroup_memory_used_bytes{cgroup="/slurm/uid_20821/job_12"} 315392
+cgroup_swap_fail_count{cgroup="/slurm/uid_20821/job_12"} 0
 cgroup_swap_total_bytes{cgroup="/slurm/uid_20821/job_12"} 2.147483648e+09
 cgroup_swap_used_bytes{cgroup="/slurm/uid_20821/job_12"} 315392
 ```
@@ -85,6 +86,7 @@ cgroup_info{cgroup="/torque/1182958.batch.example.com",jobid="1182958",uid="",us
 cgroup_memory_fail_count{cgroup="/torque/1182958.batch.example.com"} 0
 cgroup_memory_total_bytes{cgroup="/torque/1182958.batch.example.com"} 1.96755132416e+11
 cgroup_memory_used_bytes{cgroup="/torque/1182958.batch.example.com"} 5.3434466304e+10
+cgroup_swap_fail_count{cgroup="/torque/1182958.batch.example.com"} 0
 cgroup_swap_total_bytes{cgroup="/torque/1182958.batch.example.com"} 1.96755132416e+11
 cgroup_swap_used_bytes{cgroup="/torque/1182958.batch.example.com"} 5.3434466304e+10
 ```
