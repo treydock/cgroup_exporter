@@ -14,11 +14,16 @@
 package main
 
 import (
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
 	"path/filepath"
 	"runtime"
 	"testing"
+)
+
+var (
+	ch = make(chan prometheus.Metric)
 )
 
 func TestParseCpuSet(t *testing.T) {
@@ -49,7 +54,7 @@ func TestCollectUserSlice(t *testing.T) {
 	cgroupRoot = &fixture
 
 	exporter := NewExporter([]string{"/user.slice"})
-	metrics, err := exporter.collect()
+	metrics, err := exporter.collect(ch)
 	if err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())
 		return
@@ -104,7 +109,7 @@ func TestCollectSLURM(t *testing.T) {
 	cgroupRoot = &fixture
 
 	exporter := NewExporter([]string{"/slurm"})
-	metrics, err := exporter.collect()
+	metrics, err := exporter.collect(ch)
 	if err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())
 		return
@@ -162,7 +167,7 @@ func TestCollectTorque(t *testing.T) {
 	cgroupRoot = &fixture
 
 	exporter := NewExporter([]string{"/torque"})
-	metrics, err := exporter.collect()
+	metrics, err := exporter.collect(ch)
 	if err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())
 		return
