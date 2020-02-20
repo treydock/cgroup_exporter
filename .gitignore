@@ -1,3 +1,4 @@
 /.tarballs
 /.build
 /cgroup_exporter
+/coverage.txt

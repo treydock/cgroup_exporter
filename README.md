@@ -3,6 +3,7 @@
 [![Build Status](https://circleci.com/gh/treydock/cgroup_exporter/tree/master.svg?style=shield)](https://circleci.com/gh/treydock/cgroup_exporter)
 [![GitHub release](https://img.shields.io/github/v/release/treydock/cgroup_exporter?include_prereleases&sort=semver)](https://github.com/treydock/cgroup_exporter/releases/latest)
 ![GitHub All Releases](https://img.shields.io/github/downloads/treydock/cgroup_exporter/total)
+[![codecov](https://codecov.io/gh/treydock/cgroup_exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/treydock/cgroup_exporter)
 
 # Check mount Prometheus exporter
 
