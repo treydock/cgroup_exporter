@@ -78,7 +78,6 @@ type Exporter struct {
 	swapFailCount   *prometheus.Desc
 	userslice       *prometheus.Desc
 	jobinfo         *prometheus.Desc
-	success         *prometheus.Desc
 }
 
 func fileExists(filename string) bool {
@@ -242,8 +241,6 @@ func NewExporter(paths []string) *Exporter {
 			"User slice information", []string{"cgroup", "username", "uid"}, nil),
 		jobinfo: prometheus.NewDesc(prometheus.BuildFQName(namespace, "job", "info"),
 			"User slice information", []string{"cgroup", "username", "uid", "jobid"}, nil),
-		success: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "success"),
-			"Exporter status, 1=successful 0=errors", nil, nil),
 	}
 }
 
@@ -318,17 +315,10 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.swapTotal
 	ch <- e.swapFailCount
 	ch <- e.collectError
-	ch <- e.success
 }
 
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
-	metrics, err := e.collect(ch)
-	if err != nil {
-		log.Errorf("Exporter error: %s", err.Error())
-		ch <- prometheus.MustNewConstMetric(e.success, prometheus.GaugeValue, 0)
-	} else {
-		ch <- prometheus.MustNewConstMetric(e.success, prometheus.GaugeValue, 1)
-	}
+	metrics, _ := e.collect(ch)
 	for _, m := range metrics {
 		ch <- prometheus.MustNewConstMetric(e.cpuUser, prometheus.GaugeValue, m.cpuUser, m.name)
 		ch <- prometheus.MustNewConstMetric(e.cpuSystem, prometheus.GaugeValue, m.cpuSystem, m.name)
