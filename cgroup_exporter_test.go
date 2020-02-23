@@ -28,7 +28,7 @@ import (
 )
 
 const (
-	address = "localhost:19100"
+	address = "localhost:19306"
 )
 
 func TestMain(m *testing.M) {
