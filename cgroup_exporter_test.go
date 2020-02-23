@@ -14,12 +14,43 @@
 package main
 
 import (
+	"fmt"
 	"github.com/prometheus/common/log"
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
+	"io/ioutil"
+	"net/http"
+	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"testing"
+	"time"
 )
+
+const (
+	address = "localhost:19100"
+)
+
+func TestMain(m *testing.M) {
+	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/user.slice"}); err != nil {
+		log.Fatal(err)
+	}
+	_, filename, _, _ := runtime.Caller(0)
+	dir := filepath.Dir(filename)
+	fixture := filepath.Join(dir, "test")
+	cgroupRoot = &fixture
+	varTrue := true
+	disableExporterMetrics = &varTrue
+	go func() {
+		http.Handle("/metrics", metricsHandler())
+		log.Fatal(http.ListenAndServe(address, nil))
+	}()
+	time.Sleep(1 * time.Second)
+
+	exitVal := m.Run()
+
+	os.Exit(exitVal)
+}
 
 func TestParseCpuSet(t *testing.T) {
 	if cpus, err := parseCpuSet("0-2"); err != nil {
@@ -40,14 +71,6 @@ func TestParseCpuSet(t *testing.T) {
 }
 
 func TestCollectUserSlice(t *testing.T) {
-	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/user.slice"}); err != nil {
-		t.Fatal(err)
-	}
-	_, filename, _, _ := runtime.Caller(0)
-	dir := filepath.Dir(filename)
-	fixture := filepath.Join(dir, "test")
-	cgroupRoot = &fixture
-
 	exporter := NewExporter([]string{"/user.slice"})
 	metrics, err := exporter.collect()
 	if err != nil {
@@ -94,15 +117,7 @@ func TestCollectUserSlice(t *testing.T) {
 }
 
 func TestCollectSLURM(t *testing.T) {
-	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/slurm"}); err != nil {
-		t.Fatal(err)
-	}
 	_ = log.Base().SetLevel("debug")
-	_, filename, _, _ := runtime.Caller(0)
-	dir := filepath.Dir(filename)
-	fixture := filepath.Join(dir, "test")
-	cgroupRoot = &fixture
-
 	exporter := NewExporter([]string{"/slurm"})
 	metrics, err := exporter.collect()
 	if err != nil {
@@ -152,15 +167,7 @@ func TestCollectSLURM(t *testing.T) {
 }
 
 func TestCollectTorque(t *testing.T) {
-	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/torque"}); err != nil {
-		t.Fatal(err)
-	}
 	_ = log.Base().SetLevel("debug")
-	_, filename, _, _ := runtime.Caller(0)
-	dir := filepath.Dir(filename)
-	fixture := filepath.Join(dir, "test")
-	cgroupRoot = &fixture
-
 	exporter := NewExporter([]string{"/torque"})
 	metrics, err := exporter.collect()
 	if err != nil {
@@ -207,4 +214,45 @@ func TestCollectTorque(t *testing.T) {
 	if val := metrics[0].jobid; val != "1182724" {
 		t.Errorf("Unexpected value for jobid, got %v", val)
 	}
+}
+
+func TestMetricsHandler(t *testing.T) {
+	_ = log.Base().SetLevel("debug")
+	body, err := queryExporter()
+	if err != nil {
+		t.Fatalf("Unexpected error GET /metrics: %s", err.Error())
+	}
+	if !strings.Contains(body, "cgroup_memory_used_bytes{cgroup=\"/user.slice/user-20821.slice\"} 8.081408e+06") {
+		t.Errorf("Unexpected value for cgroup_memory_used_bytes")
+	}
+}
+
+func TestMetricsHandlerBadPath(t *testing.T) {
+	cPath := "/dne"
+	configPaths = &cPath
+	body, err := queryExporter()
+	if err != nil {
+		t.Fatalf("Unexpected error GET /metrics: %s", err.Error())
+	}
+	if !strings.Contains(body, "cgroup_exporter_collect_error{cgroup=\"/dne\"} 1") {
+		t.Errorf("Unexpected value for cgroup_memory_used_bytes")
+	}
+}
+
+func queryExporter() (string, error) {
+	resp, err := http.Get(fmt.Sprintf("http://%s/metrics", address))
+	if err != nil {
+		return "", err
+	}
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	if err := resp.Body.Close(); err != nil {
+		return "", err
+	}
+	if want, have := http.StatusOK, resp.StatusCode; want != have {
+		return "", fmt.Errorf("want /metrics status code %d, have %d. Body:\n%s", want, have, b)
+	}
+	return string(b), nil
 }
