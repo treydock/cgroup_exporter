@@ -1,6 +1,12 @@
+## 0.2.0 / 2020-02-27
+
+### Changes
+
+* Replace swap metrics with memsw to describe the raw values
+
 ## 0.1.0 / 2020-02-20
 
-## Changes
+### Changes
 
 * Add metric to indicate collect failures and remove success metric
 * Better error handling
