@@ -54,9 +54,9 @@ cgroup_info{cgroup="/user.slice/user-20821.slice",uid="20821",username="tdockend
 cgroup_memory_fail_count{cgroup="/user.slice/user-20821.slice"} 0
 cgroup_memory_total_bytes{cgroup="/user.slice/user-20821.slice"} 6.8719476736e+10
 cgroup_memory_used_bytes{cgroup="/user.slice/user-20821.slice"} 6.90176e+06
-cgroup_swap_fail_count{cgroup="/user.slice/user-20821.slice"} 0
-cgroup_swap_total_bytes{cgroup="/user.slice/user-20821.slice"} 9.223371968135295e+18
-cgroup_swap_used_bytes{cgroup="/user.slice/user-20821.slice"} 0
+cgroup_memsw_fail_count{cgroup="/user.slice/user-20821.slice"} 0
+cgroup_memsw_total_bytes{cgroup="/user.slice/user-20821.slice"} 9.223371968135295e+18
+cgroup_memsw_used_bytes{cgroup="/user.slice/user-20821.slice"} 0
 ```
 
 Example of metrics exposed by this exporter when looking at `/slurm` paths:
@@ -70,9 +70,9 @@ cgroup_info{cgroup="/slurm/uid_20821/job_12",jobid="12",uid="20821",username="td
 cgroup_memory_fail_count{cgroup="/slurm/uid_20821/job_12"} 0
 cgroup_memory_total_bytes{cgroup="/slurm/uid_20821/job_12"} 2.147483648e+09
 cgroup_memory_used_bytes{cgroup="/slurm/uid_20821/job_12"} 315392
-cgroup_swap_fail_count{cgroup="/slurm/uid_20821/job_12"} 0
-cgroup_swap_total_bytes{cgroup="/slurm/uid_20821/job_12"} 2.147483648e+09
-cgroup_swap_used_bytes{cgroup="/slurm/uid_20821/job_12"} 315392
+cgroup_memsw_fail_count{cgroup="/slurm/uid_20821/job_12"} 0
+cgroup_memsw_total_bytes{cgroup="/slurm/uid_20821/job_12"} 2.147483648e+09
+cgroup_memsw_used_bytes{cgroup="/slurm/uid_20821/job_12"} 315392
 ```
 
 Example of metrics exposed by this exporter when looking at `/torque` paths:
@@ -86,7 +86,7 @@ cgroup_info{cgroup="/torque/1182958.batch.example.com",jobid="1182958",uid="",us
 cgroup_memory_fail_count{cgroup="/torque/1182958.batch.example.com"} 0
 cgroup_memory_total_bytes{cgroup="/torque/1182958.batch.example.com"} 1.96755132416e+11
 cgroup_memory_used_bytes{cgroup="/torque/1182958.batch.example.com"} 5.3434466304e+10
-cgroup_swap_fail_count{cgroup="/torque/1182958.batch.example.com"} 0
-cgroup_swap_total_bytes{cgroup="/torque/1182958.batch.example.com"} 1.96755132416e+11
-cgroup_swap_used_bytes{cgroup="/torque/1182958.batch.example.com"} 5.3434466304e+10
+cgroup_memsw_fail_count{cgroup="/torque/1182958.batch.example.com"} 0
+cgroup_memsw_total_bytes{cgroup="/torque/1182958.batch.example.com"} 1.96755132416e+11
+cgroup_memsw_used_bytes{cgroup="/torque/1182958.batch.example.com"} 5.3434466304e+10
 ```
