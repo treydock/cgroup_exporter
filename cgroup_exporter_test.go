@@ -102,13 +102,13 @@ func TestCollectUserSlice(t *testing.T) {
 	if val := metrics[0].memoryFailCount; val != 0 {
 		t.Errorf("Unexpected value for memoryFailCount, got %v", val)
 	}
-	if val := metrics[0].swapUsed; val != 0 {
+	if val := metrics[0].memswUsed; val != 8081408 {
 		t.Errorf("Unexpected value for swapUsed, got %v", val)
 	}
-	if val := metrics[0].swapTotal; val != 9223371968135295000 {
+	if val := metrics[0].memswTotal; val != 9.223372036854772e+18 {
 		t.Errorf("Unexpected value for swapTotal, got %v", val)
 	}
-	if val := metrics[0].swapFailCount; val != 0 {
+	if val := metrics[0].memswFailCount; val != 0 {
 		t.Errorf("Unexpected value for swapFailCount, got %v", val)
 	}
 	if val := metrics[0].uid; val != "20821" {
@@ -149,13 +149,13 @@ func TestCollectSLURM(t *testing.T) {
 	if val := metrics[0].memoryFailCount; val != 0 {
 		t.Errorf("Unexpected value for memoryFailCount, got %v", val)
 	}
-	if val := metrics[0].swapUsed; val != 0 {
+	if val := metrics[0].memswUsed; val != 356352 {
 		t.Errorf("Unexpected value for swapUsed, got %v", val)
 	}
-	if val := metrics[0].swapTotal; val != 0 {
+	if val := metrics[0].memswTotal; val != 2147483648 {
 		t.Errorf("Unexpected value for swapTotal, got %v", val)
 	}
-	if val := metrics[0].swapFailCount; val != 0 {
+	if val := metrics[0].memswFailCount; val != 0 {
 		t.Errorf("Unexpected value for swapFailCount, got %v", val)
 	}
 	if val := metrics[0].uid; val != "20821" {
@@ -199,13 +199,13 @@ func TestCollectTorque(t *testing.T) {
 	if val := metrics[0].memoryFailCount; val != 0 {
 		t.Errorf("Unexpected value for memoryFailCount, got %v", val)
 	}
-	if val := metrics[0].swapUsed; val != 0 {
+	if val := metrics[0].memswUsed; val != 82553999360 {
 		t.Errorf("Unexpected value for swapUsed, got %v", val)
 	}
-	if val := metrics[0].swapTotal; val != 0 {
+	if val := metrics[0].memswTotal; val != 196755132416 {
 		t.Errorf("Unexpected value for swapTotal, got %v", val)
 	}
-	if val := metrics[0].swapFailCount; val != 0 {
+	if val := metrics[0].memswFailCount; val != 0 {
 		t.Errorf("Unexpected value for swapFailCount, got %v", val)
 	}
 	if val := metrics[0].uid; val != "" {

@@ -53,9 +53,9 @@ type CgroupMetric struct {
 	memoryUsed      float64
 	memoryTotal     float64
 	memoryFailCount float64
-	swapUsed        float64
-	swapTotal       float64
-	swapFailCount   float64
+	memswUsed       float64
+	memswTotal      float64
+	memswFailCount  float64
 	userslice       bool
 	job             bool
 	uid             string
@@ -74,9 +74,9 @@ type Exporter struct {
 	memoryUsed      *prometheus.Desc
 	memoryTotal     *prometheus.Desc
 	memoryFailCount *prometheus.Desc
-	swapUsed        *prometheus.Desc
-	swapTotal       *prometheus.Desc
-	swapFailCount   *prometheus.Desc
+	memswUsed       *prometheus.Desc
+	memswTotal      *prometheus.Desc
+	memswFailCount  *prometheus.Desc
 	info            *prometheus.Desc
 }
 
@@ -229,11 +229,11 @@ func NewExporter(paths []string) *Exporter {
 			"Memory total given to cgroup in bytes", []string{"cgroup"}, nil),
 		memoryFailCount: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "fail_count"),
 			"Memory fail count", []string{"cgroup"}, nil),
-		swapUsed: prometheus.NewDesc(prometheus.BuildFQName(namespace, "swap", "used_bytes"),
+		memswUsed: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memsw", "used_bytes"),
 			"Swap used in bytes", []string{"cgroup"}, nil),
-		swapTotal: prometheus.NewDesc(prometheus.BuildFQName(namespace, "swap", "total_bytes"),
+		memswTotal: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memsw", "total_bytes"),
 			"Swap total given to cgroup in bytes", []string{"cgroup"}, nil),
-		swapFailCount: prometheus.NewDesc(prometheus.BuildFQName(namespace, "swap", "fail_count"),
+		memswFailCount: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memsw", "fail_count"),
 			"Swap fail count", []string{"cgroup"}, nil),
 		info: prometheus.NewDesc(prometheus.BuildFQName(namespace, "", "info"),
 			"User slice information", []string{"cgroup", "username", "uid", "jobid"}, nil),
@@ -290,9 +290,9 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			metric.memoryUsed = float64(stats.Memory.Usage.Usage)
 			metric.memoryTotal = float64(stats.Memory.Usage.Limit)
 			metric.memoryFailCount = float64(stats.Memory.Usage.Failcnt)
-			metric.swapUsed = float64(stats.Memory.Swap.Usage) - metric.memoryUsed
-			metric.swapTotal = float64(stats.Memory.Swap.Limit) - metric.memoryTotal
-			metric.swapFailCount = float64(stats.Memory.Swap.Failcnt) - metric.memoryFailCount
+			metric.memswUsed = float64(stats.Memory.Swap.Usage)
+			metric.memswTotal = float64(stats.Memory.Swap.Limit)
+			metric.memswFailCount = float64(stats.Memory.Swap.Failcnt)
 			if cpus, err := getCPUs(name); err == nil {
 				metric.cpus = cpus
 			}
@@ -312,9 +312,9 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.memoryUsed
 	ch <- e.memoryTotal
 	ch <- e.memoryFailCount
-	ch <- e.swapUsed
-	ch <- e.swapTotal
-	ch <- e.swapFailCount
+	ch <- e.memswUsed
+	ch <- e.memswTotal
+	ch <- e.memswFailCount
 }
 
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
@@ -330,9 +330,9 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.memoryUsed, prometheus.GaugeValue, m.memoryUsed, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryTotal, prometheus.GaugeValue, m.memoryTotal, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryFailCount, prometheus.GaugeValue, m.memoryFailCount, m.name)
-		ch <- prometheus.MustNewConstMetric(e.swapUsed, prometheus.GaugeValue, m.swapUsed, m.name)
-		ch <- prometheus.MustNewConstMetric(e.swapTotal, prometheus.GaugeValue, m.swapTotal, m.name)
-		ch <- prometheus.MustNewConstMetric(e.swapFailCount, prometheus.GaugeValue, m.swapFailCount, m.name)
+		ch <- prometheus.MustNewConstMetric(e.memswUsed, prometheus.GaugeValue, m.memswUsed, m.name)
+		ch <- prometheus.MustNewConstMetric(e.memswTotal, prometheus.GaugeValue, m.memswTotal, m.name)
+		ch <- prometheus.MustNewConstMetric(e.memswFailCount, prometheus.GaugeValue, m.memswFailCount, m.name)
 		if m.userslice || m.job {
 			ch <- prometheus.MustNewConstMetric(e.info, prometheus.GaugeValue, 1, m.name, m.username, m.uid, m.jobid)
 		}
