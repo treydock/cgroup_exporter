@@ -1,3 +1,7 @@
+## 0.2.1 / 2020-03-18
+
+* Fix Dockerfile to work on supported platforms
+
 ## 0.2.0 / 2020-02-27
 
 ### Changes
