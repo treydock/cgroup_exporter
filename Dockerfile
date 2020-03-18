@@ -1,10 +1,8 @@
-FROM golang:1.13 AS builder
-RUN mkdir /build
-ADD . /build/
-WORKDIR /build
-RUN make build
-
-FROM scratch
-WORKDIR /
-COPY --from=builder /build/cgroup_exporter /cgroup_exporter
+ARG ARCH="amd64"
+ARG OS="linux"
+FROM quay.io/prometheus/busybox-${OS}-${ARCH}:glibc
+ARG ARCH="amd64"
+ARG OS="linux"
+COPY .build/${OS}-${ARCH}/cgroup_exporter /cgroup_exporter
+EXPOSE 9306
 ENTRYPOINT ["/cgroup_exporter"]
