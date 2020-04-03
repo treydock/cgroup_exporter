@@ -51,7 +51,9 @@ cgroup_cpu_total_seconds{cgroup="/user.slice/user-20821.slice"} 3.817500568
 cgroup_cpu_user_seconds{cgroup="/user.slice/user-20821.slice"} 1.61
 cgroup_cpus{cgroup="/user.slice/user-20821.slice"} 0
 cgroup_info{cgroup="/user.slice/user-20821.slice",uid="20821",username="tdockendorf",jobid=""} 1
+cgroup_memory_cache_bytes{cgroup="/user.slice/user-20821.slice"} 2.322432e+06
 cgroup_memory_fail_count{cgroup="/user.slice/user-20821.slice"} 0
+cgroup_memory_rss_bytes{cgroup="/user.slice/user-20821.slice"} 5.378048e+06
 cgroup_memory_total_bytes{cgroup="/user.slice/user-20821.slice"} 6.8719476736e+10
 cgroup_memory_used_bytes{cgroup="/user.slice/user-20821.slice"} 6.90176e+06
 cgroup_memsw_fail_count{cgroup="/user.slice/user-20821.slice"} 0
@@ -67,7 +69,9 @@ cgroup_cpu_total_seconds{cgroup="/slurm/uid_20821/job_12"} 0.007840451
 cgroup_cpu_user_seconds{cgroup="/slurm/uid_20821/job_12"} 0
 cgroup_cpus{cgroup="/slurm/uid_20821/job_12"} 2
 cgroup_info{cgroup="/slurm/uid_20821/job_12",jobid="12",uid="20821",username="tdockendorf"} 1
+cgroup_memory_cache_bytes{cgroup="/slurm/uid_20821/job_12"} 4.096e+03
 cgroup_memory_fail_count{cgroup="/slurm/uid_20821/job_12"} 0
+cgroup_memory_rss_bytes{cgroup="/slurm/uid_20821/job_12"} 3.11296e+05
 cgroup_memory_total_bytes{cgroup="/slurm/uid_20821/job_12"} 2.147483648e+09
 cgroup_memory_used_bytes{cgroup="/slurm/uid_20821/job_12"} 315392
 cgroup_memsw_fail_count{cgroup="/slurm/uid_20821/job_12"} 0
@@ -83,7 +87,9 @@ cgroup_cpu_total_seconds{cgroup="/torque/1182958.batch.example.com"} 939.5682455
 cgroup_cpu_user_seconds{cgroup="/torque/1182958.batch.example.com"} 915.61
 cgroup_cpus{cgroup="/torque/1182958.batch.example.com"} 40
 cgroup_info{cgroup="/torque/1182958.batch.example.com",jobid="1182958",uid="",username=""} 1
+cgroup_memory_cache_bytes{cgroup="/torque/1182958.batch.example.com"} 1.09678592e+08
 cgroup_memory_fail_count{cgroup="/torque/1182958.batch.example.com"} 0
+cgroup_memory_rss_bytes{cgroup="/torque/1182958.batch.example.com"} 8.2444320768e+10
 cgroup_memory_total_bytes{cgroup="/torque/1182958.batch.example.com"} 1.96755132416e+11
 cgroup_memory_used_bytes{cgroup="/torque/1182958.batch.example.com"} 5.3434466304e+10
 cgroup_memsw_fail_count{cgroup="/torque/1182958.batch.example.com"} 0
