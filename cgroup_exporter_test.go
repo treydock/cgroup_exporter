@@ -93,6 +93,12 @@ func TestCollectUserSlice(t *testing.T) {
 	if val := metrics[0].cpus; val != 0 {
 		t.Errorf("Unexpected value for cpus, got %v", val)
 	}
+	if val := metrics[0].memoryRSS; val != 5378048 {
+		t.Errorf("Unexpected value for memoryRSS, got %v", val)
+	}
+	if val := metrics[0].memoryCache; val != 2322432 {
+		t.Errorf("Unexpected value for memoryCache, got %v", val)
+	}
 	if val := metrics[0].memoryUsed; val != 8081408 {
 		t.Errorf("Unexpected value for memoryUsed, got %v", val)
 	}
@@ -139,6 +145,12 @@ func TestCollectSLURM(t *testing.T) {
 	}
 	if val := metrics[0].cpus; val != 2 {
 		t.Errorf("Unexpected value for cpus, got %v", val)
+	}
+	if val := metrics[0].memoryRSS; val != 311296 {
+		t.Errorf("Unexpected value for memoryRSS, got %v", val)
+	}
+	if val := metrics[0].memoryCache; val != 4096 {
+		t.Errorf("Unexpected value for memoryCache, got %v", val)
 	}
 	if val := metrics[0].memoryUsed; val != 356352 {
 		t.Errorf("Unexpected value for memoryUsed, got %v", val)
@@ -189,6 +201,12 @@ func TestCollectTorque(t *testing.T) {
 	}
 	if val := metrics[0].cpus; val != 40 {
 		t.Errorf("Unexpected value for cpus, got %v", val)
+	}
+	if val := metrics[0].memoryRSS; val != 82444320768 {
+		t.Errorf("Unexpected value for memoryRSS, got %v", val)
+	}
+	if val := metrics[0].memoryCache; val != 109678592 {
+		t.Errorf("Unexpected value for memoryCache, got %v", val)
 	}
 	if val := metrics[0].memoryUsed; val != 82553999360 {
 		t.Errorf("Unexpected value for memoryUsed, got %v", val)
