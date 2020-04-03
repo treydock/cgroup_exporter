@@ -1,3 +1,7 @@
+## 0.3.0 / 2020-04-03
+
+* Add cgroup_memory_rss_bytes and cgroup_memory_cache_bytes metrics
+
 ## 0.2.1 / 2020-03-18
 
 * Fix Dockerfile to work on supported platforms
