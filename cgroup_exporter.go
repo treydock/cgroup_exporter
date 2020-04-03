@@ -50,6 +50,8 @@ type CgroupMetric struct {
 	cpuSystem       float64
 	cpuTotal        float64
 	cpus            int
+	memoryRSS       float64
+	memoryCache     float64
 	memoryUsed      float64
 	memoryTotal     float64
 	memoryFailCount float64
@@ -71,6 +73,8 @@ type Exporter struct {
 	cpuSystem       *prometheus.Desc
 	cpuTotal        *prometheus.Desc
 	cpus            *prometheus.Desc
+	memoryRSS       *prometheus.Desc
+	memoryCache     *prometheus.Desc
 	memoryUsed      *prometheus.Desc
 	memoryTotal     *prometheus.Desc
 	memoryFailCount *prometheus.Desc
@@ -223,6 +227,10 @@ func NewExporter(paths []string) *Exporter {
 			"Cumalitive CPU total seconds for cgroup", []string{"cgroup"}, nil),
 		cpus: prometheus.NewDesc(prometheus.BuildFQName(namespace, "", "cpus"),
 			"Number of CPUs in the cgroup", []string{"cgroup"}, nil),
+		memoryRSS: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "rss_bytes"),
+			"Memory RSS used in bytes", []string{"cgroup"}, nil),
+		memoryCache: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "cache_bytes"),
+			"Memory cache used in bytes", []string{"cgroup"}, nil),
 		memoryUsed: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "used_bytes"),
 			"Memory used in bytes", []string{"cgroup"}, nil),
 		memoryTotal: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "total_bytes"),
@@ -287,6 +295,8 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			metric.cpuUser = float64(stats.CPU.Usage.User) / 1000000000.0
 			metric.cpuSystem = float64(stats.CPU.Usage.Kernel) / 1000000000.0
 			metric.cpuTotal = float64(stats.CPU.Usage.Total) / 1000000000.0
+			metric.memoryRSS = float64(stats.Memory.TotalRSS)
+			metric.memoryCache = float64(stats.Memory.TotalCache)
 			metric.memoryUsed = float64(stats.Memory.Usage.Usage)
 			metric.memoryTotal = float64(stats.Memory.Usage.Limit)
 			metric.memoryFailCount = float64(stats.Memory.Usage.Failcnt)
@@ -309,6 +319,8 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.cpuSystem
 	ch <- e.cpuTotal
 	ch <- e.cpus
+	ch <- e.memoryRSS
+	ch <- e.memoryCache
 	ch <- e.memoryUsed
 	ch <- e.memoryTotal
 	ch <- e.memoryFailCount
@@ -327,6 +339,8 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.cpuSystem, prometheus.GaugeValue, m.cpuSystem, m.name)
 		ch <- prometheus.MustNewConstMetric(e.cpuTotal, prometheus.GaugeValue, m.cpuTotal, m.name)
 		ch <- prometheus.MustNewConstMetric(e.cpus, prometheus.GaugeValue, float64(m.cpus), m.name)
+		ch <- prometheus.MustNewConstMetric(e.memoryRSS, prometheus.GaugeValue, m.memoryRSS, m.name)
+		ch <- prometheus.MustNewConstMetric(e.memoryCache, prometheus.GaugeValue, m.memoryCache, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryUsed, prometheus.GaugeValue, m.memoryUsed, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryTotal, prometheus.GaugeValue, m.memoryTotal, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryFailCount, prometheus.GaugeValue, m.memoryFailCount, m.name)
