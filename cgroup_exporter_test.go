@@ -21,6 +21,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"reflect"
 	"runtime"
 	"strings"
 	"testing"
@@ -53,20 +54,23 @@ func TestMain(m *testing.M) {
 }
 
 func TestParseCpuSet(t *testing.T) {
+	expected := []string{"0", "1", "2"}
 	if cpus, err := parseCpuSet("0-2"); err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())
-	} else if cpus != 3 {
-		t.Errorf("Unexpected cpus, expected 3 got %d", cpus)
+	} else if !reflect.DeepEqual(cpus, expected) {
+		t.Errorf("Unexpected cpus, expected %v got %v", expected, cpus)
 	}
+	expected = []string{"0", "1", "4", "5", "8", "9"}
 	if cpus, err := parseCpuSet("0-1,4-5,8-9"); err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())
-	} else if cpus != 6 {
-		t.Errorf("Unexpected cpus, expected 6 got %d", cpus)
+	} else if !reflect.DeepEqual(cpus, expected) {
+		t.Errorf("Unexpected cpus, expected %v got %v", expected, cpus)
 	}
+	expected = []string{"1", "3", "5", "7"}
 	if cpus, err := parseCpuSet("1,3,5,7"); err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())
-	} else if cpus != 4 {
-		t.Errorf("Unexpected cpus, expected 4 got %d", cpus)
+	} else if !reflect.DeepEqual(cpus, expected) {
+		t.Errorf("Unexpected cpus, expected %v got %v", expected, cpus)
 	}
 }
 

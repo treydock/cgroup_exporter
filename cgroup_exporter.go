@@ -50,6 +50,7 @@ type CgroupMetric struct {
 	cpuSystem       float64
 	cpuTotal        float64
 	cpus            int
+	cpu_list        string
 	memoryRSS       float64
 	memoryCache     float64
 	memoryUsed      float64
@@ -73,6 +74,7 @@ type Exporter struct {
 	cpuSystem       *prometheus.Desc
 	cpuTotal        *prometheus.Desc
 	cpus            *prometheus.Desc
+	cpu_info        *prometheus.Desc
 	memoryRSS       *prometheus.Desc
 	memoryCache     *prometheus.Desc
 	memoryUsed      *prometheus.Desc
@@ -109,46 +111,53 @@ func subsystem() ([]cgroups.Subsystem, error) {
 	return s, nil
 }
 
-func getCPUs(name string) (int, error) {
+func getCPUs(name string) ([]string, error) {
 	cpusPath := fmt.Sprintf("%s/cpuset%s/cpuset.cpus", *cgroupRoot, name)
 	if !fileExists(cpusPath) {
-		return 0, nil
+		return nil, nil
 	}
 	cpusData, err := ioutil.ReadFile(cpusPath)
 	if err != nil {
 		log.Errorf("Error reading %s: %s", cpusPath, err.Error())
-		return 0, err
+		return nil, err
 	}
 	cpus, err := parseCpuSet(strings.TrimSuffix(string(cpusData), "\n"))
 	if err != nil {
 		log.Errorf("Error parsing cpu set %s", err.Error())
-		return 0, err
+		return nil, err
 	}
 	return cpus, nil
 }
 
-func parseCpuSet(cpuset string) (int, error) {
-	var cpus int
+func parseCpuSet(cpuset string) ([]string, error) {
+	var cpus []string
+	var start, end int
+	var err error
 	if cpuset == "" {
-		return 0, nil
+		return nil, nil
 	}
 	ranges := strings.Split(cpuset, ",")
 	for _, r := range ranges {
 		boundaries := strings.Split(r, "-")
 		if len(boundaries) == 1 {
-			cpus++
+			start, err = strconv.Atoi(boundaries[0])
+			if err != nil {
+				return nil, err
+			}
+			end = start
 		} else if len(boundaries) == 2 {
-			start, err := strconv.Atoi(boundaries[0])
+			start, err = strconv.Atoi(boundaries[0])
 			if err != nil {
-				return 0, err
+				return nil, err
 			}
-			end, err := strconv.Atoi(boundaries[1])
+			end, err = strconv.Atoi(boundaries[1])
 			if err != nil {
-				return 0, err
+				return nil, err
 			}
-			for e := start; e <= end; e++ {
-				cpus++
-			}
+		}
+		for e := start; e <= end; e++ {
+			cpu := strconv.Itoa(e)
+			cpus = append(cpus, cpu)
 		}
 	}
 	return cpus, nil
@@ -227,6 +236,8 @@ func NewExporter(paths []string) *Exporter {
 			"Cumalitive CPU total seconds for cgroup", []string{"cgroup"}, nil),
 		cpus: prometheus.NewDesc(prometheus.BuildFQName(namespace, "", "cpus"),
 			"Number of CPUs in the cgroup", []string{"cgroup"}, nil),
+		cpu_info: prometheus.NewDesc(prometheus.BuildFQName(namespace, "", "cpu_info"),
+			"Information about the cgroup CPUs", []string{"cgroup", "cpus"}, nil),
 		memoryRSS: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "rss_bytes"),
 			"Memory RSS used in bytes", []string{"cgroup"}, nil),
 		memoryCache: prometheus.NewDesc(prometheus.BuildFQName(namespace, "memory", "cache_bytes"),
@@ -304,7 +315,8 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			metric.memswTotal = float64(stats.Memory.Swap.Limit)
 			metric.memswFailCount = float64(stats.Memory.Swap.Failcnt)
 			if cpus, err := getCPUs(name); err == nil {
-				metric.cpus = cpus
+				metric.cpus = len(cpus)
+				metric.cpu_list = strings.Join(cpus, ",")
 			}
 			getInfo(name, &metric)
 			metrics = append(metrics, metric)
@@ -319,6 +331,7 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.cpuSystem
 	ch <- e.cpuTotal
 	ch <- e.cpus
+	ch <- e.cpu_info
 	ch <- e.memoryRSS
 	ch <- e.memoryCache
 	ch <- e.memoryUsed
@@ -339,6 +352,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.cpuSystem, prometheus.GaugeValue, m.cpuSystem, m.name)
 		ch <- prometheus.MustNewConstMetric(e.cpuTotal, prometheus.GaugeValue, m.cpuTotal, m.name)
 		ch <- prometheus.MustNewConstMetric(e.cpus, prometheus.GaugeValue, float64(m.cpus), m.name)
+		ch <- prometheus.MustNewConstMetric(e.cpu_info, prometheus.GaugeValue, 1, m.name, m.cpu_list)
 		ch <- prometheus.MustNewConstMetric(e.memoryRSS, prometheus.GaugeValue, m.memoryRSS, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryCache, prometheus.GaugeValue, m.memoryCache, m.name)
 		ch <- prometheus.MustNewConstMetric(e.memoryUsed, prometheus.GaugeValue, m.memoryUsed, m.name)
