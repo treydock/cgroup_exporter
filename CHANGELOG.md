@@ -1,3 +1,8 @@
+## 0.4.0 / 2020-10-01
+
+* Add cgroup_cpu_info metric
+* Update to Go 1.14 and update dependencies
+
 ## 0.3.0 / 2020-04-03
 
 * Add cgroup_memory_rss_bytes and cgroup_memory_cache_bytes metrics
