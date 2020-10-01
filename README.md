@@ -50,6 +50,7 @@ cgroup_cpu_system_seconds{cgroup="/user.slice/user-20821.slice"} 1.96
 cgroup_cpu_total_seconds{cgroup="/user.slice/user-20821.slice"} 3.817500568
 cgroup_cpu_user_seconds{cgroup="/user.slice/user-20821.slice"} 1.61
 cgroup_cpus{cgroup="/user.slice/user-20821.slice"} 0
+cgroup_cpu_info{cgroup="/user.slice/user-20821.slice",cpus=""} 1
 cgroup_info{cgroup="/user.slice/user-20821.slice",uid="20821",username="tdockendorf",jobid=""} 1
 cgroup_memory_cache_bytes{cgroup="/user.slice/user-20821.slice"} 2.322432e+06
 cgroup_memory_fail_count{cgroup="/user.slice/user-20821.slice"} 0
@@ -68,6 +69,7 @@ cgroup_cpu_system_seconds{cgroup="/slurm/uid_20821/job_12"} 0
 cgroup_cpu_total_seconds{cgroup="/slurm/uid_20821/job_12"} 0.007840451
 cgroup_cpu_user_seconds{cgroup="/slurm/uid_20821/job_12"} 0
 cgroup_cpus{cgroup="/slurm/uid_20821/job_12"} 2
+cgroup_cpu_info{cgroup="/slurm/uid_20821/job_12",cpus="0,1"} 1
 cgroup_info{cgroup="/slurm/uid_20821/job_12",jobid="12",uid="20821",username="tdockendorf"} 1
 cgroup_memory_cache_bytes{cgroup="/slurm/uid_20821/job_12"} 4.096e+03
 cgroup_memory_fail_count{cgroup="/slurm/uid_20821/job_12"} 0
@@ -85,7 +87,8 @@ Example of metrics exposed by this exporter when looking at `/torque` paths:
 cgroup_cpu_system_seconds{cgroup="/torque/1182958.batch.example.com"} 26.35
 cgroup_cpu_total_seconds{cgroup="/torque/1182958.batch.example.com"} 939.568245515
 cgroup_cpu_user_seconds{cgroup="/torque/1182958.batch.example.com"} 915.61
-cgroup_cpus{cgroup="/torque/1182958.batch.example.com"} 40
+cgroup_cpus{cgroup="/torque/1182958.batch.example.com"} 8
+cgroup_cpu_info{cgroup="/torque/1182958.batch.example.com",cpus="0,1,2,3,4,5,6,7,8"} 1
 cgroup_info{cgroup="/torque/1182958.batch.example.com",jobid="1182958",uid="",username=""} 1
 cgroup_memory_cache_bytes{cgroup="/torque/1182958.batch.example.com"} 1.09678592e+08
 cgroup_memory_fail_count{cgroup="/torque/1182958.batch.example.com"} 0
