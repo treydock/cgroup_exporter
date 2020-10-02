@@ -15,8 +15,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/prometheus/common/log"
-	kingpin "gopkg.in/alecthomas/kingpin.v2"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -26,6 +24,9 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/go-kit/kit/log"
+	kingpin "gopkg.in/alecthomas/kingpin.v2"
 )
 
 const (
@@ -34,7 +35,7 @@ const (
 
 func TestMain(m *testing.M) {
 	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/user.slice"}); err != nil {
-		log.Fatal(err)
+		os.Exit(1)
 	}
 	_, filename, _, _ := runtime.Caller(0)
 	dir := filepath.Dir(filename)
@@ -45,10 +46,14 @@ func TestMain(m *testing.M) {
 	varTrue := true
 	disableExporterMetrics = &varTrue
 	collectProc = &varTrue
-	_ = log.Base().SetLevel("debug")
+	w := log.NewSyncWriter(os.Stderr)
+	logger := log.NewLogfmtLogger(w)
 	go func() {
-		http.Handle("/metrics", metricsHandler())
-		log.Fatal(http.ListenAndServe(address, nil))
+		http.Handle("/metrics", metricsHandler(logger))
+		err := http.ListenAndServe(address, nil)
+		if err != nil {
+			os.Exit(1)
+		}
 	}()
 	time.Sleep(1 * time.Second)
 
@@ -80,7 +85,9 @@ func TestParseCpuSet(t *testing.T) {
 
 func TestGetProcInfo(t *testing.T) {
 	metric := CgroupMetric{}
-	getProcInfo([]int{95521, 95525}, &metric)
+	w := log.NewSyncWriter(os.Stderr)
+	logger := log.NewLogfmtLogger(w)
+	getProcInfo([]int{95521, 95525}, &metric, logger)
 	if val, ok := metric.processExec["/bin/bash"]; !ok {
 		t.Errorf("Process /bin/bash not in metrics")
 		return
@@ -91,7 +98,7 @@ func TestGetProcInfo(t *testing.T) {
 	}
 	varLen := 4
 	collectProcMaxExec = &varLen
-	getProcInfo([]int{95521, 95525}, &metric)
+	getProcInfo([]int{95521, 95525}, &metric, logger)
 	if val, ok := metric.processExec["...bash"]; !ok {
 		t.Errorf("Process /bin/bash not in metrics, found: %v", metric.processExec)
 		return
@@ -105,7 +112,9 @@ func TestGetProcInfo(t *testing.T) {
 func TestCollectUserSlice(t *testing.T) {
 	varFalse := false
 	collectProc = &varFalse
-	exporter := NewExporter([]string{"/user.slice"})
+	w := log.NewSyncWriter(os.Stderr)
+	logger := log.NewLogfmtLogger(w)
+	exporter := NewExporter([]string{"/user.slice"}, logger)
 	metrics, err := exporter.collect()
 	if err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())
@@ -161,7 +170,9 @@ func TestCollectSLURM(t *testing.T) {
 	collectProc = &varTrue
 	varLen := 100
 	collectProcMaxExec = &varLen
-	exporter := NewExporter([]string{"/slurm"})
+	w := log.NewSyncWriter(os.Stderr)
+	logger := log.NewLogfmtLogger(w)
+	exporter := NewExporter([]string{"/slurm"}, logger)
 	metrics, err := exporter.collect()
 	if err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())
@@ -225,7 +236,9 @@ func TestCollectSLURM(t *testing.T) {
 func TestCollectTorque(t *testing.T) {
 	varFalse := false
 	collectProc = &varFalse
-	exporter := NewExporter([]string{"/torque"})
+	w := log.NewSyncWriter(os.Stderr)
+	logger := log.NewLogfmtLogger(w)
+	exporter := NewExporter([]string{"/torque"}, logger)
 	metrics, err := exporter.collect()
 	if err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())

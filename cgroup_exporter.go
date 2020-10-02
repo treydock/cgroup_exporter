@@ -26,9 +26,12 @@ import (
 	"strings"
 
 	"github.com/containerd/cgroups"
+	"github.com/go-kit/kit/log"
+	"github.com/go-kit/kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/prometheus/common/log"
+	"github.com/prometheus/common/promlog"
+	"github.com/prometheus/common/promlog/flag"
 	"github.com/prometheus/common/version"
 	"github.com/prometheus/procfs"
 	"gopkg.in/alecthomas/kingpin.v2"
@@ -92,6 +95,7 @@ type Exporter struct {
 	memswFailCount  *prometheus.Desc
 	info            *prometheus.Desc
 	processExec     *prometheus.Desc
+	logger          log.Logger
 }
 
 func fileExists(filename string) bool {
@@ -120,19 +124,19 @@ func subsystem() ([]cgroups.Subsystem, error) {
 	return s, nil
 }
 
-func getCPUs(name string) ([]string, error) {
+func getCPUs(name string, logger log.Logger) ([]string, error) {
 	cpusPath := fmt.Sprintf("%s/cpuset%s/cpuset.cpus", *cgroupRoot, name)
 	if !fileExists(cpusPath) {
 		return nil, nil
 	}
 	cpusData, err := ioutil.ReadFile(cpusPath)
 	if err != nil {
-		log.Errorf("Error reading %s: %s", cpusPath, err.Error())
+		level.Error(logger).Log("msg", "Error reading cpuset", "cpuset", cpusPath, "err", err)
 		return nil, err
 	}
 	cpus, err := parseCpuSet(strings.TrimSuffix(string(cpusData), "\n"))
 	if err != nil {
-		log.Errorf("Error parsing cpu set %s", err.Error())
+		level.Error(logger).Log("msg", "Error parsing cpu set", "cpuset", cpusPath, "err", err)
 		return nil, err
 	}
 	return cpus, nil
@@ -172,7 +176,7 @@ func parseCpuSet(cpuset string) ([]string, error) {
 	return cpus, nil
 }
 
-func getInfo(name string, metric *CgroupMetric) {
+func getInfo(name string, metric *CgroupMetric, logger log.Logger) {
 	pathBase := filepath.Base(name)
 	userSlicePattern := regexp.MustCompile("^user-([0-9]+).slice$")
 	userSliceMatch := userSlicePattern.FindStringSubmatch(pathBase)
@@ -181,7 +185,7 @@ func getInfo(name string, metric *CgroupMetric) {
 		metric.uid = userSliceMatch[1]
 		user, err := user.LookupId(metric.uid)
 		if err != nil {
-			log.Errorf("Error looking up user slice uid %s: %s", metric.uid, err.Error())
+			level.Error(logger).Log("msg", "Error looking up user slice uid", "uid", metric.uid, "err", err)
 		} else {
 			metric.username = user.Username
 		}
@@ -195,7 +199,7 @@ func getInfo(name string, metric *CgroupMetric) {
 		metric.jobid = slurmMatch[2]
 		user, err := user.LookupId(metric.uid)
 		if err != nil {
-			log.Errorf("Error looking up slurm uid %s: %s", metric.uid, err.Error())
+			level.Error(logger).Log("msg", "Error looking up slurm uid", "uid", metric.uid, "err", err)
 		} else {
 			metric.username = user.Username
 		}
@@ -209,26 +213,26 @@ func getInfo(name string, metric *CgroupMetric) {
 	}
 }
 
-func getProcInfo(pids []int, metric *CgroupMetric) {
+func getProcInfo(pids []int, metric *CgroupMetric, logger log.Logger) {
 	executables := make(map[string]float64)
 	procFS, err := procfs.NewFS(*procRoot)
 	if err != nil {
-		log.Errorf("Unable to open procfs at %s", *procRoot)
+		level.Error(logger).Log("msg", "Unable to open procfs", "path", *procRoot)
 		return
 	}
 	for _, pid := range pids {
 		proc, err := procFS.Proc(pid)
 		if err != nil {
-			log.Errorf("Unable to read PID=%d", pid)
+			level.Error(logger).Log("msg", "Unable to read PID", "pid", pid)
 			continue
 		}
 		executable, err := proc.Executable()
 		if err != nil {
-			log.Errorf("Unable to get executable for PID=%d", pid)
+			level.Error(logger).Log("msg", "Unable to get executable for PID", "pid", pid)
 			continue
 		}
 		if len(executable) > *collectProcMaxExec {
-			log.Debugf("Executable will be truncated executable=%s len=%d pid=%d", executable, len(executable), pid)
+			level.Debug(logger).Log("msg", "Executable will be truncated", "executable", executable, "len", len(executable), "pid", pid)
 			executable = executable[len(executable)-*collectProcMaxExec:]
 			executable = fmt.Sprintf("...%s", executable)
 		}
@@ -237,12 +241,12 @@ func getProcInfo(pids []int, metric *CgroupMetric) {
 	metric.processExec = executables
 }
 
-func getName(p cgroups.Process, path string) (string, error) {
+func getName(p cgroups.Process, path string, logger log.Logger) (string, error) {
 	cpuacctPath := filepath.Join(*cgroupRoot, "cpuacct")
 	name := strings.TrimPrefix(p.Path, cpuacctPath)
 	name = strings.TrimSuffix(name, "/")
 	dirs := strings.Split(name, "/")
-	log.Debugf("cgroup name dirs %v", dirs)
+	level.Debug(logger).Log("msg", "cgroup name", "dirs", fmt.Sprintf("%v", dirs))
 	// Handle user.slice, system.slice and torque
 	if len(dirs) == 3 {
 		return name, nil
@@ -262,7 +266,7 @@ func getName(p cgroups.Process, path string) (string, error) {
 	return name, nil
 }
 
-func NewExporter(paths []string) *Exporter {
+func NewExporter(paths []string, logger log.Logger) *Exporter {
 	return &Exporter{
 		paths: paths,
 		cpuUser: prometheus.NewDesc(prometheus.BuildFQName(namespace, "cpu", "user_seconds"),
@@ -297,6 +301,7 @@ func NewExporter(paths []string) *Exporter {
 			"Count of instances of a given process", []string{"cgroup", "exec"}, nil),
 		collectError: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "collect_error"),
 			"Indicates collection error, 0=no error, 1=error", []string{"cgroup"}, nil),
+		logger: logger,
 	}
 }
 
@@ -304,28 +309,28 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 	var names []string
 	var metrics []CgroupMetric
 	for _, path := range e.paths {
-		log.Debugf("Loading cgroup path %v", path)
+		level.Debug(e.logger).Log("msg", "Loading cgroup", "path", path)
 		control, err := cgroups.Load(subsystem, cgroups.StaticPath(path))
 		if err != nil {
-			log.Errorf("Error loading cgroup subsystem path %s: %s", path, err.Error())
+			level.Error(e.logger).Log("msg", "Error loading cgroup subsystem", "path", path, "err", err)
 			metric := CgroupMetric{name: path, err: true}
 			metrics = append(metrics, metric)
 			continue
 		}
 		processes, err := control.Processes(cgroups.Cpuacct, true)
 		if err != nil {
-			log.Errorf("Error loading cgroup processes for path %s: %s", path, err.Error())
+			level.Error(e.logger).Log("msg", "Error loading cgroup processes", "path", path, "err", err)
 			metric := CgroupMetric{name: path, err: true}
 			metrics = append(metrics, metric)
 			continue
 		}
-		log.Debugf("Found %d processes", len(processes))
+		level.Debug(e.logger).Log("msg", "Found processes", "processes", len(processes))
 		pids := make(map[string][]int)
 		for _, p := range processes {
-			log.Debugf("Get name of process=%s pid=%d path=%s", p.Path, p.Pid, path)
-			name, err := getName(p, path)
+			level.Debug(e.logger).Log("msg", "Get Name", "process", p.Path, "pid", p.Pid, "path", path)
+			name, err := getName(p, path, e.logger)
 			if err != nil {
-				log.Errorf("Error getting cgroup name for for process %s at path %s: %s", p.Path, path, err.Error())
+				level.Error(e.logger).Log("msg", "Error getting cgroup name for process", "process", p.Path, "path", path, "err", err)
 				continue
 			}
 			if !sliceContains(names, name) {
@@ -342,12 +347,12 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 		}
 		for _, name := range names {
 			metric := CgroupMetric{name: name}
-			log.Debugf("Loading cgroup path %s", name)
+			level.Debug(e.logger).Log("msg", "Loading cgroup", "path", name)
 			ctrl, err := cgroups.Load(subsystem, func(subsystem cgroups.Name) (string, error) {
 				return name, nil
 			})
 			if err != nil {
-				log.Errorf("Failed to load cgroups for %s: %s", name, err.Error())
+				level.Error(e.logger).Log("msg", "Failed to load cgroups", "path", name, "err", err)
 				metric.err = true
 				metrics = append(metrics, metric)
 				continue
@@ -364,17 +369,17 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			metric.memswUsed = float64(stats.Memory.Swap.Usage)
 			metric.memswTotal = float64(stats.Memory.Swap.Limit)
 			metric.memswFailCount = float64(stats.Memory.Swap.Failcnt)
-			if cpus, err := getCPUs(name); err == nil {
+			if cpus, err := getCPUs(name, e.logger); err == nil {
 				metric.cpus = len(cpus)
 				metric.cpu_list = strings.Join(cpus, ",")
 			}
-			getInfo(name, &metric)
+			getInfo(name, &metric, e.logger)
 			if *collectProc {
 				if val, ok := pids[name]; ok {
-					log.Debugf("Get process info for pids=%v", val)
-					getProcInfo(val, &metric)
+					level.Debug(e.logger).Log("msg", "Get process info", "pids", fmt.Sprintf("%v", val))
+					getProcInfo(val, &metric, e.logger)
 				} else {
-					log.Errorf("Unable to get PIDs for %s", name)
+					level.Error(e.logger).Log("msg", "Unable to get PIDs", "path", name)
 				}
 			}
 			metrics = append(metrics, metric)
@@ -434,13 +439,13 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	}
 }
 
-func metricsHandler() http.HandlerFunc {
+func metricsHandler(logger log.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		registry := prometheus.NewRegistry()
 
 		paths := strings.Split(*configPaths, ",")
 
-		exporter := NewExporter(paths)
+		exporter := NewExporter(paths, logger)
 		registry.MustRegister(exporter)
 
 		gatherers := prometheus.Gatherers{registry}
@@ -456,14 +461,16 @@ func metricsHandler() http.HandlerFunc {
 
 func main() {
 	metricsEndpoint := "/metrics"
-	log.AddFlags(kingpin.CommandLine)
+	promlogConfig := &promlog.Config{}
+	flag.AddFlags(kingpin.CommandLine, promlogConfig)
 	kingpin.Version(version.Print("cgroup_exporter"))
 	kingpin.HelpFlag.Short('h')
 	kingpin.Parse()
 
-	log.Infoln("Starting cgroup_exporter", version.Info())
-	log.Infoln("Build context", version.BuildContext())
-	log.Infoln("Starting Server:", *listenAddress)
+	logger := promlog.New(promlogConfig)
+	level.Info(logger).Log("msg", "Starting cgroup_exporter", "version", version.Info())
+	level.Info(logger).Log("msg", "Build context", "build_context", version.BuildContext())
+	level.Info(logger).Log("msg", "Starting Server", "address", *listenAddress)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		//nolint:errcheck
@@ -475,6 +482,10 @@ func main() {
              </body>
              </html>`))
 	})
-	http.Handle(metricsEndpoint, metricsHandler())
-	log.Fatal(http.ListenAndServe(*listenAddress, nil))
+	http.Handle(metricsEndpoint, metricsHandler(logger))
+	err := http.ListenAndServe(*listenAddress, nil)
+	if err != nil {
+		level.Error(logger).Log("err", err)
+		os.Exit(1)
+	}
 }
