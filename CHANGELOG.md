@@ -1,3 +1,9 @@
+## 0.5.0 / 2020-10-02
+
+* Add cgroup_process_exec_count metric
+* Switch logging to promlog
+* Parallelize cgroup loads and process info collection
+
 ## 0.4.0 / 2020-10-01
 
 * Add cgroup_cpu_info metric
