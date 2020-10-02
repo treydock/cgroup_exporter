@@ -20,6 +20,7 @@ import (
 	"os"
 	"os/user"
 	"path/filepath"
+	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
@@ -29,6 +30,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/log"
 	"github.com/prometheus/common/version"
+	"github.com/prometheus/procfs"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
@@ -38,10 +40,14 @@ const (
 
 var (
 	defCgroupRoot          = "/sys/fs/cgroup"
+	defProcRoot            = "/proc"
 	configPaths            = kingpin.Flag("config.paths", "Comma separated list of cgroup paths to check, eg /user.slice,/system.slice,/slurm").Required().String()
 	listenAddress          = kingpin.Flag("web.listen-address", "Address to listen on for web interface and telemetry.").Default(":9306").String()
 	disableExporterMetrics = kingpin.Flag("web.disable-exporter-metrics", "Exclude metrics about the exporter (promhttp_*, process_*, go_*)").Default("false").Bool()
 	cgroupRoot             = kingpin.Flag("path.cgroup.root", "Root path to cgroup fs").Default(defCgroupRoot).String()
+	procRoot               = kingpin.Flag("path.proc.root", "Root path to proc fs").Default(defProcRoot).String()
+	collectProc            = kingpin.Flag("collect.proc", "Boolean that sets if to collect proc information").Default("false").Bool()
+	collectProcMaxExec     = kingpin.Flag("collect.proc.max-exec", "Max length of process executable to record").Default("100").Int()
 )
 
 type CgroupMetric struct {
@@ -64,6 +70,7 @@ type CgroupMetric struct {
 	uid             string
 	username        string
 	jobid           string
+	processExec     map[string]float64
 	err             bool
 }
 
@@ -84,6 +91,7 @@ type Exporter struct {
 	memswTotal      *prometheus.Desc
 	memswFailCount  *prometheus.Desc
 	info            *prometheus.Desc
+	processExec     *prometheus.Desc
 }
 
 func fileExists(filename string) bool {
@@ -94,9 +102,10 @@ func fileExists(filename string) bool {
 	return !info.IsDir()
 }
 
-func sliceContains(slice []string, str string) bool {
-	for _, s := range slice {
-		if str == s {
+func sliceContains(s interface{}, v interface{}) bool {
+	slice := reflect.ValueOf(s)
+	for i := 0; i < slice.Len(); i++ {
+		if slice.Index(i).Interface() == v {
 			return true
 		}
 	}
@@ -200,6 +209,34 @@ func getInfo(name string, metric *CgroupMetric) {
 	}
 }
 
+func getProcInfo(pids []int, metric *CgroupMetric) {
+	executables := make(map[string]float64)
+	procFS, err := procfs.NewFS(*procRoot)
+	if err != nil {
+		log.Errorf("Unable to open procfs at %s", *procRoot)
+		return
+	}
+	for _, pid := range pids {
+		proc, err := procFS.Proc(pid)
+		if err != nil {
+			log.Errorf("Unable to read PID=%d", pid)
+			continue
+		}
+		executable, err := proc.Executable()
+		if err != nil {
+			log.Errorf("Unable to get executable for PID=%d", pid)
+			continue
+		}
+		if len(executable) > *collectProcMaxExec {
+			log.Debugf("Executable will be truncated executable=%s len=%d pid=%d", executable, len(executable), pid)
+			executable = executable[len(executable)-*collectProcMaxExec:]
+			executable = fmt.Sprintf("...%s", executable)
+		}
+		executables[executable] += 1
+	}
+	metric.processExec = executables
+}
+
 func getName(p cgroups.Process, path string) (string, error) {
 	cpuacctPath := filepath.Join(*cgroupRoot, "cpuacct")
 	name := strings.TrimPrefix(p.Path, cpuacctPath)
@@ -256,6 +293,8 @@ func NewExporter(paths []string) *Exporter {
 			"Swap fail count", []string{"cgroup"}, nil),
 		info: prometheus.NewDesc(prometheus.BuildFQName(namespace, "", "info"),
 			"User slice information", []string{"cgroup", "username", "uid", "jobid"}, nil),
+		processExec: prometheus.NewDesc(prometheus.BuildFQName(namespace, "", "process_exec_count"),
+			"Count of instances of a given process", []string{"cgroup", "exec"}, nil),
 		collectError: prometheus.NewDesc(prometheus.BuildFQName(namespace, "exporter", "collect_error"),
 			"Indicates collection error, 0=no error, 1=error", []string{"cgroup"}, nil),
 	}
@@ -281,16 +320,27 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 			continue
 		}
 		log.Debugf("Found %d processes", len(processes))
+		pids := make(map[string][]int)
 		for _, p := range processes {
+			log.Debugf("Get name of process=%s pid=%d path=%s", p.Path, p.Pid, path)
 			name, err := getName(p, path)
 			if err != nil {
 				log.Errorf("Error getting cgroup name for for process %s at path %s: %s", p.Path, path, err.Error())
 				continue
 			}
-			if sliceContains(names, name) {
-				continue
+			if !sliceContains(names, name) {
+				names = append(names, name)
 			}
-			names = append(names, name)
+			if val, ok := pids[name]; ok {
+				if !sliceContains(val, p.Pid) {
+					val = append(val, p.Pid)
+				}
+				pids[name] = val
+			} else {
+				pids[name] = []int{p.Pid}
+			}
+		}
+		for _, name := range names {
 			metric := CgroupMetric{name: name}
 			log.Debugf("Loading cgroup path %s", name)
 			ctrl, err := cgroups.Load(subsystem, func(subsystem cgroups.Name) (string, error) {
@@ -319,6 +369,14 @@ func (e *Exporter) collect() ([]CgroupMetric, error) {
 				metric.cpu_list = strings.Join(cpus, ",")
 			}
 			getInfo(name, &metric)
+			if *collectProc {
+				if val, ok := pids[name]; ok {
+					log.Debugf("Get process info for pids=%v", val)
+					getProcInfo(val, &metric)
+				} else {
+					log.Errorf("Unable to get PIDs for %s", name)
+				}
+			}
 			metrics = append(metrics, metric)
 		}
 	}
@@ -340,6 +398,10 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.memswUsed
 	ch <- e.memswTotal
 	ch <- e.memswFailCount
+	ch <- e.info
+	if *collectProc {
+		ch <- e.processExec
+	}
 }
 
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
@@ -363,6 +425,11 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		ch <- prometheus.MustNewConstMetric(e.memswFailCount, prometheus.GaugeValue, m.memswFailCount, m.name)
 		if m.userslice || m.job {
 			ch <- prometheus.MustNewConstMetric(e.info, prometheus.GaugeValue, 1, m.name, m.username, m.uid, m.jobid)
+		}
+		if *collectProc {
+			for exec, count := range m.processExec {
+				ch <- prometheus.MustNewConstMetric(e.processExec, prometheus.GaugeValue, count, m.name, exec)
+			}
 		}
 	}
 }
