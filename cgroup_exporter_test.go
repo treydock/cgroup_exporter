@@ -38,10 +38,14 @@ func TestMain(m *testing.M) {
 	}
 	_, filename, _, _ := runtime.Caller(0)
 	dir := filepath.Dir(filename)
-	fixture := filepath.Join(dir, "test")
+	fixture := filepath.Join(dir, "fixtures")
 	cgroupRoot = &fixture
+	procFixture := filepath.Join(fixture, "proc")
+	procRoot = &procFixture
 	varTrue := true
 	disableExporterMetrics = &varTrue
+	collectProc = &varTrue
+	_ = log.Base().SetLevel("debug")
 	go func() {
 		http.Handle("/metrics", metricsHandler())
 		log.Fatal(http.ListenAndServe(address, nil))
@@ -74,7 +78,33 @@ func TestParseCpuSet(t *testing.T) {
 	}
 }
 
+func TestGetProcInfo(t *testing.T) {
+	metric := CgroupMetric{}
+	getProcInfo([]int{95521, 95525}, &metric)
+	if val, ok := metric.processExec["/bin/bash"]; !ok {
+		t.Errorf("Process /bin/bash not in metrics")
+		return
+	} else {
+		if val != 2 {
+			t.Errorf("Expected 2 /bin/bash processes, got %v", val)
+		}
+	}
+	varLen := 4
+	collectProcMaxExec = &varLen
+	getProcInfo([]int{95521, 95525}, &metric)
+	if val, ok := metric.processExec["...bash"]; !ok {
+		t.Errorf("Process /bin/bash not in metrics, found: %v", metric.processExec)
+		return
+	} else {
+		if val != 2 {
+			t.Errorf("Expected 2 .../bash processes, got %v", val)
+		}
+	}
+}
+
 func TestCollectUserSlice(t *testing.T) {
+	varFalse := false
+	collectProc = &varFalse
 	exporter := NewExporter([]string{"/user.slice"})
 	metrics, err := exporter.collect()
 	if err != nil {
@@ -127,15 +157,18 @@ func TestCollectUserSlice(t *testing.T) {
 }
 
 func TestCollectSLURM(t *testing.T) {
-	_ = log.Base().SetLevel("debug")
+	varTrue := true
+	collectProc = &varTrue
+	varLen := 100
+	collectProcMaxExec = &varLen
 	exporter := NewExporter([]string{"/slurm"})
 	metrics, err := exporter.collect()
 	if err != nil {
 		t.Errorf("Unexpected error: %s", err.Error())
 		return
 	}
-	if val := len(metrics); val != 1 {
-		t.Errorf("Unexpected number of metrics, got %d expected 1", val)
+	if val := len(metrics); val != 2 {
+		t.Errorf("Unexpected number of metrics, got %d expected 2", val)
 		return
 	}
 	if val := metrics[0].cpuUser; val != 0 {
@@ -180,10 +213,18 @@ func TestCollectSLURM(t *testing.T) {
 	if val := metrics[0].jobid; val != "10" {
 		t.Errorf("Unexpected value for jobid, got %v", val)
 	}
+	if val, ok := metrics[0].processExec["/bin/bash"]; !ok {
+		t.Errorf("processExec does not contain /bin/bash")
+	} else {
+		if val != 2 {
+			t.Errorf("Unexpected 2 values for processExec /bin/bash, got %v", val)
+		}
+	}
 }
 
 func TestCollectTorque(t *testing.T) {
-	_ = log.Base().SetLevel("debug")
+	varFalse := false
+	collectProc = &varFalse
 	exporter := NewExporter([]string{"/torque"})
 	metrics, err := exporter.collect()
 	if err != nil {
@@ -239,7 +280,6 @@ func TestCollectTorque(t *testing.T) {
 }
 
 func TestMetricsHandler(t *testing.T) {
-	_ = log.Base().SetLevel("debug")
 	body, err := queryExporter()
 	if err != nil {
 		t.Fatalf("Unexpected error GET /metrics: %s", err.Error())
