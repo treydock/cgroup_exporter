@@ -182,49 +182,59 @@ func TestCollectSLURM(t *testing.T) {
 		t.Errorf("Unexpected number of metrics, got %d expected 2", val)
 		return
 	}
-	if val := metrics[0].cpuUser; val != 0 {
+	var m CgroupMetric
+	for _, metric := range metrics {
+		if metric.jobid == "10" {
+			m = metric
+		}
+	}
+	if m.jobid == "" {
+		t.Errorf("Metrics with jobid=10 not found")
+		return
+	}
+	if val := m.cpuUser; val != 0 {
 		t.Errorf("Unexpected value for cpuUser, got %v", val)
 	}
-	if val := metrics[0].cpuSystem; val != 0 {
+	if val := m.cpuSystem; val != 0 {
 		t.Errorf("Unexpected value for cpuSystem, got %v", val)
 	}
-	if val := metrics[0].cpuTotal; val != 0.007710215 {
+	if val := m.cpuTotal; val != 0.007710215 {
 		t.Errorf("Unexpected value for cpuTotal, got %v", val)
 	}
-	if val := metrics[0].cpus; val != 2 {
+	if val := m.cpus; val != 2 {
 		t.Errorf("Unexpected value for cpus, got %v", val)
 	}
-	if val := metrics[0].memoryRSS; val != 311296 {
+	if val := m.memoryRSS; val != 311296 {
 		t.Errorf("Unexpected value for memoryRSS, got %v", val)
 	}
-	if val := metrics[0].memoryCache; val != 4096 {
+	if val := m.memoryCache; val != 4096 {
 		t.Errorf("Unexpected value for memoryCache, got %v", val)
 	}
-	if val := metrics[0].memoryUsed; val != 356352 {
+	if val := m.memoryUsed; val != 356352 {
 		t.Errorf("Unexpected value for memoryUsed, got %v", val)
 	}
-	if val := metrics[0].memoryTotal; val != 2147483648 {
+	if val := m.memoryTotal; val != 2147483648 {
 		t.Errorf("Unexpected value for memoryTotal, got %v", val)
 	}
-	if val := metrics[0].memoryFailCount; val != 0 {
+	if val := m.memoryFailCount; val != 0 {
 		t.Errorf("Unexpected value for memoryFailCount, got %v", val)
 	}
-	if val := metrics[0].memswUsed; val != 356352 {
+	if val := m.memswUsed; val != 356352 {
 		t.Errorf("Unexpected value for swapUsed, got %v", val)
 	}
-	if val := metrics[0].memswTotal; val != 2147483648 {
+	if val := m.memswTotal; val != 2147483648 {
 		t.Errorf("Unexpected value for swapTotal, got %v", val)
 	}
-	if val := metrics[0].memswFailCount; val != 0 {
+	if val := m.memswFailCount; val != 0 {
 		t.Errorf("Unexpected value for swapFailCount, got %v", val)
 	}
-	if val := metrics[0].uid; val != "20821" {
+	if val := m.uid; val != "20821" {
 		t.Errorf("Unexpected value for uid, got %v", val)
 	}
-	if val := metrics[0].jobid; val != "10" {
+	if val := m.jobid; val != "10" {
 		t.Errorf("Unexpected value for jobid, got %v", val)
 	}
-	if val, ok := metrics[0].processExec["/bin/bash"]; !ok {
+	if val, ok := m.processExec["/bin/bash"]; !ok {
 		t.Errorf("processExec does not contain /bin/bash")
 	} else {
 		if val != 2 {
