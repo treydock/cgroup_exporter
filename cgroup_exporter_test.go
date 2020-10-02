@@ -38,7 +38,7 @@ func TestMain(m *testing.M) {
 	}
 	_, filename, _, _ := runtime.Caller(0)
 	dir := filepath.Dir(filename)
-	fixture := filepath.Join(dir, "test")
+	fixture := filepath.Join(dir, "fixtures")
 	cgroupRoot = &fixture
 	procFixture := filepath.Join(fixture, "proc")
 	procRoot = &procFixture

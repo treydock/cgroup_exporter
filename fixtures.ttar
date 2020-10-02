@@ -1,0 +1,5156 @@
+# Archive created by ttar -c -f fixtures.ttar fixtures/
+Directory: fixtures
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct
+Mode: 775
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cpuacct.stat
+Lines: 2
+user 2
+system 4
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cpuacct.usage
+Lines: 1
+65297599
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/cpuacct.usage_percpu
+Lines: 1
+27864801 33969662 1099301 2363835 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cpuacct.stat
+Lines: 2
+user 0
+system 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cpuacct.usage
+Lines: 1
+7710215
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/cpuacct.usage_percpu
+Lines: 1
+3710825 3999390 0 0 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_10
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cpuacct.stat
+Lines: 2
+user 0
+system 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cpuacct.usage
+Lines: 1
+7710215
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/cpuacct.usage_percpu
+Lines: 1
+3710825 3999390 0 0 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cpuacct.stat
+Lines: 2
+user 0
+system 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cpuacct.usage
+Lines: 1
+7710215
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/cpuacct.usage_percpu
+Lines: 1
+3710825 3999390 0 0 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cgroup.procs
+Lines: 2
+95521
+95525
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cpuacct.stat
+Lines: 2
+user 0
+system 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cpuacct.usage
+Lines: 1
+7710215
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/cpuacct.usage_percpu
+Lines: 1
+3710825 3999390 0 0 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/task_0/tasks
+Lines: 2
+95521
+95525
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/step_batch/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_10/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_11
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cpuacct.stat
+Lines: 2
+user 3313561
+system 9571
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cpuacct.usage
+Lines: 1
+33146523011972
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/cpuacct.usage_percpu
+Lines: 1
+824004970909 822349906515 839802105223 828261319452 827676676189 828895105746 828797791187 828849230531 828657550064 828942507699 828748159829 827546964350 828206367697 829003884597 829116759583 828591869344 822643401093 828802207255 828870391558 842831107788 828858598941 829667457338 828506456068 828775745210 828215285500 828785726696 827055427570 828002337865 827055635549 828324835883 828761565330 824453784259 828424361785 828988809678 828365974591 829001627592 828592413581 828812703598 828588952445 828686606105 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_11/step_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cpuacct.stat
+Lines: 2
+user 3313484
+system 9558
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cpuacct.usage
+Lines: 1
+33145604864551
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/cpuacct.usage_percpu
+Lines: 1
+824002534187 822349716353 839467205737 827879918451 827645621813 828880650125 828793616458 828846664929 828653870138 828940513955 828744490795 827544973886 828203107782 829001890238 829113556965 828589875746 822639978319 828789310959 828868111428 842828413970 828848582377 829665462840 828504126805 828773754926 828213089111 828783731405 827052619996 828000343368 827052723161 828322841677 828724738745 824451789238 828420700103 828986815113 828362342246 828999632477 828588555276 828810708949 828573503975 828684611766 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cgroup.procs
+Lines: 1
+177837
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cpuacct.stat
+Lines: 2
+user 1656081
+system 5077
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cpuacct.usage
+Lines: 1
+16568474534592
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/cpuacct.usage_percpu
+Lines: 1
+824001504106 223314 839465816102 112735 827644225388 156438 828792597703 209218 828652490599 207132 828743473641 202182 828202088341 150467 829112538444 154763 822639962445 209804 828867719509 202531 828848582377 195193 828504126805 225129 828213089111 204668 827052619996 195635 827052343290 185028 828724738745 208623 828420700103 202500 828361972580 203960 828588555276 217791 828573503975 209448 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_0/tasks
+Lines: 21
+177837
+177904
+177912
+177914
+177917
+177919
+177921
+177922
+177923
+177924
+177925
+177926
+177927
+177928
+177930
+177932
+177933
+177934
+177935
+177936
+177937
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cgroup.procs
+Lines: 1
+177838
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cpuacct.stat
+Lines: 2
+user 1657398
+system 4480
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cpuacct.usage
+Lines: 1
+16577108827983
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/cpuacct.usage_percpu
+Lines: 1
+28409 822349348509 20220 827878807940 19057 828879496552 17306 828845454629 16308 828939308667 15324 827543771115 17113 829000742401 16445 828588723030 15874 828788103747 17012 842827213935 0 829664270420 0 828772528401 0 828782533317 0 827999149764 0 828321663162 0 824450583379 0 828985615368 0 828998431662 0 828809493927 0 828683404990 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/task_1/tasks
+Lines: 21
+177838
+177903
+177913
+177915
+177916
+177918
+177920
+177929
+177931
+177938
+177939
+177940
+177941
+177942
+177943
+177944
+177945
+177946
+177947
+177948
+177949
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_0/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cpuacct.stat
+Lines: 2
+user 69
+system 12
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cpuacct.usage
+Lines: 1
+838305177
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/cpuacct.usage_percpu
+Lines: 1
+226315 190162 333073883 379406555 29221648 12461543 1965651 574295 1847983 0 1473435 0 1055540 0 1211515 0 1208521 10901148 450800 698646 7803453 0 120770 0 0 0 597098 0 1082401 0 34611105 0 1450681 0 1792494 0 1647812 0 13231723 0 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cgroup.procs
+Lines: 3
+177788
+177819
+177820
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cpuacct.stat
+Lines: 2
+user 69
+system 12
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cpuacct.usage
+Lines: 1
+838305177
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/cpuacct.usage_percpu
+Lines: 1
+226315 190162 333073883 379406555 29221648 12461543 1965651 574295 1847983 0 1473435 0 1055540 0 1211515 0 1208521 10901148 450800 698646 7803453 0 120770 0 0 0 597098 0 1082401 0 34611105 0 1450681 0 1792494 0 1647812 0 13231723 0 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/task_0/tasks
+Lines: 7
+177788
+177819
+177820
+177821
+177822
+177823
+177824
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_batch/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cpuacct.stat
+Lines: 2
+user 0
+system 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cpuacct.usage
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/cpuacct.usage_percpu
+Lines: 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cgroup.procs
+Lines: 1
+177773
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cpuacct.stat
+Lines: 2
+user 0
+system 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cpuacct.usage
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/cpuacct.usage_percpu
+Lines: 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/task_0/tasks
+Lines: 1
+177773
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/step_extern/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/job_11/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/slurm/uid_20821/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/torque
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/torque/1182724.batch
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cgroup.procs
+Lines: 7
+280687
+280755
+280942
+280943
+280944
+280948
+280949
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cpuacct.stat
+Lines: 2
+user 15314631
+system 26077
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cpuacct.usage
+Lines: 1
+152995785583781
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/cpuacct.usage_percpu
+Lines: 1
+3741446525236 3763871961512 3800004207303 3795925066130 3802666529070 3800304192183 3802555292152 3804795218295 4160254191665 3803812739329 3805914555196 3803924757760 3804157062388 3804434454497 3799628022547 3805746895327 3801777709215 3807932330725 3804793579197 4281745115690 3804595709989 3805045301831 3803044002744 3805835045559 3804952857992 3797882249643 3805434134051 3805050988133 3805773462792 3805422181921 3926304892533 3793095726993 3804059814194 3805599780955 3804553512591 3805412437282 3805505596539 3803162401816 3804398646859 3804887475895 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/1182724.batch/tasks
+Lines: 47
+280687
+280755
+280942
+280943
+280944
+280948
+280949
+281004
+281005
+281006
+281007
+281008
+281009
+281010
+281011
+281012
+281013
+281014
+281015
+281016
+281017
+281018
+281019
+281020
+281021
+281022
+281023
+281024
+281025
+281026
+281027
+281028
+281029
+281030
+281031
+281032
+281033
+281034
+281035
+281036
+281037
+281038
+281039
+281040
+281041
+281042
+281043
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cpu.cfs_quota_us
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cpu.stat
+Lines: 3
+nr_periods 0
+nr_throttled 0
+throttled_time 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cpuacct.stat
+Lines: 2
+user 30648565
+system 51983
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cpuacct.usage
+Lines: 1
+306181522324683
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/cpuacct.usage_percpu
+Lines: 1
+7507822956061 7528656764703 7592506792141 7602715606951 7599085684977 7609294979494 7604660323578 7618618653931 7959815191466 7616203824147 7610638786639 7616682686571 7608820260166 7619712348886 7598884212794 7621924199684 7604738465824 7623627374038 7608781761607 8574847626011 7608343551357 7617770917092 7605183264978 7621886223773 7607865073606 7613846648300 7605125778530 7624608985662 7607385714373 7620503587308 8199008007781 7609171662251 7605928891278 7621536734593 7606951115289 7620745765085 7609675504308 7620580738305 7607492605427 7619806854280 
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/torque/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/user.slice
+Mode: 775
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuacct/user.slice/user-20821.slice
+Mode: 775
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cgroup.procs
+Lines: 4
+99062
+99080
+99081
+100190
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cpu.cfs_period_us
+Lines: 1
+100000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cpu.cfs_quota_us
+Lines: 1
+700000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cpu.rt_period_us
+Lines: 1
+1000000
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cpu.rt_runtime_us
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cpu.shares
+Lines: 1
+1024
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cpu.stat
+Lines: 3
+nr_periods 108
+nr_throttled 0
+throttled_time 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cpuacct.stat
+Lines: 2
+user 41
+system 39
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cpuacct.usage
+Lines: 1
+831825022
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/cpuacct.usage_percpu
+Lines: 1
+61450 0 159510184 194806141 30260284 104075880 27756977 11958754 17386097 3137240 4204283 2139986 2746800 24278319 0 2911961 97630563 480379 8984897 620214 7042341 0 61568952 0 38486957 0 8403565 0 18531243 0 569211 0 128518 0 193825 0 2063712 598605 1459026 0 
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuacct/user.slice/user-20821.slice/tasks
+Lines: 4
+99062
+99080
+99081
+100190
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset
+Mode: 775
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/slurm
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.cpus
+Lines: 1
+0-3
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.effective_cpus
+Lines: 1
+0-3
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.effective_mems
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.mems
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/slurm/uid_20821
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.cpus
+Lines: 1
+0-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.effective_cpus
+Lines: 1
+0-1
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.effective_mems
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.mems
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/slurm/uid_20821/job_10
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.cpus
+Lines: 1
+0-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.effective_cpus
+Lines: 1
+0-1
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.effective_mems
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.mems
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/slurm/uid_20821/job_10/step_batch
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cgroup.procs
+Lines: 3
+95516
+95521
+95525
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.cpus
+Lines: 1
+0-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.effective_cpus
+Lines: 1
+0-1
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.effective_mems
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.mems
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/step_batch/tasks
+Lines: 7
+95516
+95517
+95518
+95519
+95520
+95521
+95525
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_10/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/slurm/uid_20821/job_11
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.cpus
+Lines: 1
+0-39
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.effective_cpus
+Lines: 1
+0-39
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.effective_mems
+Lines: 1
+0-1
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.mems
+Lines: 1
+0-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/slurm/uid_20821/job_11/step_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cgroup.procs
+Lines: 3
+177830
+177837
+177838
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.cpus
+Lines: 1
+0-39
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.effective_cpus
+Lines: 1
+0-39
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.effective_mems
+Lines: 1
+0-1
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.mems
+Lines: 1
+0-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_0/tasks
+Lines: 49
+177830
+177831
+177832
+177833
+177834
+177835
+177836
+177837
+177838
+177903
+177904
+177912
+177913
+177914
+177915
+177916
+177917
+177918
+177919
+177920
+177921
+177922
+177923
+177924
+177925
+177926
+177927
+177928
+177929
+177930
+177931
+177932
+177933
+177934
+177935
+177936
+177937
+177938
+177939
+177940
+177941
+177942
+177943
+177944
+177945
+177946
+177947
+177948
+177949
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/slurm/uid_20821/job_11/step_batch
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cgroup.procs
+Lines: 4
+177775
+177788
+177819
+177820
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.cpus
+Lines: 1
+0-39
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.effective_cpus
+Lines: 1
+0-39
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.effective_mems
+Lines: 1
+0-1
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.mems
+Lines: 1
+0-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_batch/tasks
+Lines: 12
+177775
+177776
+177777
+177778
+177779
+177788
+177819
+177820
+177821
+177822
+177823
+177824
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/slurm/uid_20821/job_11/step_extern
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cgroup.procs
+Lines: 2
+177768
+177773
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.cpus
+Lines: 1
+0-39
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.effective_cpus
+Lines: 1
+0-39
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.effective_mems
+Lines: 1
+0-1
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.mems
+Lines: 1
+0-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/step_extern/tasks
+Lines: 6
+177768
+177769
+177770
+177771
+177772
+177773
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/job_11/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/slurm/uid_20821/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/torque
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/torque/1182724.batch
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cgroup.procs
+Lines: 7
+280687
+280755
+280942
+280943
+280944
+280948
+280949
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.cpus
+Lines: 1
+0-39
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.effective_cpus
+Lines: 1
+0-39
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.effective_mems
+Lines: 1
+0-1
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.mems
+Lines: 1
+0-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/1182724.batch/tasks
+Lines: 47
+280687
+280755
+280942
+280943
+280944
+280948
+280949
+281004
+281005
+281006
+281007
+281008
+281009
+281010
+281011
+281012
+281013
+281014
+281015
+281016
+281017
+281018
+281019
+281020
+281021
+281022
+281023
+281024
+281025
+281026
+281027
+281028
+281029
+281030
+281031
+281032
+281033
+281034
+281035
+281036
+281037
+281038
+281039
+281040
+281041
+281042
+281043
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.cpu_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.cpus
+Lines: 1
+0-39
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.effective_cpus
+Lines: 1
+0-39
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.effective_mems
+Lines: 1
+0-1
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.mem_exclusive
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.mem_hardwall
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.memory_migrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.memory_pressure
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.memory_spread_page
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.memory_spread_slab
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.mems
+Lines: 1
+0-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.sched_load_balance
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/cpuset.sched_relax_domain_level
+Lines: 1
+-1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/cpuset/torque/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/user.slice
+Mode: 775
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/cpuset/user.slice/user-20821.slice
+Mode: 775
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory
+Mode: 775
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.max_usage_in_bytes
+Lines: 1
+634880
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.memsw.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.memsw.max_usage_in_bytes
+Lines: 1
+634880
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.memsw.usage_in_bytes
+Lines: 1
+385024
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.numa_stat
+Lines: 4
+total=7 N0=7
+file=7 N0=7
+anon=0 N0=0
+unevictable=0 N0=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.stat
+Lines: 30
+cache 28672
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 7
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 28672
+unevictable 0
+hierarchical_memory_limit 9223372036854771712
+hierarchical_memsw_limit 9223372036854771712
+total_cache 32768
+total_rss 311296
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 319
+total_pgpgout 235
+total_pgfault 1899
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 311296
+total_inactive_file 4096
+total_active_file 28672
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.swappiness
+Lines: 1
+30
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.usage_in_bytes
+Lines: 1
+385024
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_10
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.limit_in_bytes
+Lines: 1
+2147483648
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.max_usage_in_bytes
+Lines: 1
+552960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.memsw.limit_in_bytes
+Lines: 1
+2147483648
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.memsw.max_usage_in_bytes
+Lines: 1
+552960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.memsw.usage_in_bytes
+Lines: 1
+356352
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.numa_stat
+Lines: 4
+total=0 N0=0
+file=0 N0=0
+anon=0 N0=0
+unevictable=0 N0=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.soft_limit_in_bytes
+Lines: 1
+2147483648
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.stat
+Lines: 30
+cache 0
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 0
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 0
+unevictable 0
+hierarchical_memory_limit 2147483648
+hierarchical_memsw_limit 2147483648
+total_cache 4096
+total_rss 311296
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 312
+total_pgpgout 235
+total_pgfault 1899
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 311296
+total_inactive_file 4096
+total_active_file 0
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.swappiness
+Lines: 1
+30
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.usage_in_bytes
+Lines: 1
+356352
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_10/step_batch
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.limit_in_bytes
+Lines: 1
+2147483648
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.max_usage_in_bytes
+Lines: 1
+552960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.memsw.limit_in_bytes
+Lines: 1
+2147483648
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.memsw.max_usage_in_bytes
+Lines: 1
+552960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.memsw.usage_in_bytes
+Lines: 1
+356352
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.numa_stat
+Lines: 4
+total=0 N0=0
+file=0 N0=0
+anon=0 N0=0
+unevictable=0 N0=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.soft_limit_in_bytes
+Lines: 1
+2147483648
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.stat
+Lines: 30
+cache 0
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 0
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 0
+unevictable 0
+hierarchical_memory_limit 2147483648
+hierarchical_memsw_limit 2147483648
+total_cache 4096
+total_rss 311296
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 312
+total_pgpgout 235
+total_pgfault 1899
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 311296
+total_inactive_file 4096
+total_active_file 0
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.swappiness
+Lines: 1
+30
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.usage_in_bytes
+Lines: 1
+356352
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/cgroup.procs
+Lines: 2
+95521
+95525
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.max_usage_in_bytes
+Lines: 1
+552960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.memsw.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.memsw.max_usage_in_bytes
+Lines: 1
+552960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.memsw.usage_in_bytes
+Lines: 1
+356352
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.numa_stat
+Lines: 4
+total=77 N0=77
+file=1 N0=1
+anon=76 N0=76
+unevictable=0 N0=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.stat
+Lines: 30
+cache 4096
+rss 311296
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 312
+pgpgout 235
+pgfault 1899
+pgmajfault 0
+inactive_anon 0
+active_anon 311296
+inactive_file 4096
+active_file 0
+unevictable 0
+hierarchical_memory_limit 2147483648
+hierarchical_memsw_limit 2147483648
+total_cache 4096
+total_rss 311296
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 312
+total_pgpgout 235
+total_pgfault 1899
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 311296
+total_inactive_file 4096
+total_active_file 0
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.swappiness
+Lines: 1
+30
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.usage_in_bytes
+Lines: 1
+356352
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/task_0/tasks
+Lines: 2
+95521
+95525
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/step_batch/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_10/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_11
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.max_usage_in_bytes
+Lines: 1
+8346267648
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.memsw.limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.memsw.max_usage_in_bytes
+Lines: 1
+8346267648
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.memsw.usage_in_bytes
+Lines: 1
+6126714880
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.numa_stat
+Lines: 4
+total=0 N0=0 N1=0
+file=0 N0=0 N1=0
+anon=0 N0=0 N1=0
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.soft_limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.stat
+Lines: 30
+cache 0
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 0
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 0
+unevictable 0
+hierarchical_memory_limit 191092490240
+hierarchical_memsw_limit 191092490240
+total_cache 74915840
+total_rss 6051483648
+total_rss_huge 5762973696
+total_mapped_file 19931136
+total_swap 0
+total_pgpgin 131344
+total_pgpgout 63375
+total_pgfault 827130
+total_pgmajfault 129
+total_inactive_anon 3842048
+total_active_anon 6051483648
+total_inactive_file 69820416
+total_active_file 1253376
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.swappiness
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.usage_in_bytes
+Lines: 1
+6126714880
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_11/step_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.max_usage_in_bytes
+Lines: 1
+8340803584
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.memsw.limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.memsw.max_usage_in_bytes
+Lines: 1
+8340803584
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.memsw.usage_in_bytes
+Lines: 1
+6121259008
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.numa_stat
+Lines: 4
+total=0 N0=0 N1=0
+file=0 N0=0 N1=0
+anon=0 N0=0 N1=0
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.soft_limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.stat
+Lines: 30
+cache 0
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 0
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 0
+unevictable 0
+hierarchical_memory_limit 191092490240
+hierarchical_memsw_limit 191092490240
+total_cache 74899456
+total_rss 6046044160
+total_rss_huge 5762973696
+total_mapped_file 19931136
+total_swap 0
+total_pgpgin 125292
+total_pgpgout 58655
+total_pgfault 808737
+total_pgmajfault 129
+total_inactive_anon 3842048
+total_active_anon 6046044160
+total_inactive_file 69812224
+total_active_file 1245184
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.swappiness
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.usage_in_bytes
+Lines: 1
+6121259008
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/cgroup.procs
+Lines: 1
+177837
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.max_usage_in_bytes
+Lines: 1
+4163624960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.memsw.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.memsw.max_usage_in_bytes
+Lines: 1
+4163624960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.memsw.usage_in_bytes
+Lines: 1
+3053572096
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.numa_stat
+Lines: 4
+total=745501 N0=745501 N1=0
+file=6365 N0=6365 N1=0
+anon=739136 N0=739136 N1=0
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.stat
+Lines: 30
+cache 29626368
+rss 3023945728
+rss_huge 2881486848
+mapped_file 7544832
+swap 0
+pgpgin 60668
+pgpgout 29034
+pgfault 415629
+pgmajfault 45
+inactive_anon 3555328
+active_anon 3023945728
+inactive_file 25907200
+active_file 163840
+unevictable 0
+hierarchical_memory_limit 191092490240
+hierarchical_memsw_limit 191092490240
+total_cache 29626368
+total_rss 3023945728
+total_rss_huge 2881486848
+total_mapped_file 7544832
+total_swap 0
+total_pgpgin 60668
+total_pgpgout 29034
+total_pgfault 415629
+total_pgmajfault 45
+total_inactive_anon 3555328
+total_active_anon 3023945728
+total_inactive_file 25907200
+total_active_file 163840
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.swappiness
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.usage_in_bytes
+Lines: 1
+3053572096
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_0/tasks
+Lines: 21
+177837
+177904
+177912
+177914
+177917
+177919
+177921
+177922
+177923
+177924
+177925
+177926
+177927
+177928
+177930
+177932
+177933
+177934
+177935
+177936
+177937
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/cgroup.procs
+Lines: 1
+177838
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.max_usage_in_bytes
+Lines: 1
+4177178624
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.memsw.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.memsw.max_usage_in_bytes
+Lines: 1
+4177178624
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.memsw.usage_in_bytes
+Lines: 1
+3067686912
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.numa_stat
+Lines: 4
+total=748870 N0=2 N1=748868
+file=10983 N0=2 N1=10981
+anon=737887 N0=0 N1=737887
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.stat
+Lines: 30
+cache 45273088
+rss 3022098432
+rss_huge 2881486848
+mapped_file 12386304
+swap 0
+pgpgin 64624
+pgpgout 29621
+pgfault 393108
+pgmajfault 84
+inactive_anon 286720
+active_anon 3022098432
+inactive_file 43905024
+active_file 1081344
+unevictable 0
+hierarchical_memory_limit 191092490240
+hierarchical_memsw_limit 191092490240
+total_cache 45273088
+total_rss 3022098432
+total_rss_huge 2881486848
+total_mapped_file 12386304
+total_swap 0
+total_pgpgin 64624
+total_pgpgout 29621
+total_pgfault 393108
+total_pgmajfault 84
+total_inactive_anon 286720
+total_active_anon 3022098432
+total_inactive_file 43905024
+total_active_file 1081344
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.swappiness
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.usage_in_bytes
+Lines: 1
+3067686912
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/task_1/tasks
+Lines: 21
+177838
+177903
+177913
+177915
+177916
+177918
+177920
+177929
+177931
+177938
+177939
+177940
+177941
+177942
+177943
+177944
+177945
+177946
+177947
+177948
+177949
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_0/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_11/step_batch
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.max_usage_in_bytes
+Lines: 1
+11190272
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.memsw.limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.memsw.max_usage_in_bytes
+Lines: 1
+11190272
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.memsw.usage_in_bytes
+Lines: 1
+5455872
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.numa_stat
+Lines: 4
+total=0 N0=0 N1=0
+file=0 N0=0 N1=0
+anon=0 N0=0 N1=0
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.soft_limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.stat
+Lines: 30
+cache 0
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 0
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 0
+unevictable 0
+hierarchical_memory_limit 191092490240
+hierarchical_memsw_limit 191092490240
+total_cache 16384
+total_rss 5439488
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 6052
+total_pgpgout 4720
+total_pgfault 18393
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 5439488
+total_inactive_file 8192
+total_active_file 8192
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.swappiness
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.usage_in_bytes
+Lines: 1
+5455872
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/cgroup.procs
+Lines: 3
+177788
+177819
+177820
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.max_usage_in_bytes
+Lines: 1
+11190272
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.memsw.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.memsw.max_usage_in_bytes
+Lines: 1
+11190272
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.memsw.usage_in_bytes
+Lines: 1
+5455872
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.numa_stat
+Lines: 4
+total=1332 N0=228 N1=1104
+file=4 N0=3 N1=1
+anon=1328 N0=225 N1=1103
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.stat
+Lines: 30
+cache 16384
+rss 5439488
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 6052
+pgpgout 4720
+pgfault 18393
+pgmajfault 0
+inactive_anon 0
+active_anon 5439488
+inactive_file 8192
+active_file 8192
+unevictable 0
+hierarchical_memory_limit 191092490240
+hierarchical_memsw_limit 191092490240
+total_cache 16384
+total_rss 5439488
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 6052
+total_pgpgout 4720
+total_pgfault 18393
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 5439488
+total_inactive_file 8192
+total_active_file 8192
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.swappiness
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.usage_in_bytes
+Lines: 1
+5455872
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/task_0/tasks
+Lines: 7
+177788
+177819
+177820
+177821
+177822
+177823
+177824
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_batch/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_11/step_extern
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.memsw.limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.memsw.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.memsw.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.numa_stat
+Lines: 4
+total=0 N0=0 N1=0
+file=0 N0=0 N1=0
+anon=0 N0=0 N1=0
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.soft_limit_in_bytes
+Lines: 1
+191092490240
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.stat
+Lines: 30
+cache 0
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 0
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 0
+unevictable 0
+hierarchical_memory_limit 191092490240
+hierarchical_memsw_limit 191092490240
+total_cache 0
+total_rss 0
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 0
+total_pgpgout 0
+total_pgfault 0
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 0
+total_inactive_file 0
+total_active_file 0
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.swappiness
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/cgroup.procs
+Lines: 1
+177773
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.memsw.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.memsw.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.memsw.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.numa_stat
+Lines: 4
+total=0 N0=0 N1=0
+file=0 N0=0 N1=0
+anon=0 N0=0 N1=0
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.stat
+Lines: 30
+cache 0
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 0
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 0
+unevictable 0
+hierarchical_memory_limit 191092490240
+hierarchical_memsw_limit 191092490240
+total_cache 0
+total_rss 0
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 0
+total_pgpgout 0
+total_pgfault 0
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 0
+total_inactive_file 0
+total_active_file 0
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.swappiness
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/task_0/tasks
+Lines: 1
+177773
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/step_extern/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/job_11/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.max_usage_in_bytes
+Lines: 1
+552960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.memsw.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.memsw.max_usage_in_bytes
+Lines: 1
+552960
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.memsw.usage_in_bytes
+Lines: 1
+356352
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.numa_stat
+Lines: 4
+total=0 N0=0
+file=0 N0=0
+anon=0 N0=0
+unevictable=0 N0=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.stat
+Lines: 30
+cache 0
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 0
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 0
+unevictable 0
+hierarchical_memory_limit 9223372036854771712
+hierarchical_memsw_limit 9223372036854771712
+total_cache 4096
+total_rss 311296
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 312
+total_pgpgout 235
+total_pgfault 1899
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 311296
+total_inactive_file 4096
+total_active_file 0
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.swappiness
+Lines: 1
+30
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.usage_in_bytes
+Lines: 1
+356352
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/slurm/uid_20821/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/torque
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/torque/1182724.batch
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/cgroup.procs
+Lines: 7
+280687
+280755
+280942
+280943
+280944
+280948
+280949
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.limit_in_bytes
+Lines: 1
+196755132416
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.max_usage_in_bytes
+Lines: 1
+113726775296
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.memsw.limit_in_bytes
+Lines: 1
+196755132416
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.memsw.max_usage_in_bytes
+Lines: 1
+113726775296
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.memsw.usage_in_bytes
+Lines: 1
+82553999360
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.numa_stat
+Lines: 4
+total=20154785 N0=10079800 N1=10074985
+file=26506 N0=14644 N1=11862
+anon=20128279 N0=10065156 N1=10063123
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.stat
+Lines: 30
+cache 109678592
+rss 82444320768
+rss_huge 82126569472
+mapped_file 11898880
+swap 0
+pgpgin 296843
+pgpgout 180412
+pgfault 6233168
+pgmajfault 158
+inactive_anon 1110016
+active_anon 82444320768
+inactive_file 104370176
+active_file 4198400
+unevictable 0
+hierarchical_memory_limit 196755132416
+hierarchical_memsw_limit 196755132416
+total_cache 109678592
+total_rss 82444320768
+total_rss_huge 82126569472
+total_mapped_file 11898880
+total_swap 0
+total_pgpgin 296843
+total_pgpgout 180412
+total_pgfault 6233168
+total_pgmajfault 158
+total_inactive_anon 1110016
+total_active_anon 82444320768
+total_inactive_file 104370176
+total_active_file 4198400
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.swappiness
+Lines: 1
+60
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.usage_in_bytes
+Lines: 1
+82553999360
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/1182724.batch/tasks
+Lines: 47
+280687
+280755
+280942
+280943
+280944
+280948
+280949
+281004
+281005
+281006
+281007
+281008
+281009
+281010
+281011
+281012
+281013
+281014
+281015
+281016
+281017
+281018
+281019
+281020
+281021
+281022
+281023
+281024
+281025
+281026
+281027
+281028
+281029
+281030
+281031
+281032
+281033
+281034
+281035
+281036
+281037
+281038
+281039
+281040
+281041
+281042
+281043
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/cgroup.procs
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.kmem.slabinfo
+Lines: 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.max_usage_in_bytes
+Lines: 1
+113726775296
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.memsw.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.memsw.max_usage_in_bytes
+Lines: 1
+113726775296
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.memsw.usage_in_bytes
+Lines: 1
+82553999360
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.numa_stat
+Lines: 4
+total=0 N0=0 N1=0
+file=0 N0=0 N1=0
+anon=0 N0=0 N1=0
+unevictable=0 N0=0 N1=0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.stat
+Lines: 30
+cache 0
+rss 0
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 0
+pgpgout 0
+pgfault 0
+pgmajfault 0
+inactive_anon 0
+active_anon 0
+inactive_file 0
+active_file 0
+unevictable 0
+hierarchical_memory_limit 9223372036854771712
+hierarchical_memsw_limit 9223372036854771712
+total_cache 109678592
+total_rss 82444320768
+total_rss_huge 82126569472
+total_mapped_file 11898880
+total_swap 0
+total_pgpgin 296843
+total_pgpgout 180412
+total_pgfault 6233168
+total_pgmajfault 158
+total_inactive_anon 1110016
+total_active_anon 82444320768
+total_inactive_file 104370176
+total_active_file 4198400
+total_unevictable 0
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.swappiness
+Lines: 1
+60
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.usage_in_bytes
+Lines: 1
+82553999360
+Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/torque/tasks
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/user.slice
+Mode: 775
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/memory/user.slice/user-20821.slice
+Mode: 775
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/cgroup.clone_children
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/cgroup.procs
+Lines: 4
+99062
+99080
+99081
+100666
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.kmem.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.kmem.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.kmem.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.kmem.slabinfo
+Lines: 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.kmem.tcp.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.kmem.tcp.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.kmem.tcp.max_usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.kmem.tcp.usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.kmem.usage_in_bytes
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.limit_in_bytes
+Lines: 1
+68719476736
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.max_usage_in_bytes
+Lines: 1
+13008896
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.memsw.failcnt
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.memsw.limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.memsw.max_usage_in_bytes
+Lines: 1
+13008896
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.memsw.usage_in_bytes
+Lines: 1
+8081408
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.move_charge_at_immigrate
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.numa_stat
+Lines: 4
+total=1875 N0=1251 N1=624
+file=564 N0=117 N1=447
+anon=1311 N0=1134 N1=177
+unevictable=0 N0=0 N1=0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.oom_control
+Lines: 2
+oom_kill_disable 0
+under_oom 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.soft_limit_in_bytes
+Lines: 1
+9223372036854771712
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.stat
+Lines: 30
+cache 2322432
+rss 5378048
+rss_huge 0
+mapped_file 0
+swap 0
+pgpgin 33876
+pgpgout 31996
+pgfault 124973
+pgmajfault 0
+inactive_anon 0
+active_anon 5373952
+inactive_file 454656
+active_file 1867776
+unevictable 0
+hierarchical_memory_limit 68719476736
+hierarchical_memsw_limit 9223372036854771712
+total_cache 2322432
+total_rss 5378048
+total_rss_huge 0
+total_mapped_file 0
+total_swap 0
+total_pgpgin 33876
+total_pgpgout 31996
+total_pgfault 124973
+total_pgmajfault 0
+total_inactive_anon 0
+total_active_anon 5373952
+total_inactive_file 454656
+total_active_file 1867776
+total_unevictable 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.swappiness
+Lines: 1
+60
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.usage_in_bytes
+Lines: 1
+8081408
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/memory.use_hierarchy
+Lines: 1
+1
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/notify_on_release
+Lines: 1
+0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/memory/user.slice/user-20821.slice/tasks
+Lines: 4
+99062
+99080
+99081
+100666
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/proc
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/proc/95521
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/proc/95521/exe
+SymlinkTo: /bin/bash
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/proc/95525
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/proc/95525/exe
+SymlinkTo: /bin/bash
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
