@@ -1,3 +1,7 @@
+## 0.6.0 / 2020-10-03
+
+* Update to Go 1.15
+
 ## 0.5.0 / 2020-10-02
 
 * Add cgroup_process_exec_count metric
