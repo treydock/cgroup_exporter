@@ -15,7 +15,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"os/user"
@@ -131,7 +130,7 @@ func getCPUs(name string, logger log.Logger) ([]string, error) {
 	if !fileExists(cpusPath) {
 		return nil, nil
 	}
-	cpusData, err := ioutil.ReadFile(cpusPath)
+	cpusData, err := os.ReadFile(cpusPath)
 	if err != nil {
 		level.Error(logger).Log("msg", "Error reading cpuset", "cpuset", cpusPath, "err", err)
 		return nil, err

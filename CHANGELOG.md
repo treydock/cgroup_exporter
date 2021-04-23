@@ -1,3 +1,9 @@
+## Unreleased
+
+### Changes
+
+* [ENHANCEMENT] Update to Go 1.16
+
 ## 0.6.0 / 2020-10-03
 
 * Update to Go 1.15

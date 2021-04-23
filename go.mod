@@ -1,6 +1,6 @@
 module github.com/treydock/cgroup_exporter
 
-go 1.15
+go 1.16
 
 require (
 	github.com/containerd/cgroups v0.0.0-20200824123100-0b889c03f102
