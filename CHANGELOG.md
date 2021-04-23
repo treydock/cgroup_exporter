@@ -3,6 +3,7 @@
 ### Changes
 
 * [ENHANCEMENT] Update to Go 1.16
+* [ENHANCEMENT] Update Go module dependencies
 
 ## 0.6.0 / 2020-10-03
 
