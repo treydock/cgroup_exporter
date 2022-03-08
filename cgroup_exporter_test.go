@@ -25,7 +25,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-kit/kit/log"
+	"github.com/go-kit/log"
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
 )
 
