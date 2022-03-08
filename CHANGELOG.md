@@ -1,3 +1,10 @@
+## 0.8.0 / 2022-03-08
+
+### Changes
+
+* [ENHANCEMENT] Update Go to 1.17
+* [ENHANCEMENT] Update Go module dependencies
+
 ## 0.7.0 / 2021-04-23
 
 ### Changes
