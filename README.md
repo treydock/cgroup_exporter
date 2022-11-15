@@ -5,7 +5,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/treydock/cgroup_exporter/total)
 [![codecov](https://codecov.io/gh/treydock/cgroup_exporter/branch/master/graph/badge.svg)](https://codecov.io/gh/treydock/cgroup_exporter)
 
-# Check mount Prometheus exporter
+# cgroup Prometheus exporter
 
 The `cgroup_exporter` produces metrics from cgroups.
 
