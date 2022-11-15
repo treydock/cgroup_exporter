@@ -1,3 +1,9 @@
+## 0.8.1 / 2022-11-15
+
+### Changes
+
+* [BUGFIX] Avoid null references during what appears to be race condition (#21)
+
 ## 0.8.0 / 2022-03-08
 
 ### Changes
