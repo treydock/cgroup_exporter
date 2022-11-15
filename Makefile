@@ -1,7 +1,7 @@
 # Needs to be defined before including Makefile.common to auto-generate targets
 DOCKER_ARCHS ?= amd64 arm64 ppc64le
 DOCKER_REPO	 ?= treydock
-GOLANGCI_LINT_VERSION ?= v1.44.2
+GOLANGCI_LINT_VERSION ?= v1.50.1
 
 include Makefile.common
 

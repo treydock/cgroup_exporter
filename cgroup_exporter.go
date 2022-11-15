@@ -328,17 +328,27 @@ func (e *Exporter) getMetrics(name string, pids map[string][]int) (CgroupMetric,
 		return metric, err
 	}
 	stats, _ := ctrl.Stat(cgroups.IgnoreNotExist)
-	metric.cpuUser = float64(stats.CPU.Usage.User) / 1000000000.0
-	metric.cpuSystem = float64(stats.CPU.Usage.Kernel) / 1000000000.0
-	metric.cpuTotal = float64(stats.CPU.Usage.Total) / 1000000000.0
-	metric.memoryRSS = float64(stats.Memory.TotalRSS)
-	metric.memoryCache = float64(stats.Memory.TotalCache)
-	metric.memoryUsed = float64(stats.Memory.Usage.Usage)
-	metric.memoryTotal = float64(stats.Memory.Usage.Limit)
-	metric.memoryFailCount = float64(stats.Memory.Usage.Failcnt)
-	metric.memswUsed = float64(stats.Memory.Swap.Usage)
-	metric.memswTotal = float64(stats.Memory.Swap.Limit)
-	metric.memswFailCount = float64(stats.Memory.Swap.Failcnt)
+	if stats.CPU != nil {
+		if stats.CPU.Usage != nil {
+			metric.cpuUser = float64(stats.CPU.Usage.User) / 1000000000.0
+			metric.cpuSystem = float64(stats.CPU.Usage.Kernel) / 1000000000.0
+			metric.cpuTotal = float64(stats.CPU.Usage.Total) / 1000000000.0
+		}
+	}
+	if stats.Memory != nil {
+		metric.memoryRSS = float64(stats.Memory.TotalRSS)
+		metric.memoryCache = float64(stats.Memory.TotalCache)
+		if stats.Memory.Usage != nil {
+			metric.memoryUsed = float64(stats.Memory.Usage.Usage)
+			metric.memoryTotal = float64(stats.Memory.Usage.Limit)
+			metric.memoryFailCount = float64(stats.Memory.Usage.Failcnt)
+		}
+		if stats.Memory.Swap != nil {
+			metric.memswUsed = float64(stats.Memory.Swap.Usage)
+			metric.memswTotal = float64(stats.Memory.Swap.Limit)
+			metric.memswFailCount = float64(stats.Memory.Swap.Failcnt)
+		}
+	}
 	if cpus, err := getCPUs(name, e.logger); err == nil {
 		metric.cpus = len(cpus)
 		metric.cpu_list = strings.Join(cpus, ",")
