@@ -1,3 +1,10 @@
+## 0.9.0 / 2023-05-06
+
+### Changes
+
+* [CHANGE] Trim exec path in middle (#22)
+* [ENHANCEMENT] Update to Go 1.20 and update Go module dependencies (#23)
+
 ## 0.8.1 / 2022-11-15
 
 ### Changes
