@@ -239,8 +239,10 @@ func getProcInfo(pids []int, metric *CgroupMetric, logger log.Logger) {
 			}
 			if len(executable) > *collectProcMaxExec {
 				level.Debug(logger).Log("msg", "Executable will be truncated", "executable", executable, "len", len(executable), "pid", p)
-				executable = executable[len(executable)-*collectProcMaxExec:]
-				executable = fmt.Sprintf("...%s", executable)
+				trim := *collectProcMaxExec / 2
+				executable_prefix := executable[0:trim]
+				executable_suffix := executable[len(executable)-trim:]
+				executable = fmt.Sprintf("%s...%s", executable_prefix, executable_suffix)
 			}
 			metricLock.Lock()
 			executables[executable] += 1
@@ -479,6 +481,7 @@ func metricsHandler(logger log.Logger) http.HandlerFunc {
 
 		exporter := NewExporter(paths, logger)
 		registry.MustRegister(exporter)
+		registry.MustRegister(version.NewCollector(fmt.Sprintf("%s_exporter", namespace)))
 
 		gatherers := prometheus.Gatherers{registry}
 		if !*disableExporterMetrics {
