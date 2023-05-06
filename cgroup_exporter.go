@@ -25,6 +25,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/alecthomas/kingpin/v2"
 	"github.com/containerd/cgroups"
 	"github.com/go-kit/log"
 	"github.com/go-kit/log/level"
@@ -34,7 +35,6 @@ import (
 	"github.com/prometheus/common/promlog/flag"
 	"github.com/prometheus/common/version"
 	"github.com/prometheus/procfs"
-	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 const (
