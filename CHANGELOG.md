@@ -1,3 +1,9 @@
+## 0.9.1 / 2023-05-12
+
+### Changes
+
+* [BUGFIX] Avoid possible nil pointer errors (#24)
+
 ## 0.9.0 / 2023-05-06
 
 ### Changes
