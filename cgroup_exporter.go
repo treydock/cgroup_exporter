@@ -329,7 +329,15 @@ func (e *Exporter) getMetrics(name string, pids map[string][]int) (CgroupMetric,
 		metric.err = true
 		return metric, err
 	}
-	stats, _ := ctrl.Stat(cgroups.IgnoreNotExist)
+	stats, err := ctrl.Stat(cgroups.IgnoreNotExist)
+	if err != nil {
+		level.Error(e.logger).Log("msg", "Failed to stat cgroups", "path", name, "err", err)
+		return metric, err
+	}
+	if stats == nil {
+		level.Error(e.logger).Log("msg", "Cgroup stats are nil", "path", name)
+		return metric, err
+	}
 	if stats.CPU != nil {
 		if stats.CPU.Usage != nil {
 			metric.cpuUser = float64(stats.CPU.Usage.User) / 1000000000.0
