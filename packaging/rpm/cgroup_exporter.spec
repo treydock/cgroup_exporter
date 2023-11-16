@@ -26,8 +26,8 @@ go build -v -o %{name}
 
 %install
 install -Dpm 0755 %{name} %{buildroot}%{_sbindir}/%{name}
-install -Dpm 0644 %{name}.service %{buildroot}%{_unitdir}/%{name}.service
-install -Dpm 0644 %{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/%{name}
+install -Dpm 0644 packaging/rpm/%{name}.service %{buildroot}%{_unitdir}/%{name}.service
+install -Dpm 0644 packaging/rpm/%{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/%{name}
 
 %clean
 rm -rf %{buildroot}
