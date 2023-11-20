@@ -1,0 +1,32 @@
+[Unit]
+Description=cgroup exporter
+After=network.target network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/sysconfig/cgroup_exporter
+ExecStart=/usr/sbin/cgroup_exporter --config.paths $CONFIG_PATHS $OPTIONS
+Restart=always
+User=cgroup_exporter
+Group=cgroup_exporter
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+DevicePolicy=closed
+ProtectSystem=strict
+ProtectHome=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+MemoryDenyWriteExecute=yes
+LockPersonality=yes
+RemoveIPC=yes
+CapabilityBoundingSet=
+SystemCallFilter=@system-service 
+
+[Install]
+WantedBy=multi-user.target

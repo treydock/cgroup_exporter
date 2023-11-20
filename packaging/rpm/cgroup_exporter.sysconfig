@@ -1,0 +1,4 @@
+# cgroup subsystem paths to look at, comma separated
+CONFIG_PATHS=/user.slice
+# Additional options
+OPTIONS=
