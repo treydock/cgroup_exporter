@@ -1,3 +1,9 @@
+## 1.0.0-rc.0 / 2024-01-24
+
+### Changes
+
+* [ENHANCEMENT] Support cgroup v2 (#28)
+
 ## 0.9.1 / 2023-05-12
 
 ### Changes
