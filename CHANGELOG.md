@@ -1,3 +1,9 @@
+## 1.0.0-rc.1 / 2024-05-17
+
+## Changes
+
+* [ENHANCEMENT] Allow custom slurm paths via --config.paths (#31)
+
 ## 1.0.0-rc.0 / 2024-01-24
 
 ### Changes
