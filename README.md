@@ -15,6 +15,10 @@ This exporter by default listens on port `9306` and all metrics are exposed via 
 
 The `--config.paths` flag is required and must point to paths of cgroups to monitor. If there is `/sys/fs/cgroup/cpuacct/user.slice` then the value for `--config.paths` would be `/user.slice`.
 
+The path `/slurm` will work for both cgroupv1 and cgroupv2.  For cgroupv2 the `/slurm` path is turned into `/system.slice/slurmstepd.scope`.
+
+If Slurm is compiled ot support multiple slurmd instances and you have paths that are `/sys/fs/cgroup/system.slice/<nodename>_slurmstepd.scope` then you must pass `--config.paths=/system.slice/<nodename>_slurmstepd.scope` and replace `<nodename>` with the host's slurmd NodeName.
+
 ## Docker
 
 Example of running the Docker container
