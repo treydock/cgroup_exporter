@@ -1,0 +1,58 @@
+---
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod download
+env:
+  - CGO_ENABLED=1
+builds:
+  - id: amd64
+    main: cgroup_exporter.go
+    env:
+      - CC=x86_64-linux-gnu-gcc
+    goos:
+      - linux
+    goarch:
+      - amd64
+    ldflags:
+      - -extldflags "-static"
+      - -X github.com/prometheus/common/version.Version={{.Version}}
+      - -X github.com/prometheus/common/version.Revision={{.FullCommit}}
+      - -X github.com/prometheus/common/version.Branch={{.Branch}}
+      - -X github.com/prometheus/common/version.BuildUser=goreleaser
+      - -X github.com/prometheus/common/version.BuildDate={{.Date}}
+  - id: arm64
+    main: cgroup_exporter.go
+    env:
+      - CC=aarch64-linux-gnu-gcc
+    goos:
+      - linux
+    goarch:
+      - arm64
+    ldflags:
+      - -extldflags "-static"
+      - -X github.com/prometheus/common/version.Version={{.Version}}
+      - -X github.com/prometheus/common/version.Revision={{.FullCommit}}
+      - -X github.com/prometheus/common/version.Branch={{.Branch}}
+      - -X github.com/prometheus/common/version.BuildUser=goreleaser
+      - -X github.com/prometheus/common/version.BuildDate={{.Date}}
+archives:
+  - id: archive
+    builds:
+      - amd64
+      - arm64
+    files:
+      - LICENSE
+      - CHANGELOG.md
+    name_template: "cgroup_exporter-{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    wrap_in_directory: true
+checksum:
+  name_template: 'checksums.txt'
+release:
+  prerelease: auto
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
