@@ -14,13 +14,23 @@
 package collector
 
 import (
+	"context"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"reflect"
 	"runtime"
+	"strconv"
 	"testing"
+	"time"
 
 	"github.com/go-kit/log"
+)
+
+var (
+	mockedExitStatus = 0
+	mockedStdout     string
+	_, cancel        = context.WithTimeout(context.Background(), 5*time.Second)
 )
 
 func TestMain(m *testing.M) {
@@ -82,5 +92,35 @@ func TestGetProcInfo(t *testing.T) {
 		if val != 2 {
 			t.Errorf("Expected 2 /b...sh processes, got %v", val)
 		}
+	}
+}
+
+func fakeExecCommand(ctx context.Context, command string, args ...string) *exec.Cmd {
+	cs := []string{"-test.run=TestExecCommandHelper", "--", command}
+	cs = append(cs, args...)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, os.Args[0], cs...)
+	es := strconv.Itoa(mockedExitStatus)
+	tmp, _ := os.MkdirTemp("", "fake")
+	cmd.Env = []string{"GO_WANT_HELPER_PROCESS=1",
+		"GOCOVERDIR=" + tmp,
+		"STDOUT=" + mockedStdout,
+		"EXIT_STATUS=" + es}
+	return cmd
+}
+
+func TestGetentPasswd(t *testing.T) {
+	timeout := 5 * time.Second
+	userLookupTimeout = &timeout
+	execCommand = fakeExecCommand
+	mockedExitStatus = 0
+	mockedStdout = "adm:x:3:4:adm:/var/adm:/sbin/nologin"
+	defer func() { execCommand = exec.CommandContext }()
+	user, err := getentPasswd("3")
+	if err != nil {
+		t.Errorf("Unexpected error: %s", err.Error())
+	}
+	if user != "adm" {
+		t.Errorf("Unexpected user: %s", user)
 	}
 }

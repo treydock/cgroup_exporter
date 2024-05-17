@@ -88,12 +88,12 @@ func getInfov2(name string, pids []int, metric *CgroupMetric, logger log.Logger)
 		// effective UID
 		uid := procStat.UIDs[1]
 		metric.uid = uid
-		user, err := user.LookupId(metric.uid)
+		user, err := getentPasswd(metric.uid)
 		if err != nil {
 			level.Error(logger).Log("msg", "Error looking up slurm uid", "uid", metric.uid, "err", err)
 			return
 		}
-		metric.username = user.Username
+		metric.username = user
 		return
 	}
 }

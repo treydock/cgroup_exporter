@@ -14,8 +14,11 @@
 package collector
 
 import (
+	"bytes"
+	"context"
 	"fmt"
 	"os"
+	"os/exec"
 	"reflect"
 	"strconv"
 	"strings"
@@ -33,7 +36,9 @@ var (
 	CgroupRoot         = kingpin.Flag("path.cgroup.root", "Root path to cgroup fs").Default(defCgroupRoot).String()
 	collectProcMaxExec = kingpin.Flag("collect.proc.max-exec", "Max length of process executable to record").Default("100").Int()
 	ProcRoot           = kingpin.Flag("path.proc.root", "Root path to proc fs").Default(defProcRoot).String()
+	userLookupTimeout  = kingpin.Flag("exec.getent.timeout", "Timeout for running 'getent passwd' command").Default("5s").Duration()
 	metricLock         = sync.RWMutex{}
+	execCommand        = exec.CommandContext
 )
 
 const (
@@ -310,4 +315,21 @@ func sliceContains(s interface{}, v interface{}) bool {
 		}
 	}
 	return false
+}
+
+func getentPasswd(uid string) (string, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), *userLookupTimeout)
+	defer cancel()
+	cmd := execCommand(ctx, "getent", "passwd", uid)
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	err := cmd.Run()
+	if ctx.Err() == context.DeadlineExceeded {
+		return "", fmt.Errorf("Timeout executing: getent passwd %s", uid)
+	} else if err != nil {
+		return "", fmt.Errorf("Error executing 'getent passwd %s': %s %s", uid, stderr.String(), err.Error())
+	}
+	username := strings.Split(stdout.String(), ":")[0]
+	return username, nil
 }

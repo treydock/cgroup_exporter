@@ -15,7 +15,6 @@ package collector
 
 import (
 	"fmt"
-	"os/user"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -45,11 +44,11 @@ func getInfov1(name string, metric *CgroupMetric, logger log.Logger) {
 	if len(userSliceMatch) == 2 {
 		metric.userslice = true
 		metric.uid = userSliceMatch[1]
-		user, err := user.LookupId(metric.uid)
+		user, err := getentPasswd(metric.uid)
 		if err != nil {
 			level.Error(logger).Log("msg", "Error looking up user slice uid", "uid", metric.uid, "err", err)
 		} else {
-			metric.username = user.Username
+			metric.username = user
 		}
 		return
 	}
@@ -59,11 +58,11 @@ func getInfov1(name string, metric *CgroupMetric, logger log.Logger) {
 		metric.job = true
 		metric.uid = slurmMatch[1]
 		metric.jobid = slurmMatch[2]
-		user, err := user.LookupId(metric.uid)
+		user, err := getentPasswd(metric.uid)
 		if err != nil {
 			level.Error(logger).Log("msg", "Error looking up slurm uid", "uid", metric.uid, "err", err)
 		} else {
-			metric.username = user.Username
+			metric.username = user
 		}
 		return
 	}
