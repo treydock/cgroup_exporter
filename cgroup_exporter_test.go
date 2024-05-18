@@ -42,6 +42,7 @@ func TestMain(m *testing.M) {
 		fmt.Sprintf("--path.cgroup.root=%s", fixture),
 		fmt.Sprintf("--path.proc.root=%s", procFixture),
 		"--web.disable-exporter-metrics",
+		"--log.level=debug",
 	}
 	if _, err := kingpin.CommandLine.Parse(args); err != nil {
 		os.Exit(1)
@@ -68,7 +69,7 @@ func TestMetricsHandler(t *testing.T) {
 		t.Fatalf("Unexpected error GET /metrics: %s", err.Error())
 	}
 	if !strings.Contains(body, "cgroup_memory_used_bytes{cgroup=\"/user.slice/user-20821.slice\"} 8.081408e+06") {
-		t.Errorf("Unexpected value for cgroup_memory_used_bytes")
+		t.Errorf("Unexpected value for cgroup_memory_used_bytes: %s", body)
 	}
 }
 
