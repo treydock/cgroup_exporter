@@ -24,6 +24,7 @@ import (
 	"github.com/go-kit/log"
 	"github.com/go-kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
+	versionCollector "github.com/prometheus/client_golang/prometheus/collectors/version"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/promlog"
 	"github.com/prometheus/common/promlog/flag"
@@ -49,7 +50,7 @@ func metricsHandler(logger log.Logger) http.HandlerFunc {
 		}
 		cgroupCollector := collector.NewCgroupCollector(cgroupV2, paths, logger)
 		registry.MustRegister(cgroupCollector)
-		registry.MustRegister(version.NewCollector(fmt.Sprintf("%s_exporter", collector.Namespace)))
+		registry.MustRegister(versionCollector.NewCollector(fmt.Sprintf("%s_exporter", collector.Namespace)))
 
 		gatherers := prometheus.Gatherers{registry}
 		if !*disableExporterMetrics {
