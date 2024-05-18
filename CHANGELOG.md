@@ -1,3 +1,9 @@
+## 1.0.0-rc.2 / 2024-05-18
+
+## Changes
+
+* [ENHANCEMENT] Use goreleaser to handle releases (#33)
+
 ## 1.0.0-rc.1 / 2024-05-17
 
 ## Changes
