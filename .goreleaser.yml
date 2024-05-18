@@ -44,7 +44,7 @@ archives:
     files:
       - LICENSE
       - CHANGELOG.md
-    name_template: "cgroup_exporter-{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    name_template: "cgroup_exporter-{{ .Version }}.{{ .Os }}-{{ .Arch }}"
     wrap_in_directory: true
 checksum:
   name_template: 'checksums.txt'

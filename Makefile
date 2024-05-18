@@ -2,7 +2,7 @@
 DOCKER_ARCHS ?= amd64 arm64 ppc64le
 DOCKER_REPO	 ?= treydock
 export GOPATH ?= $(firstword $(subst :, ,$(shell go env GOPATH)))
-GOLANG_CROSS_VERSION ?= v1.20.7
+GOLANG_CROSS_VERSION ?= v1.22.3
 
 include Makefile.common
 
