@@ -32,7 +32,7 @@ import (
 
 var (
 	// Use this hack to allow unit tests to override /proc location
-	pidGroupPath = cgroup2.PidGroupPath
+	PidGroupPath = cgroup2.PidGroupPath
 )
 
 func NewCgroupV2Collector(paths []string, logger log.Logger) Collector {
@@ -206,7 +206,7 @@ func (e *Exporter) collectv2() ([]CgroupMetric, error) {
 		} else {
 			group = path
 		}
-		level.Debug(e.logger).Log("msg", "Loading cgroup", "path", path, "group", group)
+		level.Debug(e.logger).Log("msg", "Loading cgroup", "path", path, "group", group, "root", *CgroupRoot)
 		//TODO
 		//control, err := cgroup2.LoadSystemd(path, group)
 		opts := cgroup2.WithMountpoint(*CgroupRoot)
@@ -228,7 +228,7 @@ func (e *Exporter) collectv2() ([]CgroupMetric, error) {
 		pids := make(map[string][]int)
 		for _, p := range processes {
 			pid := int(p)
-			pidPath, err := pidGroupPath(pid)
+			pidPath, err := PidGroupPath(pid)
 			if err != nil {
 				level.Error(e.logger).Log("msg", "Error getting PID group path", "path", path, "group", group, "pid", pid, "err", err)
 				continue
