@@ -87,7 +87,7 @@ func getInfov2(name string, pids []int, metric *CgroupMetric, logger log.Logger)
 		}
 		// effective UID
 		uid := procStat.UIDs[1]
-		metric.uid = uid
+		metric.uid = strconv.FormatUint(uid, 10)
 		user, err := user.LookupId(metric.uid)
 		if err != nil {
 			level.Error(logger).Log("msg", "Error looking up slurm uid", "uid", metric.uid, "err", err)
