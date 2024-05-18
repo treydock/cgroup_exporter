@@ -1,12 +1,18 @@
+## 1.0.0-rc.3 / 2024-05-18
+
+### Changes
+
+* [ENHANCEMENT] Update to Go 1.22.3 and update Go dependencies (#34)
+
 ## 1.0.0-rc.2 / 2024-05-18
 
-## Changes
+### Changes
 
 * [ENHANCEMENT] Use goreleaser to handle releases (#33)
 
 ## 1.0.0-rc.1 / 2024-05-17
 
-## Changes
+### Changes
 
 * [ENHANCEMENT] Allow custom slurm paths via --config.paths (#31)
 
