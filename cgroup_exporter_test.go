@@ -26,6 +26,7 @@ import (
 
 	kingpin "github.com/alecthomas/kingpin/v2"
 	"github.com/go-kit/log"
+	"github.com/go-kit/log/level"
 	"github.com/treydock/cgroup_exporter/collector"
 )
 
@@ -34,23 +35,34 @@ const (
 )
 
 func TestMain(m *testing.M) {
-	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/user.slice"}); err != nil {
-		os.Exit(1)
-	}
 	_, filename, _, _ := runtime.Caller(0)
 	dir := filepath.Dir(filename)
 	fixture := filepath.Join(dir, "fixtures")
-	collector.CgroupRoot = &fixture
 	procFixture := filepath.Join(fixture, "proc")
-	collector.ProcRoot = &procFixture
-	varTrue := true
-	disableExporterMetrics = &varTrue
+	collector.PidGroupPath = func(pid int) (string, error) {
+		if pid == 67998 {
+			return "/user.slice/user-20821.slice/session-157.scope", nil
+		}
+		return "", fmt.Errorf("Could not find cgroup path for %d", pid)
+	}
+	args := []string{
+		"--config.paths=/user.slice",
+		fmt.Sprintf("--path.cgroup.root=%s", fixture),
+		fmt.Sprintf("--path.proc.root=%s", procFixture),
+		"--web.disable-exporter-metrics",
+	}
+	if _, err := kingpin.CommandLine.Parse(args); err != nil {
+		fmt.Printf("Error: %s", err.Error())
+		os.Exit(1)
+	}
 	w := log.NewSyncWriter(os.Stderr)
 	logger := log.NewLogfmtLogger(w)
+	logger = level.NewFilter(logger, level.AllowDebug())
 	go func() {
 		http.Handle("/metrics", metricsHandler(logger))
 		err := http.ListenAndServe(address, nil)
 		if err != nil {
+			fmt.Printf("Error: %s", err.Error())
 			os.Exit(1)
 		}
 	}()
@@ -66,8 +78,8 @@ func TestMetricsHandler(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Unexpected error GET /metrics: %s", err.Error())
 	}
-	if !strings.Contains(body, "cgroup_memory_used_bytes{cgroup=\"/user.slice/user-20821.slice\"} 8.081408e+06") {
-		t.Errorf("Unexpected value for cgroup_memory_used_bytes")
+	if !strings.Contains(body, "cgroup_memory_used_bytes{cgroup=\"/user.slice/user-20821.slice\"} 2.711552e+07") {
+		t.Errorf("Unexpected value for cgroup_memory_used_bytes: %s", body)
 	}
 }
 

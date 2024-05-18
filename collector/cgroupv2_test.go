@@ -79,7 +79,7 @@ func TestCollectv2Error(t *testing.T) {
 func TestCollectv2UserSlice(t *testing.T) {
 	varFalse := false
 	collectProc = &varFalse
-	pidGroupPath = func(pid int) (string, error) {
+	PidGroupPath = func(pid int) (string, error) {
 		if pid == 67998 {
 			return "/user.slice/user-20821.slice/session-157.scope", nil
 		}
@@ -140,7 +140,7 @@ func TestCollectv2SLURM(t *testing.T) {
 	collectProc = &varTrue
 	varLen := 100
 	collectProcMaxExec = &varLen
-	pidGroupPath = func(pid int) (string, error) {
+	PidGroupPath = func(pid int) (string, error) {
 		if pid == 49276 {
 			return "/system.slice/slurmstepd.scope/job_4/step_0/user/task_0", nil
 		}
