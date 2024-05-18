@@ -4,3 +4,4 @@
 /cgroup_exporter
 /coverage.txt
 /dist
+/.release-env
