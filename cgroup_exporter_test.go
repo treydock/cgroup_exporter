@@ -26,7 +26,6 @@ import (
 
 	kingpin "github.com/alecthomas/kingpin/v2"
 	"github.com/go-kit/log"
-	"github.com/treydock/cgroup_exporter/collector"
 )
 
 const (
@@ -34,17 +33,19 @@ const (
 )
 
 func TestMain(m *testing.M) {
-	if _, err := kingpin.CommandLine.Parse([]string{"--config.paths=/user.slice"}); err != nil {
-		os.Exit(1)
-	}
 	_, filename, _, _ := runtime.Caller(0)
 	dir := filepath.Dir(filename)
 	fixture := filepath.Join(dir, "fixtures")
-	collector.CgroupRoot = &fixture
 	procFixture := filepath.Join(fixture, "proc")
-	collector.ProcRoot = &procFixture
-	varTrue := true
-	disableExporterMetrics = &varTrue
+	args := []string{
+		"--config.paths=/user.slice",
+		fmt.Sprintf("--path.cgroup.root=%s", fixture),
+		fmt.Sprintf("--path.proc.root=%s", procFixture),
+		"--web.disable-exporter-metrics",
+	}
+	if _, err := kingpin.CommandLine.Parse(args); err != nil {
+		os.Exit(1)
+	}
 	w := log.NewSyncWriter(os.Stderr)
 	logger := log.NewLogfmtLogger(w)
 	go func() {
