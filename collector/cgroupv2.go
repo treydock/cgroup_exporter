@@ -112,9 +112,9 @@ func getNamev2(pidPath string, path string, logger log.Logger) string {
 	return name
 }
 
-func getStatv2(name string, path string, logger log.Logger) (float64, error) {
+func getStatv2(name string, path string) (float64, error) {
 	if !fileExists(path) {
-		return 0, fmt.Errorf("Path %s does not exist", path)
+		return 0, fmt.Errorf("path %s does not exist", path)
 	}
 	f, err := os.Open(path)
 	if err != nil {
@@ -134,7 +134,7 @@ func getStatv2(name string, path string, logger log.Logger) (float64, error) {
 			return float64(v), nil
 		}
 	}
-	return 0, fmt.Errorf("Unable to find stat key %s in %s", name, path)
+	return 0, fmt.Errorf("unable to find stat key %s in %s", name, path)
 }
 
 func (e *Exporter) getMetricsv2(name string, pids []int, opts cgroup2.InitOpts) (CgroupMetric, error) {
@@ -164,7 +164,7 @@ func (e *Exporter) getMetricsv2(name string, pids []int, opts cgroup2.InitOpts) 
 	}
 	// TODO: Move to https://github.com/containerd/cgroups/blob/d131035c7599c51ff4aed27903c45eb3b2cc29d0/cgroup2/manager.go#L593
 	memoryStatPath := filepath.Join(*CgroupRoot, name, "memory.stat")
-	swapcached, err := getStatv2("swapcached", memoryStatPath, e.logger)
+	swapcached, err := getStatv2("swapcached", memoryStatPath)
 	if err != nil {
 		level.Error(e.logger).Log("msg", "Unable to get swapcached", "path", name, "err", err)
 		metric.err = true

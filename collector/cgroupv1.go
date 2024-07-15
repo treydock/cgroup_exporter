@@ -38,13 +38,6 @@ func subsystem() ([]cgroup1.Subsystem, error) {
 	return s, nil
 }
 
-func pidSubsystem() ([]cgroup1.Subsystem, error) {
-	s := []cgroup1.Subsystem{
-		cgroup1.NewPids(*CgroupRoot),
-	}
-	return s, nil
-}
-
 func getInfov1(name string, metric *CgroupMetric, logger log.Logger) {
 	pathBase := filepath.Base(name)
 	userSlicePattern := regexp.MustCompile("^user-([0-9]+).slice$")
@@ -82,7 +75,7 @@ func getInfov1(name string, metric *CgroupMetric, logger log.Logger) {
 	}
 }
 
-func getNamev1(p cgroup1.Process, path string, logger log.Logger) (string, error) {
+func getNamev1(p cgroup1.Process, logger log.Logger) (string, error) {
 	cpuacctPath := filepath.Join(*CgroupRoot, "cpuacct")
 	name := strings.TrimPrefix(p.Path, cpuacctPath)
 	name = strings.TrimSuffix(name, "/")
@@ -110,13 +103,7 @@ func getNamev1(p cgroup1.Process, path string, logger log.Logger) (string, error
 func (e *Exporter) getMetricsv1(name string, pids map[string][]int) (CgroupMetric, error) {
 	metric := CgroupMetric{name: name}
 	level.Debug(e.logger).Log("msg", "Loading cgroup", "root", *CgroupRoot, "path", name)
-
 	ctrl, err := cgroup1.Load(cgroup1.StaticPath(name), cgroup1.WithHiearchy(subsystem))
-	/*
-		ctrl, err := cgroups.Load(subsystem, func(subsystem cgroups.Name) (string, error) {
-			return name, nil
-		})
-	*/
 	if err != nil {
 		level.Error(e.logger).Log("msg", "Failed to load cgroups", "path", name, "err", err)
 		metric.err = true
@@ -195,7 +182,7 @@ func (e *Exporter) collectv1() ([]CgroupMetric, error) {
 		pids := make(map[string][]int)
 		for _, p := range processes {
 			level.Debug(e.logger).Log("msg", "Get Name", "process", p.Path, "pid", p.Pid, "path", path)
-			name, err := getNamev1(p, path, e.logger)
+			name, err := getNamev1(p, e.logger)
 			if err != nil {
 				level.Error(e.logger).Log("msg", "Error getting cgroup name for process", "process", p.Path, "path", path, "err", err)
 				continue
