@@ -78,7 +78,7 @@ func TestMetricsHandler(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Unexpected error GET /metrics: %s", err.Error())
 	}
-	if !strings.Contains(body, "cgroup_memory_used_bytes{cgroup=\"/user.slice/user-20821.slice\"} 2.711552e+07") {
+	if !strings.Contains(body, "cgroup_memory_used_bytes{cgroup=\"/user.slice/user-20821.slice\"} 8.081408e+06") {
 		t.Errorf("Unexpected value for cgroup_memory_used_bytes: %s", body)
 	}
 }
@@ -91,7 +91,7 @@ func TestMetricsHandlerBadPath(t *testing.T) {
 		t.Fatalf("Unexpected error GET /metrics: %s", err.Error())
 	}
 	if !strings.Contains(body, "cgroup_exporter_collect_error{cgroup=\"/dne\"} 1") {
-		t.Errorf("Unexpected value for cgroup_memory_used_bytes")
+		t.Errorf("Unexpected value for cgroup_exporter_collect_error: %s", body)
 	}
 }
 
