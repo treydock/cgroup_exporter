@@ -5124,7 +5124,7 @@ Mode: 644
 # ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Path: fixtures/memory/user.slice/user-20821.slice/memory.usage_in_bytes
 Lines: 1
-8081408
+27115520
 Mode: 644
 # ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Path: fixtures/memory/user.slice/user-20821.slice/memory.use_hierarchy
