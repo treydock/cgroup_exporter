@@ -1,3 +1,10 @@
+## 1.0.0-rc.4 / 2024-07-19
+
+### Changes
+
+* [ENHANCEMENT] Update to Go 1.22.3 and update Go dependencies (#34)
+* [ENHANCEMENT] Remove containerd/cgroups v1 dependency (#36)
+
 ## 1.0.0-rc.3 / 2024-05-18
 
 ### Changes
