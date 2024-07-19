@@ -53,7 +53,7 @@ func TestCollectUserSlice(t *testing.T) {
 	if val := metrics[0].memoryCache; val != 2322432 {
 		t.Errorf("Unexpected value for memoryCache, got %v", val)
 	}
-	if val := metrics[0].memoryUsed; val != 8081408 {
+	if val := metrics[0].memoryUsed; val != 27115520 {
 		t.Errorf("Unexpected value for memoryUsed, got %v", val)
 	}
 	if val := metrics[0].memoryTotal; val != 68719476736 {

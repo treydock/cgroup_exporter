@@ -4,7 +4,6 @@ go 1.22
 
 require (
 	github.com/alecthomas/kingpin/v2 v2.4.0
-	github.com/containerd/cgroups v1.1.0
 	github.com/containerd/cgroups/v3 v3.0.3
 	github.com/go-kit/log v0.2.1
 	github.com/prometheus/client_golang v1.19.1
@@ -21,7 +20,6 @@ require (
 	github.com/docker/go-units v0.5.0 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
-	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/opencontainers/runtime-spec v1.2.0 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect

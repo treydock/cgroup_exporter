@@ -23,33 +23,31 @@ import (
 )
 
 func TestGetStatv2(t *testing.T) {
-	w := log.NewSyncWriter(os.Stderr)
-	logger := log.NewLogfmtLogger(w)
-	_, err := getStatv2("swapcached", "/dne", logger)
+	_, err := getStatv2("swapcached", "/dne")
 	if err == nil {
 		t.Errorf("Expected error with /dne but none given")
 	}
 	path := filepath.Join(*CgroupRoot, "system.slice")
-	_, err = getStatv2("swapcached", path, logger)
+	_, err = getStatv2("swapcached", path)
 	if err == nil {
 		t.Errorf("Expected error with /dne but none given")
 	}
 	path = filepath.Join(*CgroupRoot, "user.slice/user-20821.slice/memory.max")
-	_, err = getStatv2("swapcached", path, logger)
+	_, err = getStatv2("swapcached", path)
 	if err == nil {
 		t.Errorf("Expected error with single value file but none given")
 	}
 	path = filepath.Join(*CgroupRoot, "stat.invalid")
-	_, err = getStatv2("nan", path, logger)
+	_, err = getStatv2("nan", path)
 	if err == nil {
 		t.Errorf("Expected error with stat.invalid but none given")
 	}
 	path = filepath.Join(*CgroupRoot, "user.slice/user-20821.slice/memory.stat")
-	_, err = getStatv2("dne", path, logger)
+	_, err = getStatv2("dne", path)
 	if err == nil {
 		t.Errorf("Expected error when stat key missing but none given")
 	}
-	stat, err := getStatv2("swapcached", path, logger)
+	stat, err := getStatv2("swapcached", path)
 	if err != nil {
 		t.Errorf("Unexpected error: %s", err)
 	}

@@ -21,7 +21,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/containerd/cgroups"
+	"github.com/containerd/cgroups/v3/cgroup1"
 	"github.com/go-kit/log"
 	"github.com/go-kit/log/level"
 )
@@ -30,10 +30,10 @@ func NewCgroupV1Collector(paths []string, logger log.Logger) Collector {
 	return NewExporter(paths, logger, false)
 }
 
-func subsystem() ([]cgroups.Subsystem, error) {
-	s := []cgroups.Subsystem{
-		cgroups.NewCpuacct(*CgroupRoot),
-		cgroups.NewMemory(*CgroupRoot),
+func subsystem() ([]cgroup1.Subsystem, error) {
+	s := []cgroup1.Subsystem{
+		cgroup1.NewCpuacct(*CgroupRoot),
+		cgroup1.NewMemory(*CgroupRoot),
 	}
 	return s, nil
 }
@@ -75,7 +75,7 @@ func getInfov1(name string, metric *CgroupMetric, logger log.Logger) {
 	}
 }
 
-func getNamev1(p cgroups.Process, path string, logger log.Logger) (string, error) {
+func getNamev1(p cgroup1.Process, logger log.Logger) (string, error) {
 	cpuacctPath := filepath.Join(*CgroupRoot, "cpuacct")
 	name := strings.TrimPrefix(p.Path, cpuacctPath)
 	name = strings.TrimSuffix(name, "/")
@@ -103,15 +103,13 @@ func getNamev1(p cgroups.Process, path string, logger log.Logger) (string, error
 func (e *Exporter) getMetricsv1(name string, pids map[string][]int) (CgroupMetric, error) {
 	metric := CgroupMetric{name: name}
 	level.Debug(e.logger).Log("msg", "Loading cgroup", "root", *CgroupRoot, "path", name)
-	ctrl, err := cgroups.Load(subsystem, func(subsystem cgroups.Name) (string, error) {
-		return name, nil
-	})
+	ctrl, err := cgroup1.Load(cgroup1.StaticPath(name), cgroup1.WithHiearchy(subsystem))
 	if err != nil {
 		level.Error(e.logger).Log("msg", "Failed to load cgroups", "path", name, "err", err)
 		metric.err = true
 		return metric, err
 	}
-	stats, err := ctrl.Stat(cgroups.IgnoreNotExist)
+	stats, err := ctrl.Stat(cgroup1.IgnoreNotExist)
 	if err != nil {
 		level.Error(e.logger).Log("msg", "Failed to stat cgroups", "path", name, "err", err)
 		metric.err = true
@@ -166,14 +164,14 @@ func (e *Exporter) collectv1() ([]CgroupMetric, error) {
 	var metrics []CgroupMetric
 	for _, path := range e.paths {
 		level.Debug(e.logger).Log("msg", "Loading cgroup", "root", *CgroupRoot, "path", path)
-		control, err := cgroups.Load(subsystem, cgroups.StaticPath(path))
+		control, err := cgroup1.Load(cgroup1.StaticPath(path), cgroup1.WithHiearchy(subsystem))
 		if err != nil {
 			level.Error(e.logger).Log("msg", "Error loading cgroup subsystem", "root", *CgroupRoot, "path", path, "err", err)
 			metric := CgroupMetric{name: path, err: true}
 			metrics = append(metrics, metric)
 			continue
 		}
-		processes, err := control.Processes(cgroups.Cpuacct, true)
+		processes, err := control.Processes(cgroup1.Cpuacct, true)
 		if err != nil {
 			level.Error(e.logger).Log("msg", "Error loading cgroup processes", "path", path, "err", err)
 			metric := CgroupMetric{name: path, err: true}
@@ -184,7 +182,7 @@ func (e *Exporter) collectv1() ([]CgroupMetric, error) {
 		pids := make(map[string][]int)
 		for _, p := range processes {
 			level.Debug(e.logger).Log("msg", "Get Name", "process", p.Path, "pid", p.Pid, "path", path)
-			name, err := getNamev1(p, path, e.logger)
+			name, err := getNamev1(p, e.logger)
 			if err != nil {
 				level.Error(e.logger).Log("msg", "Error getting cgroup name for process", "process", p.Path, "path", path, "err", err)
 				continue
