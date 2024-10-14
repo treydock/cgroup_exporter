@@ -1,3 +1,12 @@
+## 1.0.0 / 2024-10-14
+
+### Changes
+
+* [ENHANCEMENT] Update to Go 1.22.3 and update Go dependencies (#34)
+* [ENHANCEMENT] Remove containerd/cgroups v1 dependency (#36)
+* [ENHANCEMENT] Allow custom slurm paths via --config.paths (#31)
+* [ENHANCEMENT] Support cgroup v2 (#28)
+
 ## 1.0.0-rc.4 / 2024-07-19
 
 ### Changes
