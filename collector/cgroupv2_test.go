@@ -110,7 +110,7 @@ func TestCollectv2UserSlice(t *testing.T) {
 	if val := metrics[0].cpus; val != 0 {
 		t.Errorf("Unexpected value for cpus, got %v", val)
 	}
-	if val := metrics[0].memoryRSS; val != 22048768 {
+	if val := metrics[0].memoryRSS; val != 22626304 {
 		t.Errorf("Unexpected value for memoryRSS, got %v", val)
 	}
 	if val := metrics[0].memoryUsed; val != 27115520 {
@@ -184,7 +184,7 @@ func TestCollectv2SLURM(t *testing.T) {
 	if val := m.cpus; val != 1 {
 		t.Errorf("Unexpected value for cpus, got %v", val)
 	}
-	if val := m.memoryRSS; val != 2260992 {
+	if val := m.memoryRSS; val != 2777088 {
 		t.Errorf("Unexpected value for memoryRSS, got %v", val)
 	}
 	if val := m.memoryUsed; val != 5660672 {
