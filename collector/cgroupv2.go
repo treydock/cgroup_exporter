@@ -171,7 +171,7 @@ func (e *Exporter) getMetricsv2(name string, pids []int, opts cgroup2.InitOpts) 
 		return metric, err
 	}
 	if stats.Memory != nil {
-		metric.memoryRSS = float64(stats.Memory.Anon) + swapcached + float64(stats.Memory.AnonThp)
+		metric.memoryRSS = float64(stats.Memory.Anon) + swapcached + float64(stats.Memory.File)
 		metric.memoryUsed = float64(stats.Memory.Usage)
 		metric.memoryTotal = float64(stats.Memory.UsageLimit)
 		metric.memoryCache = float64(stats.Memory.File)
