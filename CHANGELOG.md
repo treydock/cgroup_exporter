@@ -1,3 +1,9 @@
+## 1.0.1 / 2024-12-30
+
+### Changes
+
+* [BUGFIX] Fix the way memory RSS is calculated for cgroupv2 (#40)
+
 ## 1.0.0 / 2024-10-14
 
 ### Changes
