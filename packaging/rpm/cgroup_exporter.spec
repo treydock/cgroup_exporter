@@ -1,5 +1,5 @@
 Name:           cgroup_exporter
-Version:        0.9.1
+Version:        1.0.2
 Release:        1%{?dist}
 Summary:        The cgroup_exporter produces metrics from cgroups.
 
