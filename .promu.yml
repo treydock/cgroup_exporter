@@ -1,4 +1,4 @@
-# yamllint disable rule:line-length
+---
 go:
   version: 1.25
   cgo: true
