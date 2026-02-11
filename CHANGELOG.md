@@ -1,3 +1,9 @@
+## 1.1.0 / 2026-02-11
+
+### Changes
+
+* [ENHANCEMENT] Update Go to 1.25 and update module dependencies (#44)
+
 ## 1.0.2 / 2026-02-11
 
 ### Changes
