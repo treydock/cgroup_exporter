@@ -160,9 +160,9 @@ func (e *Exporter) getMetricsv1(name string, pids map[string][]int) (CgroupMetri
 }
 
 func (e *Exporter) collectv1() ([]CgroupMetric, error) {
-	var names []string
 	var metrics []CgroupMetric
 	for _, path := range e.paths {
+		var names []string
 		level.Debug(e.logger).Log("msg", "Loading cgroup", "root", *CgroupRoot, "path", path)
 		control, err := cgroup1.Load(cgroup1.StaticPath(path), cgroup1.WithHiearchy(subsystem))
 		if err != nil {
