@@ -15,11 +15,10 @@ package collector
 
 import (
 	"fmt"
-	"os"
 	"path/filepath"
 	"testing"
 
-	"github.com/go-kit/log"
+	"github.com/prometheus/common/promslog"
 )
 
 func TestGetStatv2(t *testing.T) {
@@ -57,8 +56,9 @@ func TestGetStatv2(t *testing.T) {
 }
 
 func TestCollectv2Error(t *testing.T) {
-	w := log.NewSyncWriter(os.Stderr)
-	logger := log.NewLogfmtLogger(w)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
 	exporter := NewExporter([]string{"/dne"}, logger, true)
 	metrics, err := exporter.collectv2()
 	if err != nil {
@@ -83,8 +83,9 @@ func TestCollectv2UserSlice(t *testing.T) {
 		}
 		return "", fmt.Errorf("Could not find cgroup path for %d", pid)
 	}
-	w := log.NewSyncWriter(os.Stderr)
-	logger := log.NewLogfmtLogger(w)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
 	exporter := NewExporter([]string{"/user.slice"}, logger, true)
 	metrics, err := exporter.collectv2()
 	if err != nil {
@@ -147,8 +148,9 @@ func TestCollectv2SLURM(t *testing.T) {
 		}
 		return "", fmt.Errorf("Could not find cgroup path for %d", pid)
 	}
-	w := log.NewSyncWriter(os.Stderr)
-	logger := log.NewLogfmtLogger(w)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
 	exporter := NewExporter([]string{"/slurm"}, logger, true)
 	metrics, err := exporter.collectv2()
 	if err != nil {

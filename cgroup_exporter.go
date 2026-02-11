@@ -15,19 +15,18 @@ package main
 
 import (
 	"fmt"
+	"log/slog"
 	"net/http"
 	"os"
 	"strings"
 
 	"github.com/alecthomas/kingpin/v2"
 	"github.com/containerd/cgroups/v3"
-	"github.com/go-kit/log"
-	"github.com/go-kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
 	versionCollector "github.com/prometheus/client_golang/prometheus/collectors/version"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/prometheus/common/promlog"
-	"github.com/prometheus/common/promlog/flag"
+	"github.com/prometheus/common/promslog"
+	"github.com/prometheus/common/promslog/flag"
 	"github.com/prometheus/common/version"
 	"github.com/treydock/cgroup_exporter/collector"
 )
@@ -38,7 +37,7 @@ var (
 	disableExporterMetrics = kingpin.Flag("web.disable-exporter-metrics", "Exclude metrics about the exporter (promhttp_*, process_*, go_*)").Default("false").Bool()
 )
 
-func metricsHandler(logger log.Logger) http.HandlerFunc {
+func metricsHandler(logger *slog.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		registry := prometheus.NewRegistry()
 
@@ -65,16 +64,16 @@ func metricsHandler(logger log.Logger) http.HandlerFunc {
 
 func main() {
 	metricsEndpoint := "/metrics"
-	promlogConfig := &promlog.Config{}
-	flag.AddFlags(kingpin.CommandLine, promlogConfig)
+	promslogConfig := &promslog.Config{}
+	flag.AddFlags(kingpin.CommandLine, promslogConfig)
 	kingpin.Version(version.Print("cgroup_exporter"))
 	kingpin.HelpFlag.Short('h')
 	kingpin.Parse()
 
-	logger := promlog.New(promlogConfig)
-	level.Info(logger).Log("msg", "Starting cgroup_exporter", "version", version.Info())
-	level.Info(logger).Log("msg", "Build context", "build_context", version.BuildContext())
-	level.Info(logger).Log("msg", "Starting Server", "address", *listenAddress)
+	logger := promslog.New(promslogConfig)
+	logger.Info("Starting cgroup_exporter", "version", version.Info())
+	logger.Info("Build context", "build_context", version.BuildContext())
+	logger.Info("Starting Server", "address", *listenAddress)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		//nolint:errcheck
@@ -89,7 +88,7 @@ func main() {
 	http.Handle(metricsEndpoint, metricsHandler(logger))
 	err := http.ListenAndServe(*listenAddress, nil)
 	if err != nil {
-		level.Error(logger).Log("err", err)
+		logger.Error("Unable to start HTTP server", "err", err)
 		os.Exit(1)
 	}
 }

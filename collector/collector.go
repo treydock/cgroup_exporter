@@ -15,6 +15,7 @@ package collector
 
 import (
 	"fmt"
+	"log/slog"
 	"os"
 	"reflect"
 	"strconv"
@@ -22,8 +23,6 @@ import (
 	"sync"
 
 	"github.com/alecthomas/kingpin/v2"
-	"github.com/go-kit/log"
-	"github.com/go-kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/procfs"
 )
@@ -66,7 +65,7 @@ type Exporter struct {
 	memswFailCount  *prometheus.Desc
 	info            *prometheus.Desc
 	processExec     *prometheus.Desc
-	logger          log.Logger
+	logger          *slog.Logger
 	cgroupv2        bool
 }
 
@@ -94,7 +93,7 @@ type CgroupMetric struct {
 	err             bool
 }
 
-func NewCgroupCollector(cgroupV2 bool, paths []string, logger log.Logger) Collector {
+func NewCgroupCollector(cgroupV2 bool, paths []string, logger *slog.Logger) Collector {
 	var collector Collector
 	if cgroupV2 {
 		collector = NewCgroupV2Collector(paths, logger)
@@ -104,7 +103,7 @@ func NewCgroupCollector(cgroupV2 bool, paths []string, logger log.Logger) Collec
 	return collector
 }
 
-func NewExporter(paths []string, logger log.Logger, cgroupv2 bool) *Exporter {
+func NewExporter(paths []string, logger *slog.Logger, cgroupv2 bool) *Exporter {
 	return &Exporter{
 		paths: paths,
 		cpuUser: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "cpu", "user_seconds"),
@@ -203,11 +202,11 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	}
 }
 
-func getProcInfo(pids []int, metric *CgroupMetric, logger log.Logger) {
+func getProcInfo(pids []int, metric *CgroupMetric, logger *slog.Logger) {
 	executables := make(map[string]float64)
 	procFS, err := procfs.NewFS(*ProcRoot)
 	if err != nil {
-		level.Error(logger).Log("msg", "Unable to open procfs", "path", *ProcRoot)
+		logger.Error("Unable to open procfs", "path", *ProcRoot)
 		return
 	}
 	wg := &sync.WaitGroup{}
@@ -216,18 +215,18 @@ func getProcInfo(pids []int, metric *CgroupMetric, logger log.Logger) {
 		go func(p int) {
 			proc, err := procFS.Proc(p)
 			if err != nil {
-				level.Error(logger).Log("msg", "Unable to read PID", "pid", p)
+				logger.Error("Unable to read PID", "pid", p)
 				wg.Done()
 				return
 			}
 			executable, err := proc.Executable()
 			if err != nil {
-				level.Error(logger).Log("msg", "Unable to get executable for PID", "pid", p)
+				logger.Error("Unable to get executable for PID", "pid", p)
 				wg.Done()
 				return
 			}
 			if len(executable) > *collectProcMaxExec {
-				level.Debug(logger).Log("msg", "Executable will be truncated", "executable", executable, "len", len(executable), "pid", p)
+				logger.Debug("Executable will be truncated", "executable", executable, "len", len(executable), "pid", p)
 				trim := *collectProcMaxExec / 2
 				executable_prefix := executable[0:trim]
 				executable_suffix := executable[len(executable)-trim:]
@@ -277,18 +276,18 @@ func parseCpuSet(cpuset string) ([]string, error) {
 	return cpus, nil
 }
 
-func getCPUs(path string, logger log.Logger) ([]string, error) {
+func getCPUs(path string, logger *slog.Logger) ([]string, error) {
 	if !fileExists(path) {
 		return nil, nil
 	}
 	cpusData, err := os.ReadFile(path)
 	if err != nil {
-		level.Error(logger).Log("msg", "Error reading cpuset", "cpuset", path, "err", err)
+		logger.Error("Error reading cpuset", "cpuset", path, "err", err)
 		return nil, err
 	}
 	cpus, err := parseCpuSet(strings.TrimSuffix(string(cpusData), "\n"))
 	if err != nil {
-		level.Error(logger).Log("msg", "Error parsing cpu set", "cpuset", path, "err", err)
+		logger.Error("Error parsing cpu set", "cpuset", path, "err", err)
 		return nil, err
 	}
 	return cpus, nil

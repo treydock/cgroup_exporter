@@ -25,8 +25,7 @@ import (
 	"time"
 
 	kingpin "github.com/alecthomas/kingpin/v2"
-	"github.com/go-kit/log"
-	"github.com/go-kit/log/level"
+	"github.com/prometheus/common/promslog"
 	"github.com/treydock/cgroup_exporter/collector"
 )
 
@@ -55,9 +54,9 @@ func TestMain(m *testing.M) {
 		fmt.Printf("Error: %s", err.Error())
 		os.Exit(1)
 	}
-	w := log.NewSyncWriter(os.Stderr)
-	logger := log.NewLogfmtLogger(w)
-	logger = level.NewFilter(logger, level.AllowDebug())
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
 	go func() {
 		http.Handle("/metrics", metricsHandler(logger))
 		err := http.ListenAndServe(address, nil)

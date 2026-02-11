@@ -20,7 +20,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/go-kit/log"
+	"github.com/prometheus/common/promslog"
 )
 
 func TestMain(m *testing.M) {
@@ -61,8 +61,9 @@ func TestParseCpuSet(t *testing.T) {
 
 func TestGetProcInfo(t *testing.T) {
 	metric := CgroupMetric{}
-	w := log.NewSyncWriter(os.Stderr)
-	logger := log.NewLogfmtLogger(w)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
 	getProcInfo([]int{95521, 95525}, &metric, logger)
 	if val, ok := metric.processExec["/bin/bash"]; !ok {
 		t.Errorf("Process /bin/bash not in metrics")
