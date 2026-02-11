@@ -14,17 +14,17 @@
 package collector
 
 import (
-	"os"
 	"testing"
 
-	"github.com/go-kit/log"
+	"github.com/prometheus/common/promslog"
 )
 
 func TestCollectUserSlice(t *testing.T) {
 	varFalse := false
 	collectProc = &varFalse
-	w := log.NewSyncWriter(os.Stderr)
-	logger := log.NewLogfmtLogger(w)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
 	exporter := NewExporter([]string{"/user.slice"}, logger, false)
 	metrics, err := exporter.collectv1()
 	if err != nil {
@@ -81,8 +81,9 @@ func TestCollectSLURM(t *testing.T) {
 	collectProc = &varTrue
 	varLen := 100
 	collectProcMaxExec = &varLen
-	w := log.NewSyncWriter(os.Stderr)
-	logger := log.NewLogfmtLogger(w)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
 	exporter := NewExporter([]string{"/slurm"}, logger, false)
 	metrics, err := exporter.collectv1()
 	if err != nil {
@@ -157,8 +158,9 @@ func TestCollectSLURM(t *testing.T) {
 func TestCollectTorque(t *testing.T) {
 	varFalse := false
 	collectProc = &varFalse
-	w := log.NewSyncWriter(os.Stderr)
-	logger := log.NewLogfmtLogger(w)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
 	exporter := NewExporter([]string{"/torque"}, logger, false)
 	metrics, err := exporter.collectv1()
 	if err != nil {
