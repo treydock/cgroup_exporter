@@ -1,3 +1,9 @@
+## 1.0.2 / 2026-02-11
+
+### Changes
+
+* [BUGFIX] Fix duplicate metrics with multiple paths (#43)
+
 ## 1.0.1 / 2024-12-30
 
 ### Changes
