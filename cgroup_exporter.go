@@ -71,9 +71,9 @@ func main() {
 	kingpin.Parse()
 
 	logger := promslog.New(promslogConfig)
-	logger.Info("msg", "Starting cgroup_exporter", "version", version.Info())
-	logger.Info("msg", "Build context", "build_context", version.BuildContext())
-	logger.Info("msg", "Starting Server", "address", *listenAddress)
+	logger.Info("Starting cgroup_exporter", "version", version.Info())
+	logger.Info("Build context", "build_context", version.BuildContext())
+	logger.Info("Starting Server", "address", *listenAddress)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		//nolint:errcheck
@@ -88,7 +88,7 @@ func main() {
 	http.Handle(metricsEndpoint, metricsHandler(logger))
 	err := http.ListenAndServe(*listenAddress, nil)
 	if err != nil {
-		logger.Error("err", err)
+		logger.Error("Unable to start HTTP server", "err", err)
 		os.Exit(1)
 	}
 }

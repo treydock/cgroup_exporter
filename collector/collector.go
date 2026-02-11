@@ -206,7 +206,7 @@ func getProcInfo(pids []int, metric *CgroupMetric, logger *slog.Logger) {
 	executables := make(map[string]float64)
 	procFS, err := procfs.NewFS(*ProcRoot)
 	if err != nil {
-		logger.Error("msg", "Unable to open procfs", "path", *ProcRoot)
+		logger.Error("Unable to open procfs", "path", *ProcRoot)
 		return
 	}
 	wg := &sync.WaitGroup{}
@@ -215,18 +215,18 @@ func getProcInfo(pids []int, metric *CgroupMetric, logger *slog.Logger) {
 		go func(p int) {
 			proc, err := procFS.Proc(p)
 			if err != nil {
-				logger.Error("msg", "Unable to read PID", "pid", p)
+				logger.Error("Unable to read PID", "pid", p)
 				wg.Done()
 				return
 			}
 			executable, err := proc.Executable()
 			if err != nil {
-				logger.Error("msg", "Unable to get executable for PID", "pid", p)
+				logger.Error("Unable to get executable for PID", "pid", p)
 				wg.Done()
 				return
 			}
 			if len(executable) > *collectProcMaxExec {
-				logger.Debug("msg", "Executable will be truncated", "executable", executable, "len", len(executable), "pid", p)
+				logger.Debug("Executable will be truncated", "executable", executable, "len", len(executable), "pid", p)
 				trim := *collectProcMaxExec / 2
 				executable_prefix := executable[0:trim]
 				executable_suffix := executable[len(executable)-trim:]
@@ -282,12 +282,12 @@ func getCPUs(path string, logger *slog.Logger) ([]string, error) {
 	}
 	cpusData, err := os.ReadFile(path)
 	if err != nil {
-		logger.Error("msg", "Error reading cpuset", "cpuset", path, "err", err)
+		logger.Error("Error reading cpuset", "cpuset", path, "err", err)
 		return nil, err
 	}
 	cpus, err := parseCpuSet(strings.TrimSuffix(string(cpusData), "\n"))
 	if err != nil {
-		logger.Error("msg", "Error parsing cpu set", "cpuset", path, "err", err)
+		logger.Error("Error parsing cpu set", "cpuset", path, "err", err)
 		return nil, err
 	}
 	return cpus, nil
