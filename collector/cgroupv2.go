@@ -100,13 +100,15 @@ func getInfov2(name string, pids []int, metric *CgroupMetric, logger *slog.Logge
 func getNamev2(pidPath string, path string, logger *slog.Logger) string {
 	dirs := strings.Split(pidPath, "/")
 	var name string
+	endIndex := 3
 	if strings.Contains(path, "slurm") {
-		keepDirs := dirs[0:4]
-		name = strings.Join(keepDirs, "/")
-	} else {
-		keepDirs := dirs[0:3]
-		name = strings.Join(keepDirs, "/")
+		endIndex = 4
 	}
+	if len(dirs) < endIndex {
+		endIndex = len(dirs)
+	}
+	keepDirs := dirs[0:endIndex]
+	name = strings.Join(keepDirs, "/")
 	logger.Debug("Get name from path", "name", name, "pidPath", pidPath, "path", path, "dirs", fmt.Sprintf("+%v", dirs))
 	return name
 }
