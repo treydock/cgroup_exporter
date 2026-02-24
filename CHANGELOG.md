@@ -1,3 +1,9 @@
+## 1.1.1 / 2026-02-24
+
+### Changes
+
+* [BUGFIX] Avoid crash getting cgroupv2 name (#46)
+
 ## 1.1.0 / 2026-02-11
 
 ### Changes
