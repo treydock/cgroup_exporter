@@ -1,3 +1,10 @@
+## 1.2.0 / 2026-06-23
+
+### Changes
+
+* [ENHANCEMENT] Use prometheus/exporter-toolkit (#50)
+* [ENHANCEMENT] Upgrade to Go 1.26.4 and update module dependencies (#51)
+
 ## 1.1.1 / 2026-02-24
 
 ### Changes
