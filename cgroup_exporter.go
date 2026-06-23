@@ -28,12 +28,13 @@ import (
 	"github.com/prometheus/common/promslog"
 	"github.com/prometheus/common/promslog/flag"
 	"github.com/prometheus/common/version"
+	"github.com/prometheus/exporter-toolkit/web"
+	"github.com/prometheus/exporter-toolkit/web/kingpinflag"
 	"github.com/treydock/cgroup_exporter/collector"
 )
 
 var (
 	configPaths            = kingpin.Flag("config.paths", "Comma separated list of cgroup paths to check, eg /user.slice,/system.slice,/slurm").Required().String()
-	listenAddress          = kingpin.Flag("web.listen-address", "Address to listen on for web interface and telemetry.").Default(":9306").String()
 	disableExporterMetrics = kingpin.Flag("web.disable-exporter-metrics", "Exclude metrics about the exporter (promhttp_*, process_*, go_*)").Default("false").Bool()
 )
 
@@ -63,6 +64,8 @@ func metricsHandler(logger *slog.Logger) http.HandlerFunc {
 }
 
 func main() {
+	toolkitFlags := kingpinflag.AddFlags(kingpin.CommandLine, ":9306")
+
 	metricsEndpoint := "/metrics"
 	promslogConfig := &promslog.Config{}
 	flag.AddFlags(kingpin.CommandLine, promslogConfig)
@@ -73,7 +76,6 @@ func main() {
 	logger := promslog.New(promslogConfig)
 	logger.Info("Starting cgroup_exporter", "version", version.Info())
 	logger.Info("Build context", "build_context", version.BuildContext())
-	logger.Info("Starting Server", "address", *listenAddress)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		//nolint:errcheck
@@ -86,9 +88,10 @@ func main() {
              </html>`))
 	})
 	http.Handle(metricsEndpoint, metricsHandler(logger))
-	err := http.ListenAndServe(*listenAddress, nil)
-	if err != nil {
-		logger.Error("Unable to start HTTP server", "err", err)
+
+	server := &http.Server{}
+	if err := web.ListenAndServe(server, toolkitFlags, logger); err != nil {
+		logger.Error(err.Error())
 		os.Exit(1)
 	}
 }
