@@ -53,11 +53,17 @@ func getInfov2(name string, pids []int, metric *CgroupMetric, logger *slog.Logge
 		}
 		return
 	}
-	slurmPattern := regexp.MustCompile("/job_([0-9]+)$")
+	slurmPattern := regexp.MustCompile("/job_([0-9]+)(/step_([^/]+)(/user/task_([0-9]+|special))?)?$")
 	slurmMatch := slurmPattern.FindStringSubmatch(name)
-	if len(slurmMatch) == 2 {
+	if len(slurmMatch) >= 2 {
 		metric.job = true
 		metric.jobid = slurmMatch[1]
+		if len(slurmMatch) >= 3 {
+			metric.step = slurmMatch[3]
+		}
+		if len(slurmMatch) >= 5 {
+			metric.task = slurmMatch[5]
+		}
 		procFS, err := procfs.NewFS(*ProcRoot)
 		if err != nil {
 			logger.Error("Unable to get procfs", "root", *ProcRoot, "err", err)
@@ -97,19 +103,28 @@ func getInfov2(name string, pids []int, metric *CgroupMetric, logger *slog.Logge
 	}
 }
 
-func getNamev2(pidPath string, path string, logger *slog.Logger) string {
+func getNamev2(pidPath string, path string, logger *slog.Logger) []string {
 	dirs := strings.Split(pidPath, "/")
-	var name string
+	var name []string
 	endIndex := 3
 	if strings.Contains(path, "slurm") {
+		if dirs[len(dirs)-1] == "system" {
+			logger.Debug("Skip system cgroup", "name", name)
+			return name
+		}
+		// always add "/system.slice/slurmstepd.scope/job_150"
 		endIndex = 4
+		if *collectFullSlurm {
+			for i := len(dirs) -1; i >= endIndex; i-- {
+				if dirs[i] != "slurm" && dirs[i] != "user" {
+					name = append(name,strings.Join(dirs[0:i+1], "/"))
+				}
+			}
+		}
 	}
-	if len(dirs) < endIndex {
-		endIndex = len(dirs)
-	}
-	keepDirs := dirs[0:endIndex]
-	name = strings.Join(keepDirs, "/")
-	logger.Debug("Get name from path", "name", name, "pidPath", pidPath, "path", path, "dirs", fmt.Sprintf("+%v", dirs))
+	endIndex = min(endIndex, len(dirs))
+	name = append(name,strings.Join(dirs[0:endIndex], "/"))
+	logger.Debug("Get names from path", "name", fmt.Sprintf("+%v", name), "pidPath", pidPath, "path", path, "dirs", fmt.Sprintf("+%v", dirs))
 	return name
 }
 
@@ -235,21 +250,18 @@ func (e *Exporter) collectv2() ([]CgroupMetric, error) {
 				continue
 			}
 			e.logger.Debug("Get Name", "pid", pid, "path", path)
-			name := getNamev2(pidPath, path, e.logger)
-			if strings.Contains(path, "slurm") && filepath.Base(name) == "system" {
-				e.logger.Debug("Skip system cgroup", "name", name)
-				continue
-			}
-			if !sliceContains(names, name) {
-				names = append(names, name)
-			}
-			if val, ok := pids[name]; ok {
-				if !sliceContains(val, pid) {
-					val = append(val, pid)
+			for _, name := range getNamev2(pidPath, path, e.logger) {
+				if !sliceContains(names, name) {
+					names = append(names, name)
 				}
-				pids[name] = val
-			} else {
-				pids[name] = []int{pid}
+				if val, ok := pids[name]; ok {
+					if !sliceContains(val, pid) {
+						val = append(val, pid)
+					}
+					pids[name] = val
+				} else {
+					pids[name] = []int{pid}
+				}
 			}
 		}
 		wg := &sync.WaitGroup{}

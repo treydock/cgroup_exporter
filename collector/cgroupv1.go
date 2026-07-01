@@ -52,9 +52,9 @@ func getInfov1(name string, metric *CgroupMetric, logger *slog.Logger) {
 		}
 		return
 	}
-	slurmPattern := regexp.MustCompile("^/slurm/uid_([0-9]+)/job_([0-9]+)$")
+	slurmPattern := regexp.MustCompile("^/slurm/uid_([0-9]+)/job_([0-9]+)(/step_([^/]+)(/task_([0-9]+|special))?)?$")
 	slurmMatch := slurmPattern.FindStringSubmatch(name)
-	if len(slurmMatch) == 3 {
+	if len(slurmMatch) >= 3 {
 		metric.job = true
 		metric.uid = slurmMatch[1]
 		metric.jobid = slurmMatch[2]
@@ -63,6 +63,12 @@ func getInfov1(name string, metric *CgroupMetric, logger *slog.Logger) {
 			logger.Error("Error looking up slurm uid", "uid", metric.uid, "err", err)
 		} else {
 			metric.username = user.Username
+		}
+		if len(slurmMatch) >= 4 {
+			metric.step = slurmMatch[4]
+		}
+		if len(slurmMatch) >= 6 {
+			metric.task = slurmMatch[6]
 		}
 		return
 	}
@@ -74,7 +80,8 @@ func getInfov1(name string, metric *CgroupMetric, logger *slog.Logger) {
 	}
 }
 
-func getNamev1(p cgroup1.Process, logger *slog.Logger) (string, error) {
+func getNamev1(p cgroup1.Process, logger *slog.Logger) ([]string, error) {
+	var names []string
 	cpuacctPath := filepath.Join(*CgroupRoot, "cpuacct")
 	name := strings.TrimPrefix(p.Path, cpuacctPath)
 	name = strings.TrimSuffix(name, "/")
@@ -82,21 +89,18 @@ func getNamev1(p cgroup1.Process, logger *slog.Logger) (string, error) {
 	logger.Debug("cgroup name", "dirs", fmt.Sprintf("%v", dirs))
 	// Handle user.slice, system.slice and torque
 	if len(dirs) == 3 {
-		return name, nil
+		return []string{name}, nil
 	}
 	// Handle deeper cgroup where we want higher level, mainly SLURM
-	var keepDirs []string
 	for i, d := range dirs {
-		if strings.HasPrefix(d, "job_") {
-			keepDirs = dirs[0 : i+1]
-			break
+		if strings.HasPrefix(d, "job_") || (*collectFullSlurm && (strings.HasPrefix(d, "step_") || strings.HasPrefix(d, "task_"))) {
+			names = append(names, strings.Join(dirs[0 : i+1], "/"))
 		}
 	}
-	if keepDirs == nil {
-		return name, nil
+	if names == nil {
+		return []string{name}, nil
 	}
-	name = strings.Join(keepDirs, "/")
-	return name, nil
+	return names, nil
 }
 
 func (e *Exporter) getMetricsv1(name string, pids map[string][]int) (CgroupMetric, error) {
@@ -181,21 +185,23 @@ func (e *Exporter) collectv1() ([]CgroupMetric, error) {
 		pids := make(map[string][]int)
 		for _, p := range processes {
 			e.logger.Debug("Get Name", "process", p.Path, "pid", p.Pid, "path", path)
-			name, err := getNamev1(p, e.logger)
+			tmp_names, err := getNamev1(p, e.logger)
 			if err != nil {
 				e.logger.Error("Error getting cgroup name for process", "process", p.Path, "path", path, "err", err)
 				continue
 			}
-			if !sliceContains(names, name) {
-				names = append(names, name)
-			}
-			if val, ok := pids[name]; ok {
-				if !sliceContains(val, p.Pid) {
-					val = append(val, p.Pid)
+			for _, name := range tmp_names {
+				if !sliceContains(names, name) {
+					names = append(names, name)
 				}
-				pids[name] = val
-			} else {
-				pids[name] = []int{p.Pid}
+				if val, ok := pids[name]; ok {
+					if !sliceContains(val, p.Pid) {
+						val = append(val, p.Pid)
+					}
+					pids[name] = val
+				} else {
+					pids[name] = []int{p.Pid}
+				}
 			}
 		}
 		wg := &sync.WaitGroup{}
