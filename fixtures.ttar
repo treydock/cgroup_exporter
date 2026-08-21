@@ -13591,6 +13591,12 @@ Lines: 1
 0
 Mode: 644
 # ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/user.slice/user-20821.slice/cpu.pressure
+Lines: 2
+some avg10=0.00 avg60=0.27 avg300=0.44 total=25314114
+full avg10=0.00 avg60=0.00 avg300=0.00 total=2578704
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Path: fixtures/user.slice/user-20821.slice/cpu.stat
 Lines: 9
 usage_usec 17975873
@@ -13612,6 +13618,12 @@ Mode: 644
 Path: fixtures/user.slice/user-20821.slice/cpu.weight.nice
 Lines: 1
 0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/user.slice/user-20821.slice/io.pressure
+Lines: 2
+some avg10=0.00 avg60=0.00 avg300=0.00 total=34005
+full avg10=0.00 avg60=0.00 avg300=0.00 total=32974
 Mode: 644
 # ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Path: fixtures/user.slice/user-20821.slice/memory.current
@@ -13699,6 +13711,12 @@ Path: fixtures/user.slice/user-20821.slice/memory.peak
 Lines: 1
 315523072
 Mode: 444
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/user.slice/user-20821.slice/memory.pressure
+Lines: 2
+some avg10=0.00 avg60=0.00 avg300=0.00 total=0
+full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+Mode: 644
 # ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Path: fixtures/user.slice/user-20821.slice/memory.stat
 Lines: 51
