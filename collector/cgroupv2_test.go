@@ -24,8 +24,10 @@ import (
 func TestParsePressureData(t *testing.T) {
 	input := `some avg10=0.00 avg60=0.27 avg300=0.44 total=25314114
 full avg10=0.00 avg60=0.00 avg300=0.00 total=2578704`
-
-	metrics, err := parsePressureData(input)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData(input, logger)
 	if err != nil {
 		t.Fatalf("Unexpected error: %s", err)
 	}
@@ -73,7 +75,10 @@ full avg10=0.00 avg60=0.00 avg300=0.00 total=2578704`
 }
 
 func TestParsePressureDataEmpty(t *testing.T) {
-	metrics, err := parsePressureData("")
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData("", logger)
 	if err != nil {
 		t.Fatalf("Unexpected error: %s", err)
 	}
@@ -85,7 +90,10 @@ func TestParsePressureDataEmpty(t *testing.T) {
 func TestParsePressureDataSingleLine(t *testing.T) {
 	input := `some avg10=1.50 avg60=2.25 avg300=3.75 total=1000000`
 
-	metrics, err := parsePressureData(input)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData(input, logger)
 	if err != nil {
 		t.Fatalf("Unexpected error: %s", err)
 	}
@@ -117,8 +125,10 @@ some avg10=0.50 avg60=1.00 avg300=1.50 total=5000000
 
 full avg10=0.25 avg60=0.50 avg300=0.75 total=2500000
 `
-
-	metrics, err := parsePressureData(input)
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData(input, logger)
 	if err != nil {
 		t.Fatalf("Unexpected error: %s", err)
 	}
@@ -132,6 +142,23 @@ full avg10=0.25 avg60=0.50 avg300=0.75 total=2500000
 	}
 	if metrics[1].Type != "full" {
 		t.Errorf("Expected Type 'full', got '%s'", metrics[1].Type)
+	}
+}
+
+func TestParsePressureErrors(t *testing.T) {
+	input := `
+some
+full avg10=- avg60=0.50 avg300=0.75 total=-
+`
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData(input, logger)
+	if err == nil {
+		t.Fatalf("Expected errors")
+	}
+	if len(metrics) != 0 {
+		t.Errorf("Expected 0 metrics for error input, got %d", len(metrics))
 	}
 }
 

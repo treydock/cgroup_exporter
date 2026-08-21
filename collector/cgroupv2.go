@@ -38,7 +38,7 @@ func NewCgroupV2Collector(paths []string, logger *slog.Logger) Collector {
 	return NewExporter(paths, logger, true)
 }
 
-func parsePressureData(content string) ([]PressureMetric, error) {
+func parsePressureData(content string, logger *slog.Logger) ([]PressureMetric, error) {
 	var metrics []PressureMetric
 	scanner := bufio.NewScanner(strings.NewReader(content))
 	for scanner.Scan() {
@@ -62,7 +62,8 @@ func parsePressureData(content string) ([]PressureMetric, error) {
 			key := keyValue[0]
 			val, err := strconv.ParseFloat(keyValue[1], 64)
 			if err != nil {
-				continue
+				logger.Error("Unable to parse value", "err", err, "value", keyValue[1])
+				return nil, err
 			}
 			switch key {
 			case "avg10":
@@ -90,7 +91,7 @@ func getPressurev2(path string, logger *slog.Logger) ([]PressureMetric, error) {
 		logger.Error("Error reading pressure file", "path", path, "err", err)
 		return nil, err
 	}
-	metrics, err := parsePressureData(string(data))
+	metrics, err := parsePressureData(string(data), logger)
 	if err != nil {
 		logger.Error("Error parsing pressure data", "path", path, "err", err)
 		return nil, err
@@ -249,13 +250,19 @@ func (e *Exporter) getMetricsv2(name string, pids []int, opts cgroup2.InitOpts) 
 		metric.cpu_list = strings.Join(cpus, ",")
 	}
 	// Collect PSI metrics for cpu, memory, and io
-	if cpuPressure, err := getPressurev2(filepath.Join(*CgroupRoot, name, "cpu.pressure"), e.logger); err == nil {
+	if cpuPressure, err := getPressurev2(filepath.Join(*CgroupRoot, name, "cpu.pressure"), e.logger); err != nil {
+		return metric, err
+	} else {
 		metric.cpuPressure = cpuPressure
 	}
-	if memPressure, err := getPressurev2(filepath.Join(*CgroupRoot, name, "memory.pressure"), e.logger); err == nil {
+	if memPressure, err := getPressurev2(filepath.Join(*CgroupRoot, name, "memory.pressure"), e.logger); err != nil {
+		return metric, err
+	} else {
 		metric.memPressure = memPressure
 	}
-	if ioPressure, err := getPressurev2(filepath.Join(*CgroupRoot, name, "io.pressure"), e.logger); err == nil {
+	if ioPressure, err := getPressurev2(filepath.Join(*CgroupRoot, name, "io.pressure"), e.logger); err != nil {
+		return metric, err
+	} else {
 		metric.ioPressure = ioPressure
 	}
 	getInfov2(name, pids, &metric, e.logger)
