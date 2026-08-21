@@ -38,6 +38,67 @@ func NewCgroupV2Collector(paths []string, logger *slog.Logger) Collector {
 	return NewExporter(paths, logger, true)
 }
 
+func parsePressureData(content string, logger *slog.Logger) ([]PressureMetric, error) {
+	var metrics []PressureMetric
+	scanner := bufio.NewScanner(strings.NewReader(content))
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		if line == "" {
+			continue
+		}
+		parts := strings.Fields(line)
+		if len(parts) < 2 {
+			continue
+		}
+		pressureType := parts[0] // "some" or "full"
+		metric := PressureMetric{Type: pressureType}
+
+		for i := 1; i < len(parts); i++ {
+			field := parts[i]
+			keyValue := strings.SplitN(field, "=", 2)
+			if len(keyValue) != 2 {
+				continue
+			}
+			key := keyValue[0]
+			val, err := strconv.ParseFloat(keyValue[1], 64)
+			if err != nil {
+				logger.Error("Unable to parse value", "err", err, "value", keyValue[1])
+				return nil, err
+			}
+			switch key {
+			case "avg10":
+				metric.Avg10 = val
+			case "avg60":
+				metric.Avg60 = val
+			case "avg300":
+				metric.Avg300 = val
+			case "total":
+				// Convert from microseconds to seconds
+				metric.Total = val / 1000000.0
+			}
+		}
+		metrics = append(metrics, metric)
+	}
+	return metrics, scanner.Err()
+}
+
+func getPressurev2(path string, logger *slog.Logger) ([]PressureMetric, error) {
+	if !fileExists(path) {
+		return nil, nil
+	}
+	data, err := os.ReadFile(path)
+	if err != nil {
+		logger.Error("Error reading pressure file", "path", path, "err", err)
+		return nil, err
+	}
+	metrics, err := parsePressureData(string(data), logger)
+	if err != nil {
+		logger.Error("Error parsing pressure data", "path", path, "err", err)
+		return nil, err
+	}
+	return metrics, nil
+}
+
 func getInfov2(name string, pids []int, metric *CgroupMetric, logger *slog.Logger) {
 	pathBase := filepath.Base(name)
 	userSlicePattern := regexp.MustCompile("^user-([0-9]+).slice$")
@@ -187,6 +248,22 @@ func (e *Exporter) getMetricsv2(name string, pids []int, opts cgroup2.InitOpts) 
 	if cpus, err := getCPUs(cpusPath, e.logger); err == nil {
 		metric.cpus = len(cpus)
 		metric.cpu_list = strings.Join(cpus, ",")
+	}
+	// Collect PSI metrics for cpu, memory, and io
+	if cpuPressure, err := getPressurev2(filepath.Join(*CgroupRoot, name, "cpu.pressure"), e.logger); err != nil {
+		return metric, err
+	} else {
+		metric.cpuPressure = cpuPressure
+	}
+	if memPressure, err := getPressurev2(filepath.Join(*CgroupRoot, name, "memory.pressure"), e.logger); err != nil {
+		return metric, err
+	} else {
+		metric.memPressure = memPressure
+	}
+	if ioPressure, err := getPressurev2(filepath.Join(*CgroupRoot, name, "io.pressure"), e.logger); err != nil {
+		return metric, err
+	} else {
+		metric.ioPressure = ioPressure
 	}
 	getInfov2(name, pids, &metric, e.logger)
 	if *collectProc {

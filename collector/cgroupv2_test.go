@@ -21,6 +21,147 @@ import (
 	"github.com/prometheus/common/promslog"
 )
 
+func TestParsePressureData(t *testing.T) {
+	input := `some avg10=0.00 avg60=0.27 avg300=0.44 total=25314114
+full avg10=0.00 avg60=0.00 avg300=0.00 total=2578704`
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData(input, logger)
+	if err != nil {
+		t.Fatalf("Unexpected error: %s", err)
+	}
+
+	if len(metrics) != 2 {
+		t.Fatalf("Expected 2 metrics, got %d", len(metrics))
+	}
+
+	// Check "some" pressure
+	if metrics[0].Type != "some" {
+		t.Errorf("Expected Type 'some', got '%s'", metrics[0].Type)
+	}
+	if metrics[0].Avg10 != 0.00 {
+		t.Errorf("Expected Avg10 0.00, got %f", metrics[0].Avg10)
+	}
+	if metrics[0].Avg60 != 0.27 {
+		t.Errorf("Expected Avg60 0.27, got %f", metrics[0].Avg60)
+	}
+	if metrics[0].Avg300 != 0.44 {
+		t.Errorf("Expected Avg300 0.44, got %f", metrics[0].Avg300)
+	}
+	// total should be converted from microseconds to seconds
+	expectedSomeTotal := 25314114.0 / 1000000.0
+	if metrics[0].Total != expectedSomeTotal {
+		t.Errorf("Expected Total %f, got %f", expectedSomeTotal, metrics[0].Total)
+	}
+
+	// Check "full" pressure
+	if metrics[1].Type != "full" {
+		t.Errorf("Expected Type 'full', got '%s'", metrics[1].Type)
+	}
+	if metrics[1].Avg10 != 0.00 {
+		t.Errorf("Expected Avg10 0.00, got %f", metrics[1].Avg10)
+	}
+	if metrics[1].Avg60 != 0.00 {
+		t.Errorf("Expected Avg60 0.00, got %f", metrics[1].Avg60)
+	}
+	if metrics[1].Avg300 != 0.00 {
+		t.Errorf("Expected Avg300 0.00, got %f", metrics[1].Avg300)
+	}
+	expectedFullTotal := 2578704.0 / 1000000.0
+	if metrics[1].Total != expectedFullTotal {
+		t.Errorf("Expected Total %f, got %f", expectedFullTotal, metrics[1].Total)
+	}
+}
+
+func TestParsePressureDataEmpty(t *testing.T) {
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData("", logger)
+	if err != nil {
+		t.Fatalf("Unexpected error: %s", err)
+	}
+	if len(metrics) != 0 {
+		t.Errorf("Expected 0 metrics for empty input, got %d", len(metrics))
+	}
+}
+
+func TestParsePressureDataSingleLine(t *testing.T) {
+	input := `some avg10=1.50 avg60=2.25 avg300=3.75 total=1000000`
+
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData(input, logger)
+	if err != nil {
+		t.Fatalf("Unexpected error: %s", err)
+	}
+
+	if len(metrics) != 1 {
+		t.Fatalf("Expected 1 metric, got %d", len(metrics))
+	}
+
+	if metrics[0].Type != "some" {
+		t.Errorf("Expected Type 'some', got '%s'", metrics[0].Type)
+	}
+	if metrics[0].Avg10 != 1.50 {
+		t.Errorf("Expected Avg10 1.50, got %f", metrics[0].Avg10)
+	}
+	if metrics[0].Avg60 != 2.25 {
+		t.Errorf("Expected Avg60 2.25, got %f", metrics[0].Avg60)
+	}
+	if metrics[0].Avg300 != 3.75 {
+		t.Errorf("Expected Avg300 3.75, got %f", metrics[0].Avg300)
+	}
+	if metrics[0].Total != 1.0 {
+		t.Errorf("Expected Total 1.0, got %f", metrics[0].Total)
+	}
+}
+
+func TestParsePressureDataWithEmptyLines(t *testing.T) {
+	input := `
+some avg10=0.50 avg60=1.00 avg300=1.50 total=5000000
+
+full avg10=0.25 avg60=0.50 avg300=0.75 total=2500000
+`
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData(input, logger)
+	if err != nil {
+		t.Fatalf("Unexpected error: %s", err)
+	}
+
+	if len(metrics) != 2 {
+		t.Fatalf("Expected 2 metrics, got %d", len(metrics))
+	}
+
+	if metrics[0].Type != "some" {
+		t.Errorf("Expected Type 'some', got '%s'", metrics[0].Type)
+	}
+	if metrics[1].Type != "full" {
+		t.Errorf("Expected Type 'full', got '%s'", metrics[1].Type)
+	}
+}
+
+func TestParsePressureErrors(t *testing.T) {
+	input := `
+some
+full avg10=- avg60=0.50 avg300=0.75 total=-
+`
+	level := promslog.NewLevel()
+	level.Set("debug")
+	logger := promslog.New(&promslog.Config{Level: level})
+	metrics, err := parsePressureData(input, logger)
+	if err == nil {
+		t.Fatalf("Expected errors")
+	}
+	if len(metrics) != 0 {
+		t.Errorf("Expected 0 metrics for error input, got %d", len(metrics))
+	}
+}
+
 func TestGetStatv2(t *testing.T) {
 	_, err := getStatv2("swapcached", "/dne")
 	if err == nil {
