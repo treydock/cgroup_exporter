@@ -178,11 +178,11 @@ func getStatv2(name string, path string) (float64, error) {
 	if !fileExists(path) {
 		return 0, fmt.Errorf("path %s does not exist", path)
 	}
-	f, err := os.Open(path)
+	f, err := os.ReadFile(path)
 	if err != nil {
 		return 0, err
 	}
-	s := bufio.NewScanner(f)
+	s := bufio.NewScanner(strings.NewReader(string(f)))
 	for s.Scan() {
 		parts := strings.Fields(s.Text())
 		if len(parts) != 2 {
