@@ -196,6 +196,9 @@ func getStatv2(name string, path string) (float64, error) {
 			return float64(v), nil
 		}
 	}
+	if err := s.Err(); err != nil {
+		return 0, err
+	}
 	return 0, fmt.Errorf("unable to find stat key %s in %s", name, path)
 }
 
