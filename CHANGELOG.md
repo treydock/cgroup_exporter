@@ -1,3 +1,9 @@
+## 1.3.0 / 2026-08-27
+
+### Changes
+
+* [ENHANCEMENT] Support getting PSI metrics from cgroupv2 (#54)
+
 ## 1.2.1 / 2026-08-18
 
 ### Changes
