@@ -48,25 +48,31 @@ type Collector interface {
 }
 
 type Exporter struct {
-	paths           []string
-	collectError    *prometheus.Desc
-	cpuUser         *prometheus.Desc
-	cpuSystem       *prometheus.Desc
-	cpuTotal        *prometheus.Desc
-	cpus            *prometheus.Desc
-	cpu_info        *prometheus.Desc
-	memoryRSS       *prometheus.Desc
-	memoryCache     *prometheus.Desc
-	memoryUsed      *prometheus.Desc
-	memoryTotal     *prometheus.Desc
-	memoryFailCount *prometheus.Desc
-	memswUsed       *prometheus.Desc
-	memswTotal      *prometheus.Desc
-	memswFailCount  *prometheus.Desc
-	info            *prometheus.Desc
-	processExec     *prometheus.Desc
-	logger          *slog.Logger
-	cgroupv2        bool
+	paths            []string
+	collectError     *prometheus.Desc
+	cpuUser          *prometheus.Desc
+	cpuSystem        *prometheus.Desc
+	cpuTotal         *prometheus.Desc
+	cpus             *prometheus.Desc
+	cpu_info         *prometheus.Desc
+	memoryRSS        *prometheus.Desc
+	memoryCache      *prometheus.Desc
+	memoryUsed       *prometheus.Desc
+	memoryTotal      *prometheus.Desc
+	memoryFailCount  *prometheus.Desc
+	memswUsed        *prometheus.Desc
+	memswTotal       *prometheus.Desc
+	memswFailCount   *prometheus.Desc
+	info             *prometheus.Desc
+	processExec      *prometheus.Desc
+	cpuPressure      *prometheus.Desc
+	memPressure      *prometheus.Desc
+	ioPressure       *prometheus.Desc
+	cpuPressureTotal *prometheus.Desc
+	memPressureTotal *prometheus.Desc
+	ioPressureTotal  *prometheus.Desc
+	logger           *slog.Logger
+	cgroupv2         bool
 }
 
 type CgroupMetric struct {
@@ -84,6 +90,9 @@ type CgroupMetric struct {
 	memswUsed       float64
 	memswTotal      float64
 	memswFailCount  float64
+	cpuPressure     []PressureMetric
+	memPressure     []PressureMetric
+	ioPressure      []PressureMetric
 	userslice       bool
 	job             bool
 	uid             string
@@ -91,6 +100,14 @@ type CgroupMetric struct {
 	jobid           string
 	processExec     map[string]float64
 	err             bool
+}
+
+type PressureMetric struct {
+	Type   string
+	Avg10  float64
+	Avg60  float64
+	Avg300 float64
+	Total  float64
 }
 
 func NewCgroupCollector(cgroupV2 bool, paths []string, logger *slog.Logger) Collector {
@@ -132,6 +149,18 @@ func NewExporter(paths []string, logger *slog.Logger, cgroupv2 bool) *Exporter {
 			"Swap total given to cgroup in bytes", []string{"cgroup"}, nil),
 		memswFailCount: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "memsw", "fail_count"),
 			"Swap fail count", []string{"cgroup"}, nil),
+		cpuPressure: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "cpu", "pressure_percent"),
+			"CPU pressure stall percentage (PSI)", []string{"cgroup", "type", "level"}, nil),
+		memPressure: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "memory", "pressure_percent"),
+			"Memory pressure stall percentage (PSI)", []string{"cgroup", "type", "level"}, nil),
+		ioPressure: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "io", "pressure_percent"),
+			"IO pressure stall percentage (PSI)", []string{"cgroup", "type", "level"}, nil),
+		cpuPressureTotal: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "cpu", "pressure_seconds_total"),
+			"CPU pressure stall total time in seconds (PSI)", []string{"cgroup", "type"}, nil),
+		memPressureTotal: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "memory", "pressure_seconds_total"),
+			"Memory pressure stall total time in seconds (PSI)", []string{"cgroup", "type"}, nil),
+		ioPressureTotal: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "io", "pressure_seconds_total"),
+			"IO pressure stall total time in seconds (PSI)", []string{"cgroup", "type"}, nil),
 		info: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "", "info"),
 			"User slice information", []string{"cgroup", "username", "uid", "jobid"}, nil),
 		processExec: prometheus.NewDesc(prometheus.BuildFQName(Namespace, "", "process_exec_count"),
@@ -157,6 +186,12 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.memswUsed
 	ch <- e.memswTotal
 	ch <- e.memswFailCount
+	ch <- e.cpuPressure
+	ch <- e.memPressure
+	ch <- e.ioPressure
+	ch <- e.cpuPressureTotal
+	ch <- e.memPressureTotal
+	ch <- e.ioPressureTotal
 	ch <- e.info
 	if *collectProc {
 		ch <- e.processExec
@@ -190,6 +225,25 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		// These metrics currently have no cgroup v2 information
 		if !e.cgroupv2 {
 			ch <- prometheus.MustNewConstMetric(e.memswFailCount, prometheus.GaugeValue, m.memswFailCount, m.name)
+		}
+		// Export PSI metrics for cgroupv2
+		for _, p := range m.cpuPressure {
+			ch <- prometheus.MustNewConstMetric(e.cpuPressure, prometheus.GaugeValue, p.Avg10, m.name, p.Type, "avg10")
+			ch <- prometheus.MustNewConstMetric(e.cpuPressure, prometheus.GaugeValue, p.Avg60, m.name, p.Type, "avg60")
+			ch <- prometheus.MustNewConstMetric(e.cpuPressure, prometheus.GaugeValue, p.Avg300, m.name, p.Type, "avg300")
+			ch <- prometheus.MustNewConstMetric(e.cpuPressureTotal, prometheus.CounterValue, p.Total, m.name, p.Type)
+		}
+		for _, p := range m.memPressure {
+			ch <- prometheus.MustNewConstMetric(e.memPressure, prometheus.GaugeValue, p.Avg10, m.name, p.Type, "avg10")
+			ch <- prometheus.MustNewConstMetric(e.memPressure, prometheus.GaugeValue, p.Avg60, m.name, p.Type, "avg60")
+			ch <- prometheus.MustNewConstMetric(e.memPressure, prometheus.GaugeValue, p.Avg300, m.name, p.Type, "avg300")
+			ch <- prometheus.MustNewConstMetric(e.memPressureTotal, prometheus.CounterValue, p.Total, m.name, p.Type)
+		}
+		for _, p := range m.ioPressure {
+			ch <- prometheus.MustNewConstMetric(e.ioPressure, prometheus.GaugeValue, p.Avg10, m.name, p.Type, "avg10")
+			ch <- prometheus.MustNewConstMetric(e.ioPressure, prometheus.GaugeValue, p.Avg60, m.name, p.Type, "avg60")
+			ch <- prometheus.MustNewConstMetric(e.ioPressure, prometheus.GaugeValue, p.Avg300, m.name, p.Type, "avg300")
+			ch <- prometheus.MustNewConstMetric(e.ioPressureTotal, prometheus.CounterValue, p.Total, m.name, p.Type)
 		}
 		if m.userslice || m.job {
 			ch <- prometheus.MustNewConstMetric(e.info, prometheus.GaugeValue, 1, m.name, m.username, m.uid, m.jobid)
