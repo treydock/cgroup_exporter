@@ -359,3 +359,16 @@ func TestCollectv2SLURM(t *testing.T) {
 		}
 	}
 }
+
+func TestGetInfov2SLURMAdoptedSSH(t *testing.T) {
+	logger := promslog.NewNopLogger()
+	metric := CgroupMetric{}
+	// root owned sshd of a session adopted by pam_slurm_adopt, then the user's shell
+	getInfov2("/system.slice/slurmstepd.scope/job_4", []int{49270, 49276}, &metric, logger)
+	if val := metric.jobid; val != "4" {
+		t.Errorf("Unexpected value for jobid, got %v", val)
+	}
+	if val := metric.uid; val != "20821" {
+		t.Errorf("Unexpected value for uid, got %v", val)
+	}
+}
