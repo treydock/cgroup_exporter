@@ -5220,6 +5220,31 @@ voluntary_ctxt_switches:        27
 nonvoluntary_ctxt_switches:     18
 Mode: 644
 # ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Directory: fixtures/proc/49270
+Mode: 755
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/proc/49270/cgroup
+Lines: 1
+0::/system.slice/slurmstepd.scope/job_4/step_extern/user/task_special
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/proc/49270/exe
+SymlinkTo: /usr/sbin/sshd
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Path: fixtures/proc/49270/status
+Lines: 10
+Name:	sshd
+Umask:	0022
+State:	S (sleeping)
+Tgid:	49270
+Ngid:	0
+Pid:	49270
+PPid:	1
+TracerPid:	0
+Uid:	0	0	0	0
+Gid:	0	0	0	0
+Mode: 644
+# ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Directory: fixtures/proc/49276
 Mode: 775
 # ttar - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

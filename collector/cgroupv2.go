@@ -124,7 +124,8 @@ func getInfov2(name string, pids []int, metric *CgroupMetric, logger *slog.Logge
 			logger.Error("Unable to get procfs", "root", *ProcRoot, "err", err)
 			return
 		}
-		var proc procfs.Proc
+		var proc, candidate procfs.Proc
+		found := false
 		for _, pid := range pids {
 			proc, err = procFS.Proc(pid)
 			if err != nil {
@@ -136,9 +137,28 @@ func getInfov2(name string, pids []int, metric *CgroupMetric, logger *slog.Logge
 				logger.Error("Unable to read process executable", "pid", pid, "err", err)
 				return
 			}
-			if filepath.Base(exec) != "sleep" && filepath.Base(exec) != "slurmstepd" {
+			if filepath.Base(exec) == "sleep" || filepath.Base(exec) == "slurmstepd" {
+				continue
+			}
+			procStat, err := proc.NewStatus()
+			if err != nil {
+				logger.Error("Unable to get proc status for PID", "pid", proc.PID, "err", err)
+				return
+			}
+			if !found {
+				candidate = proc
+				found = true
+			}
+			// Prefer a process not owned by root, such as the user's shell
+			// in an SSH session adopted by pam_slurm_adopt, where the root
+			// owned sshd process comes first
+			if procStat.UIDs[1] != 0 {
+				candidate = proc
 				break
 			}
+		}
+		if found {
+			proc = candidate
 		}
 		procStat, err := proc.NewStatus()
 		if err != nil {
