@@ -1,3 +1,9 @@
+## 1.3.1 / 2026-11-21
+
+### Changes
+
+* [BUGFIX] Prefer non-root process for cgroupv2 SLURM job uid (#55)
+
 ## 1.3.0 / 2026-08-27
 
 ### Changes
